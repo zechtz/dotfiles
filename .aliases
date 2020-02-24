@@ -224,4 +224,4 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias migrate='php artisan migrate'
 alias migrate:status='php artisan migrate:status'
-
+alias 'switch-terminal'='sudo update-alternatives --config gdm3.css'

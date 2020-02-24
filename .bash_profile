@@ -78,8 +78,15 @@ export PATH="$PATH:/opt/mssql-tools/bin"
 export PATH="$PATH:/opt/mssql-tools/bin"
 export PATH="$PATH:/opt/mssql-tools/bin"
 export PATH="$PATH:/opt/mssql-tools/bin"
-export PATH="$PATH:/usr/local/go/bin"
+
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/gocode
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+# export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+#export GOROOT=$HOME/go
+#export GOPATH=$HOME/gocode
+#export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 eval "$(SHELL=/home/mtabe/.dir_colors/dircolors)"
 

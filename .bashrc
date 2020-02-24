@@ -28,4 +28,4 @@ export ECLIPSE_HOME="/home/mtabe/eclipse/java-2019-06/eclipse"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/mtabe/.sdkman"
 [[ -s "/home/mtabe/.sdkman/bin/sdkman-init.sh" ]] && source "/home/mtabe/.sdkman/bin/sdkman-init.sh"
-bind 'set completion-ignore-case on'
+# bind 'set completion-ignore-case on'

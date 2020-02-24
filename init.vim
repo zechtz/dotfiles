@@ -740,7 +740,8 @@ let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 "do not load youcompleteme
 "let g:loaded_youcompleteme = 1
-let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 
 " vim-rspec mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
