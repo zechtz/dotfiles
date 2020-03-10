@@ -4,7 +4,7 @@
 # iTerm → Profiles → Text → use 13pt Monaco with 1.1 vertical spacing.
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-	export TERM='gnome-256color';
+	export TERM='tmux-256color';
 elif infocmp xterm-256color >/dev/null 2>&1; then
 	export TERM='xterm-256color';
 fi;
@@ -40,7 +40,7 @@ prompt_git() {
 
 			# Check for untracked files.
 			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-				s+="${red}[]";
+				s+="${red}[!]";
 			fi;
 
 			# Check for stashed files.
