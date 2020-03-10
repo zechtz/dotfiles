@@ -29,3 +29,5 @@ export ECLIPSE_HOME="/home/mtabe/eclipse/java-2019-06/eclipse"
 export SDKMAN_DIR="/home/mtabe/.sdkman"
 [[ -s "/home/mtabe/.sdkman/bin/sdkman-init.sh" ]] && source "/home/mtabe/.sdkman/bin/sdkman-init.sh"
 # bind 'set completion-ignore-case on'
+# Disable Ruby constanct warnings e.g warning: constant ::NIL is deprecated
+export RUBYOPT="-W0"
