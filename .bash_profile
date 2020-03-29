@@ -109,3 +109,5 @@ export PATH=$SPRING_HOME/bin:$PATH
 vipsql() {
   vim -c 'setlocal buftype=nofile | setlocal ft=sql | VipsqlOpenSession '"$*"
 }
+export PATH="$HOME/.exenv/bin:$PATH"
+eval "$(exenv init -)"
