@@ -74,6 +74,15 @@ Plug 'tpope/vim-jdaddy'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'mhinz/vim-mix-format'
+Plug 'dense-analysis/ale'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 "display plugins
 Plug 'Yggdroot/indentLine'
@@ -95,13 +104,17 @@ Plug 'vim-scripts/c.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-pug'
 Plug 'lambdatoast/elm.vim'
-Plug 'leafgarland/typescript-vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'slashmili/alchemist.vim'
 "Plug 'dansomething/vim-eclim'
-Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
+
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
 
 "snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -149,6 +162,10 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "My vim specific configurations, shortcuts and other stuff
 let mapleader = ","
 let maplocalleader = ","
+
+"Automatically format elixir code on saving
+let g:mix_format_on_save = 1
+let g:mix_format_silent_errors = 1
 
 " automatically save the edited but not saved file
 " when switching buffers
@@ -702,11 +719,21 @@ endfunction
 " vim-go settings & key bindings
 "-----------------------------------------------------------------"
 let g:go_disable_autoinstall = 0
+let g:go_highlight_build_constraints= 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
-let g:go_highlight_operators= 1
-let g:go_highlight_build_constraints= 1
+let g:go_highlight_types = 1
+let g:go_auto_sameids = 0
+
+let g:go_fmt_command='goimports'
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_metalinter_command='golangci-lint'
+let g:go_auto_type_info = 1
 
 au FileType go nmap <Leader>v  <Plug>(go-def-vertical)
 au FileType go nmap <Leader>in <Plug>(go-info)
@@ -719,10 +746,14 @@ au FileType go nmap <leader>c  <Plug>(go-coverage)
 au FileType go nmap <Leader>d  <Plug>(go-doc)
 au FileType go nmap <Leader>f  :GoImports<CR>
 
-let g:go_fmt_command='goimports' 
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_metalinter_command='golangci-lint' 
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
 " Disable folding
 let g:vim_markdown_folding_disabled = 1

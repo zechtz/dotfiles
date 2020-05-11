@@ -68,27 +68,15 @@ alias up='echo "Moving back one directory" && cd ..'
 
 # if i type home just bring me back to home/root folder
 alias home='echo "Welcome, you are in your home folder now" && cd ~'
-export PATH="$PATH:/opt/mssql-tools/bin"
-export PATH="$PATH:/opt/mssql-tools/bin"
-export PATH="$PATH:/opt/mssql-tools/bin"
 export PATH="$PATH:/home/mtabe/jasperstarter/bin"
 export PATH="$PATH:/home/mtabe/.composer/vendor/bin"
 #export PATH="$PATH:/home/mtabe/mongodb/bin"
 
-export PATH="$PATH:/opt/mssql-tools/bin"
-export PATH="$PATH:/opt/mssql-tools/bin"
-export PATH="$PATH:/opt/mssql-tools/bin"
-export PATH="$PATH:/opt/mssql-tools/bin"
-export PATH="$PATH:/usr/local/elixir//bin"
+export PATH="$PATH:/usr/local/elixir/bin"
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/gocode
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-# export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
-#export GOROOT=$HOME/go
-#export GOPATH=$HOME/gocode
-#export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 eval "$(SHELL=/home/mtabe/.dir_colors/dircolors)"
 

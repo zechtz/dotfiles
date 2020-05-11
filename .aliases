@@ -21,6 +21,7 @@ alias fetch="git fetch"
 alias ga="git add"
 alias gc="git commit -m"
 alias gd="git diff"
+alias merge='function merge(){ git merge $1; };merge'
 alias tinker="php artisan tinx"
 alias gp="git push origin master"
 alias gh="git push heroku master"
@@ -53,6 +54,8 @@ alias copy='xclip -selection clipboard'
 # after this you can just `c` to paste from clipboard
 alias v='xclip -o'
 
+alias vim='nvim'
+alias vi='nvim'
 
 # list open ports
 alias lsp="sudo lsof -i -n -P | grep LISTEN"
@@ -72,6 +75,8 @@ alias la="ls -laF ${colorflag}"
 
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+
+alias lt='ls --human-readable --size -1 -S --classify'
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"

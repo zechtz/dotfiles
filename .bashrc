@@ -10,9 +10,6 @@ eval "$(rbenv init -)"
 source /home/mtabe/.phpbrew/bashrc
 export PHPBREW_SET_PROMPT=0
 export PHPBREW_RC_ENABLE=0
-export DOCKER_USERNAME=zechtz
-export DOCKER_PASSWORD=action2012
-export DO_TOKEN=08070465099cdefb3280063c47fb4b4ad31ba71b6d8b218560530ccd7db5434f
 export BASE_URL=http://imes.tamisemi.go.tz
 export PUBLIC_URL=http://imes.tamisemi.go.tz
 
