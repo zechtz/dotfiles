@@ -10,8 +10,6 @@ eval "$(rbenv init -)"
 source /home/mtabe/.phpbrew/bashrc
 export PHPBREW_SET_PROMPT=0
 export PHPBREW_RC_ENABLE=0
-export BASE_URL=http://imes.tamisemi.go.tz
-export PUBLIC_URL=http://imes.tamisemi.go.tz
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
