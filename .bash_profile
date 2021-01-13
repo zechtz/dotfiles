@@ -82,6 +82,8 @@ eval "$(SHELL=/home/mtabe/.dir_colors/dircolors)"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+export DISK2="/data"
+
 # avoid duplicates..
 export HISTCONTROL=ignoredups:erasedups
 
@@ -97,5 +99,15 @@ export PATH=$SPRING_HOME/bin:$PATH
 vipsql() {
   vim -c 'setlocal buftype=nofile | setlocal ft=sql | VipsqlOpenSession '"$*"
 }
+
+# Let root user use same vim configurations as normal user
+sudo() {
+  if [[ $1 == "vim" ]] || [[ $1 == "nvim" ]]; then
+    command sudo -E nvim "${@:2}"
+  else
+    command sudo "$@"
+  fi
+}
+
 export PATH="$HOME/.exenv/bin:$PATH"
-eval "$(exenv init -)"
+# eval "$(exenv init -)"

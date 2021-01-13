@@ -39,7 +39,7 @@ Plug 'pveyes/atom-snazzy-clear-syntax'
 Plug 'fmoralesc/molokayo'
 " Solarized - variant with specific terminal support
 Plug 'lifepillar/vim-solarized8'
-
+Plug 'ruby-formatter/rufo-vim'
 
 "vim utils
 Plug 'godlygeek/tabular'
@@ -76,6 +76,11 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'mhinz/vim-mix-format'
 Plug 'dense-analysis/ale'
+Plug 'chrisbra/sudoedit.vim'
+Plug 'posva/vim-vue'
+Plug 'othree/html5.vim'
+Plug 'artur-shaik/vim-javacomplete2'
+
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -83,6 +88,10 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+let g:ale_fixers = {'vue': ['remove_trailing_lines', 'trim_whitespace']}
+let g:ale_fix_on_save = 1
+let g:ale_linter_aliases = {'vue': ['javascript', 'html', 'scss']}
 
 "display plugins
 Plug 'Yggdroot/indentLine'
@@ -108,13 +117,16 @@ Plug 'StanAngeloff/php.vim'
 Plug 'slashmili/alchemist.vim'
 "Plug 'dansomething/vim-eclim'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'posva/vim-vue'
+Plug 'prettier/vim-prettier'
 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
+" nginx systax Highlight
+Plug 'chr4/nginx.vim'
+Plug 'leafOfTree/vim-vue-plugin'
 
 "snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -135,10 +147,18 @@ let base16colorspace=256
 let g:onedark_hide_endofbuffer=1
 let g:onedark_terminal_italics=1
 
+" set up prettier
+let g:prettier#autoformat = 1
+let g:prettier#exec_cmd_async = 1
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+" Enable rufo (RUby FOrmat)
+let g:rufo_auto_formatting = 1
+
 "colorscheme PaperColor
 "colorscheme ayu
-"colorscheme onedark
-colorscheme snazzy
+colorscheme onedark
+"colorscheme snazzy
 "colorscheme base16-darktooth
 "colorscheme molokayo
 "colorscheme onehalflight
@@ -146,6 +166,9 @@ colorscheme snazzy
 "colorscheme solarized
 set background=dark
 set inccommand=nosplit
+
+
+set guifont=Fira\ Code:h12
 
 "...
 "set termguicolors     " enable true colors support
@@ -312,6 +335,9 @@ nmap <Leader>xx <c-x>
 nmap <Leader>dd <c-x>
 imap <Leader>ff <c-x><c-f>
 
+imap <Leader>aa <c-x><c-o>
+nmap <Leader>gss <C-j>a
+
 "Map ctrl+H to Leader HH for Vertical & Horizontal splits
 nmap <Leader>HH <C-w>H
 nmap <Leader>LL <C-w>L
@@ -462,6 +488,8 @@ vmap <Leader>w <c-y>,
 "Insert a hash rocket with <c-l> saves lots of time when writing ruby
 "-----------------------------------------------------------------"
 imap <c-l> <space>=><space>
+imap <c-k> <space>-><space>
+imap <c-j> <space><-<space>
 
 "-----------------------------------------------------------------"
 "Saves time; maps the spacebar to colon
@@ -752,8 +780,37 @@ let g:ale_sign_warning = '⚠'
 " Enable integration with airline.
 let g:airline#extensions#ale#enabled = 1
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
+" Don't forget to start deoplete let g:deoplete#enable_at_startup = 1 "
+" Less spam let g:deoplete#auto_complete_start_length = 2
+" Use smartcase
+let g:deoplete#enable_smart_case = 1
+
+
+" Setup completion sources
+let g:deoplete#sources = {}
+
+" IMPORTANT: PLEASE INSTALL JAVACOMPLETE2  AND ULTISNIPS OR DONT ADD THIS LINE!
+" =====================================
+
+let g:deoplete#sources.java = ['jc', 'javacomplete2', 'file', 'buffer', 'ultisnips']
+
+" =====================================
+
+""use TAB as the mapping
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ?  "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "" {{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction "" }}}
+" end deoplete configuration
+
+" Java completion with javacomplete2
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd FileType java JCEnable
+
 
 " Disable folding
 let g:vim_markdown_folding_disabled = 1

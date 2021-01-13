@@ -1,5 +1,6 @@
 #easier navigation
 
+alias sudo='sudo '
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -26,10 +27,13 @@ alias tinker="php artisan tinx"
 alias gp="git push origin master"
 alias gh="git push heroku master"
 alias wifi='/etc/NetworkManager/system-connections'
-alias 'start-work-session'='cd ~/sites && tmux new -s work'
+alias 'start-work-session'='cd /data/sites && tmux new -s work'
+alias 'data'='cd /data'
 alias 'start-swagger'='docker run -p 3000:8080 swaggerapi/swagger-editor'
+alias 'start-rabbitmq'='docker run -p 15672:15672 -d --hostname rabbitmq.local --name rabbitmq rabbitmq:3-management'
 alias 'start-mnrt-vpn'='sudo openvpn --config /etc/openvpn/mnrt.ovpn'
 alias 'start-imes-vpn'='sudo openvpn --config /etc/openvpn/imes.ovpn'
+alias 'start-imes-vpn'='sudo openvpn --config /etc/openvpn/proton.ovpn'
 alias 'show-daemons'='ps -eo 'tty,pid,comm' | grep ^?'
 alias 'start-planrep'='cd ~/sites/planrep && php -S localhost:5000 -t public/'
 alias python=python2
@@ -46,6 +50,7 @@ alias 'docker-prune-containers'="docker container prune"
 alias 'start-eclim'="${ECLIPSE_HOME}/eclimd &"
 alias 'set-default-editor'="sudo update-alternatives --config editor"
 alias 'ssh-giamis'="ssh giamis@154.118.227.173"
+alias 'mix-json'="mix phx.gen.json"
 
 #alias 'default-editor="sudo update-alternatives --config editor"
 
@@ -212,9 +217,9 @@ alias gohome='cd ~/gocode'
 alias gosource='cd ~/gocode/src'
 
 # if i type work just bring me to home/zach/work folder
-alias work='cd ~/work'
+alias work='cd /data/work'
 alias www='cd ~/public_html'
-alias sites='cd ~/sites'
+alias sites='cd /data/sites'
 alias uliza='cd ~/sites/uliza'
 alias python=python3
 alias laravel=/home/mtabe/.composer/vendor/bin/laravel

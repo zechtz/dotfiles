@@ -29,8 +29,6 @@ prompt_git() {
       # Check if nothing to commit, clean branch then green tick
       if ! [ -n "$(git status --porcelain)" ]; then
 				s+="${green}[✓]";
-
-
       fi;
 
 			# Check for unstaged changes aka changes not added to be comitted

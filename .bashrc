@@ -7,7 +7,7 @@ export PATH=$HOME/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-source /home/mtabe/.phpbrew/bashrc
+# source /home/mtabe/.phpbrew/bashrc
 export PHPBREW_SET_PROMPT=0
 export PHPBREW_RC_ENABLE=0
 
@@ -26,3 +26,17 @@ export SDKMAN_DIR="/home/mtabe/.sdkman"
 # bind 'set completion-ignore-case on'
 # Disable Ruby constanct warnings e.g warning: constant ::NIL is deprecated
 export RUBYOPT="-W0"
+
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+
+export PATH="$PATH:/usr/local/bin/"
+
+# airflow needs a home, ~/airflow is the default,
+# but you can lay foundation somewhere else if you prefer
+# (optional)
+export AIRFLOW_HOME=~/airflow
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
