@@ -14,7 +14,6 @@ end
 
 function fish_prompt
     set -l git_branch (git branch 2>/dev/null | sed -n '/\* /s// on branch  /p')
-    # echo -n (whoami)'@'(hostname)':'(prompt_pwd)''"$git_branch"' $ '
 
     set_color red
     printf '%s' $USER
@@ -30,9 +29,9 @@ function fish_prompt
 
     set -l git_dir (git rev-parse --git-dir 2> /dev/null)
     if test -n "$git_dir"
-      printf '%s%s %s%s %s%s' (set_color $fish_color_cwd) (pwd) (set_color normal) (set_color A3A3A3) 'on  '(parse_git_branch)
+      printf '%s%s %s%s%s%s' (set_color $fish_color_cwd) (pwd) (set_color normal) (set_color A3A3A3)'on ' (parse_git_branch)
     else
-      printf '%s%s %s%s%s '  (set_color $fish_color_cwd) (pwd) (set_color normal)
+      printf '%s%s %s%s%s'  (set_color $fish_color_cwd) (pwd) (set_color normal)
     end
     echo
     printf '↪ '
