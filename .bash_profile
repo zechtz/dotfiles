@@ -75,8 +75,8 @@ export PATH="$PATH:/home/mtabe/.composer/vendor/bin"
 export PATH="$PATH:/usr/local/elixir/bin"
 
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/gocode
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export GOPATH="/data/go"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 eval "$(SHELL=/home/mtabe/.dir_colors/dircolors)"
 
@@ -95,6 +95,8 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 export SPRING_HOME=/opt/spring-boot/spring-1.4.0.RELEASE
 export PATH=$SPRING_HOME/bin:$PATH
+
+export PATH="/data/kubernetes/third_party/etcd:${PATH}"
 
 vipsql() {
   vim -c 'setlocal buftype=nofile | setlocal ft=sql | VipsqlOpenSession '"$*"

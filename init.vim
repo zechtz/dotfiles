@@ -80,6 +80,7 @@ Plug 'chrisbra/sudoedit.vim'
 Plug 'posva/vim-vue'
 Plug 'othree/html5.vim'
 Plug 'artur-shaik/vim-javacomplete2'
+Plug 'stephpy/vim-php-cs-fixer'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -89,7 +90,12 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-let g:ale_fixers = {'vue': ['remove_trailing_lines', 'trim_whitespace']}
+let g:ale_fixers = {
+      \'vue': ['remove_trailing_lines', 'trim_whitespace'], 
+      \'javascript': ['prettier'], 
+      \'json': ['prettier'], 
+      \'php': ['prettier'],
+      \}
 let g:ale_fix_on_save = 1
 let g:ale_linter_aliases = {'vue': ['javascript', 'html', 'scss']}
 
@@ -151,20 +157,21 @@ let g:onedark_terminal_italics=1
 let g:prettier#autoformat = 1
 let g:prettier#exec_cmd_async = 1
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 
 " Enable rufo (RUby FOrmat)
 let g:rufo_auto_formatting = 1
 
 "colorscheme PaperColor
 "colorscheme ayu
-colorscheme onedark
+"colorscheme onedark
 "colorscheme snazzy
 "colorscheme base16-darktooth
 "colorscheme molokayo
 "colorscheme onehalflight
 "colorscheme molokai
-"colorscheme solarized
-set background=dark
+colorscheme solarized
+set background=light
 set inccommand=nosplit
 
 

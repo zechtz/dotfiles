@@ -214,7 +214,7 @@ alias up='echo "Moving back one directory" && cd ..'
 # if i type home just bring me back to root folder
 alias home='echo "Welcome, you are in your home folder now" && cd ~'
 alias gohome='cd ~/gocode'
-alias gosource='cd ~/gocode/src'
+alias gosource='cd /data/go/src'
 
 # if i type work just bring me to home/zach/work folder
 alias work='cd /data/work'
