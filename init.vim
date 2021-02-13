@@ -8,6 +8,7 @@
 "------------------------------------------------------------
 
 set encoding=utf-8
+set shell=/bin/sh
 
 " Add any plugin before plug#end() and run :PlugInstall
 call plug#begin('~/.config/nvim/plugged')
@@ -164,16 +165,15 @@ let g:rufo_auto_formatting = 1
 
 "colorscheme PaperColor
 "colorscheme ayu
-"colorscheme onedark
+colorscheme onedark
 "colorscheme snazzy
 "colorscheme base16-darktooth
 "colorscheme molokayo
 "colorscheme onehalflight
 "colorscheme molokai
-colorscheme solarized
-set background=light
+"colorscheme solarized
+set background=dark
 set inccommand=nosplit
-
 
 set guifont=Fira\ Code:h12
 
