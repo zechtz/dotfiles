@@ -41,6 +41,7 @@ Plug 'fmoralesc/molokayo'
 " Solarized - variant with specific terminal support
 Plug 'lifepillar/vim-solarized8'
 Plug 'ruby-formatter/rufo-vim'
+Plug 'arcticicestudio/nord-vim'
 
 "vim utils
 Plug 'godlygeek/tabular'
@@ -82,6 +83,8 @@ Plug 'posva/vim-vue'
 Plug 'othree/html5.vim'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'stephpy/vim-php-cs-fixer'
+Plug 'rust-lang/rust.vim'
+Plug 'alx741/vim-rustfmt'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -98,6 +101,9 @@ let g:ale_fixers = {
       \'php': ['prettier'],
       \}
 let g:ale_fix_on_save = 1
+
+let g:rustfmt_on_save = 1
+
 let g:ale_linter_aliases = {'vue': ['javascript', 'html', 'scss']}
 
 "display plugins
@@ -172,7 +178,8 @@ colorscheme onedark
 "colorscheme onehalflight
 "colorscheme molokai
 "colorscheme solarized
-set background=dark
+"colorscheme nord
+set background=dark 
 set inccommand=nosplit
 
 set guifont=Fira\ Code:h12
@@ -529,6 +536,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 imap jk <Esc><Esc>
 imap jj <Esc><Esc>
 imap kk <Esc><Esc>
+imap .. <Esc>bgUawA
 
 set autoindent
 set smartindent
@@ -583,10 +591,12 @@ highlight SpecialKey ctermbg=none
 "when using molokai, this will show gutter color similar
 "editor window color
 "highlight LineNr ctermbg=233
-highlight LineNr ctermbg=none
-" set cursoline bg color to none
+"highlight LineNr ctermbg=none
+highlight LineNr ctermfg=DarkGrey
+highlight Comment ctermfg=DarkGrey
 
-"highlight CursorLine ctermbg=NONE
+" set cursoline bg color to none
+highlight CursorLine ctermbg=NONE
 "highlight CursorLine ctermbg=235
 "highlight Normal ctermbg=black
 
