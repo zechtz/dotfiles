@@ -1,6 +1,6 @@
 function start-poralg-vpn --wraps='sudo openvpn --config /etc/openvpn/poralg.ovpn' --description 'alias start-poralg-vpn=sudo openvpn --config /etc/openvpn/poralg.ovpn'
 
-echo > /etc/openvpn/credentials "\
+echo > /etc/openvpn/credentials/poralg "\
 $PORALG_USER
 $PORALG_PASS$argv
 "
