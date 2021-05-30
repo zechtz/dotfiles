@@ -20,9 +20,7 @@ Plug 'slashmili/alchemist.vim'
 "Plug 'dansomething/vim-eclim'
 Plug 'maxmellon/vim-jsx-pretty'
 " post install (yarn install | npm install) then load plugin only for editing supported files
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
