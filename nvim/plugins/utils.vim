@@ -10,7 +10,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'tpope/vim-dispatch'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Townk/vim-autoclose'
@@ -41,6 +40,8 @@ Plug 'stephpy/vim-php-cs-fixer'
 Plug 'rust-lang/rust.vim'
 Plug 'alx741/vim-rustfmt'
 Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+" Or build from source code by using yarn: https://yarnpkg.com
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
 if has('nvim')
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
