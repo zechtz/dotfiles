@@ -32,3 +32,6 @@ Plug 'jparise/vim-graphql'
 " nginx systax Highlight
 Plug 'chr4/nginx.vim'
 Plug 'leafOfTree/vim-vue-plugin'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
