@@ -26,7 +26,6 @@ source /data/work/dotfiles/nvim/plugins/plugin-config/coc.vim
 source /data/work/dotfiles/nvim/plugins/plugin-config/coc-prettier.vim
 source /data/work/dotfiles/nvim/plugins/plugin-config/endwise.vim
 source /data/work/dotfiles/nvim/plugins/plugin-config/dart.vim
-"source /data/work/dotfiles/nvim/plugins/plugin-config/youcompleteme.vim
 
 source /data/work/dotfiles/nvim/general/javascript.vim
 source /data/work/dotfiles/nvim/general/python.vim
