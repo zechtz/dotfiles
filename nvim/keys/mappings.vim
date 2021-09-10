@@ -206,3 +206,10 @@ map <Down>  :echo "no!"<cr>
 nmap <Leader>ff :tag<space>
 " type double dots followed by u to make word before cursor UPPERCASE
 imap <Leader>uu <Esc>bgUawA
+
+"sorround non-quoted json keys with double quotes by pressing ,jx
+noremap <Leader>jx :%s/[ \t]\([A-Za-z_].*\):/"\1":/<CR>
+
+"sorround non-quoted json keys with double quotes by pressing ,s"
+noremap <Leader>s" :%s/\([A-Z_]*\):/"\1":/<CR>
+
