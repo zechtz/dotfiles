@@ -68,3 +68,13 @@ function! s:check_back_space() abort "" {{{
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction "" }}}
 " end deoplete configuration
+
+inoremap <silent> <CR> <C-r>=<SID>coc_confirm()<CR>
+function! s:coc_confirm() abort
+  if pumvisible()
+    return coc#_select_confirm()
+  else
+    return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  endif
+endfunction
+

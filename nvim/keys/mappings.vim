@@ -2,7 +2,16 @@
 let mapleader = ","
 let maplocalleader = ","
 
-nmap <space> :
+nmap <Leader>S :source ~/.config/nvim/init.vim<CR>
+nmap <Leader>E :edit ~/.config/nvim/init.vim<CR>
+
+" Open the current file in the default program
+nmap <Leader>x :!xdg-open %<cr><cr>
+
+" Allow gf to open non-existent file
+map gf :edit <cfile><cr>
+
+map <space> :
 vmap <space> <Esc>
 nmap <Leader>bb <Esc>:Tabularize/=<CR>
 nmap <Leader>tb <Esc>:Tabularize/
@@ -166,7 +175,7 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 "inoremap <s-tab> <c-n>
 "
 "
-map <Leader>rn  :call RenameFile()<cr>
+map <Leader>rnf  :call RenameFile()<cr>
 
 "-----------------------------------------------------------------"
 "Vim Exchange settings

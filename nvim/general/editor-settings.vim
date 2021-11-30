@@ -219,6 +219,10 @@ set showmatch
 " Set a different background color on gutter
 "-----------------------------------------------------------------"
 "Do not show gutter background color
+set signcolumn=yes:2
+set scrolloff=8
+set sidescrolloff=8
+set nojoinspaces
 highlight clear SignColumn
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=yellow
