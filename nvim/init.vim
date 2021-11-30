@@ -43,7 +43,7 @@ source /data/work/dotfiles/nvim/plugins/syntax.vim
 " Add plugins to &runtimepath
 call plug#end()
 
-source /data/work/dotfiles/nvim/themes/colors/onedark.vim
-source /data/work/dotfiles/nvim/themes/dark.vim
+source /data/work/dotfiles/nvim/themes/colors/dracula.vim
+"source /data/work/dotfiles/nvim/themes/dark.vim
 
 source /data/work/dotfiles/nvim/general/extras.vim

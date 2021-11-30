@@ -29,3 +29,4 @@ Plug 'ruby-formatter/rufo-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jonathanfilip/vim-lucius'
+Plug 'dracula/vim', { 'as': 'dracula' }
