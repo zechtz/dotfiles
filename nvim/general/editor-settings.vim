@@ -151,7 +151,7 @@ set softtabstop=2
 set autoindent
 set smartindent
 set tabstop=2
-:retab %             " Retabulate the whole file
+":retab %             " Retabulate the whole file
 
 "set list
 "set listchars=tab:.\ ,eol:¬

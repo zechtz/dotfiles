@@ -44,8 +44,6 @@ Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'codota/tabnine-vim'
 Plug 'voldikss/vim-floaterm'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 
 if has('nvim')
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -60,4 +58,8 @@ Plug 'Yggdroot/indentLine'
 
 "snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'markonm/traces.vim'
+Plug 'airblade/vim-rooter'

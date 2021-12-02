@@ -29,6 +29,7 @@ source /data/work/dotfiles/nvim/plugins/plugin-config/dart.vim
 source /data/work/dotfiles/nvim/plugins/plugin-config/php-refactoring-toolbox.vim
 source /data/work/dotfiles/nvim/plugins/plugin-config/intelephense.vim
 source /data/work/dotfiles/nvim/plugins/plugin-config/floaterm.vim
+source /data/work/dotfiles/nvim/plugins/plugin-config/fzf.vim
 
 source /data/work/dotfiles/nvim/general/javascript.vim
 source /data/work/dotfiles/nvim/general/python.vim

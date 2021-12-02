@@ -213,6 +213,9 @@ map <Down>  :echo "no!"<cr>
 nmap <Leader>fn  :FloatermNew<cr>
 nmap <Leader>ft  :FloatermToggle<cr>
 
+"nnoremap <Leader>rg :Rg<C-W><cr>
+nmap <Leader>rg :Rg<cr>
+
 " Ctags Mappings
 nmap <Leader>ff :tag<space>
 " type double dots followed by u to make word before cursor UPPERCASE
