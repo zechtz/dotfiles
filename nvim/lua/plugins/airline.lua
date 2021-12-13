@@ -1,24 +1,21 @@
-function! GetName()
-  return vim.call("expand","%:t")=='' ? '<none>' : vim.call("expand", "%:t")
+function GetName()
+  if vim.call("expand","%:t") =='' then return '<none>' else return vim.call("expand", "%:t") end
 end
 
-function! GetCWD()
+function GetCWD()
   return vim.call("expand", ":pwd")
 end
 
-function! IsHelp()
-  return &buftype=='help'?' (help) ':''
+function IsHelp()
+  if buftype=='help' then return vim.call('help') else return ':' end
 end
 
-function! GetName()
-  return vim.call("expand", "%:t")==''?'<none>': vim.call("expand", "%:t")
+function GetName()
+  if vim.call("expand", "%:t") =='' then return '<none>' else return vim.call("expand", "%:t") end
 end
 
 vim.cmd([[
-set statusline=%1*[%{GetName()}]\
-set statusline+=%<pwd:%{getcwd()}\
 set statusline+=%2*%{&modified?'\[+]':''}%*
-set statusline+=%{IsHelp()}
 set statusline+=%{&readonly?'\ (ro)\ ':''}
 set statusline+=[
 set statusline+=%{strlen(&fenc)?&fenc:'none'}\|
@@ -36,5 +33,5 @@ set laststatus=2
 
 vim.g.airline_powerline_fonts = 1
 vim.g.airline_theme='onedark'
-vim.g.airline#extensions#tabline#enabled = 1
-vim.g.airline#extensions#tabline#fnamemod = ':t'
+--vim.g.airline#extensions#tabline#enabled = 1
+--vim.g.airline#extensions#tabline#fnamemod = ':t'
