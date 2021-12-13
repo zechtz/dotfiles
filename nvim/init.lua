@@ -1,19 +1,19 @@
 require("settings")
 require("keymappings")
 
-require("plugins.go")
+-- require("plugins.go")
 require("plugins.airline")
-require("plugins.config.floaterm")
+-- require("plugins.config.floaterm")
 
 -- Use Plug to manage plugins
-vim.call('plug#begin', '~/.config/nvim/plugged')
+-- vim.call('plug#begin', '~/.config/nvim/plugged')
 --color schemes
-require("colorschemes")
+-- require("colorschemes")
 -- vim utils move to own file as well
-require("utils")
+-- require("utils")
 -- syntax plugins - move to own file
-require("syntax")
-vim.call('plug#end')
+-- require("syntax")
+--vim.call('plug#end')
 
-require("colors.onedark")
-require("colors.dark")
+-- require("colors.onedark")
+-- require("colors.dark")
