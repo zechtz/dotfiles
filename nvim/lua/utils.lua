@@ -2,7 +2,6 @@ local Plug = vim.fn['plug#']
 
 Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align'
-Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'

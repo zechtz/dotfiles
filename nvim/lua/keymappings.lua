@@ -140,7 +140,8 @@ noremap("'", "`")
 noremap("`", "'")
 
 -- Just ,p instead of ctrl + p
-nmap('<Leader>p', '<C-p>')
+nmap('<Leader>p', ':GFiles<cr>')
+nmap('<c-p>', ':Files<cr>')
 
 -- Move back to normal mode from insert mode by typing ,]
 imap('<Leader>[', '<Esc>')
