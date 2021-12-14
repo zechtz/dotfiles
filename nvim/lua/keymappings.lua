@@ -1,30 +1,32 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
-vim.g.gitgutter_max_signs = 2048
-
-function map(mode, shortcut, command)
-  opts = {}
+local function map(mode, shortcut, command)
+  local opts = {}
   vim.api.nvim_set_keymap(mode, shortcut, command, opts)
 end
 
-function nmap(shortcut, command)
+local function nmap(shortcut, command)
   map('n', shortcut, command)
 end
 
-function imap(shortcut, command)
+local function imap(shortcut, command)
   map('i', shortcut, command)
 end
 
-function vmap(shortcut, command)
+local function smap(shortcut, command)
+  map('s', shortcut, command)
+end
+
+local function vmap(shortcut, command)
   map('v', shortcut, command)
 end
 
-function xmap(shortcut, command)
+local function xmap(shortcut, command)
   map('x', shortcut, command)
 end
 
-function noremap(shortcut, command)
+local function noremap(shortcut, command)
   vim.api.nvim_set_keymap('n', shortcut, command, { noremap = true, silent = true })
 end
 
@@ -67,6 +69,7 @@ nmap('<Leader>WW', '<C-w>J')
 
 -- set eclim autocomplete in insert mode to leader cc (,cc)
 imap('<Leader>cc ', '<c-x><c-u>')
+vmap('<Leader>/ ', '<c-x><c-u>')
 
 -- Just press , + s to open nerdtree
 nmap('<Leader>s', ':NERDTreeToggle<CR>')
@@ -208,6 +211,10 @@ vmap('exc', '<Plug>(ExchangeClear)')
 
 xmap('E', '<Plug>(Exchange)')
 
+--move selected line /block of text in visual mode
+xmap("K", ":move '<-2<cr>gv-gv")
+xmap("J", ":move '>+1<cr>gv-gv")
+
 nmap('exl', '<Plug>(ExchangeLine)')
 vmap('exl', '<Plug>(ExchangeLine)')
 
@@ -234,7 +241,24 @@ nmap('<Leader>ff', ':tag<Space>')
 imap('<Leader>uu', '<Esc>bgUawA')
 
 -- sorround non-quoted json keys with double quotes by pressing ,jx
--- nmap('<Leader>jx', ':%s/[ \t]\([A-Za-z_].*\):/"\1":/<CR>')
+nmap('<Leader>jx', ':%s/[ \\t]\\([A-Za-z_].*\\):/"\1":/<CR>')
 
 -- sorround non-quoted json keys with double quotes by pressing ,s'
--- nmap('<Leader>s', ':%s/\([A-Z_]*\):/"\1":/<CR>')
+nmap('<Leader>js', ':%s/\\([A-Z_]*\\):/"\1":/<CR>')
+
+--" LSP config (the mappings used in the default file don't quite work right)
+noremap('<silent> gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+noremap('<silent> gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+noremap('<silent> gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+noremap('<silent> gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+noremap('<silent> K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+noremap('<silent> <C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+noremap('<silent> <C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+noremap('<silent> <C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+
+vim.api.nvim_command([[
+autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+]])
+
