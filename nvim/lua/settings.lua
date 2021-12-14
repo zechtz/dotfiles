@@ -33,7 +33,6 @@ vim.cmd([[
   set cursorline
   setlocal indentkeys+=0.
 
-
   set expandtab
   set shiftwidth=2
   set softtabstop=2
@@ -85,4 +84,7 @@ vim.cmd([[
   set termguicolors
 ]])
 
+--set list
+--set list listchars=tab:»-,trail:·,extends:»,precedes:«
 vim.g.indentLine_enabled = 0
+vim.g.gitgutter_max_signs = 2048
