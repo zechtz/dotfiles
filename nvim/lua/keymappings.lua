@@ -1,6 +1,8 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
+local keymap = vim.api.nvim_set_keymap
+
 local function map(mode, shortcut, command)
   local opts = {}
   vim.api.nvim_set_keymap(mode, shortcut, command, opts)
@@ -14,8 +16,19 @@ local function imap(shortcut, command)
   map('i', shortcut, command)
 end
 
-local function smap(shortcut, command)
-  map('s', shortcut, command)
+local function snoremap(shortcut, command)
+  local opts = {noremap = true, silent = true, expr = true}
+  keymap('s', shortcut, command, opts)
+end
+
+local function inoremap(shortcut, command)
+  local opts = {noremap = true, silent = true, expr = true}
+  keymap('i', shortcut, command, opts)
+end
+
+local function cnoremap(shortcut, command)
+  local opts = {noremap = true, expr = true}
+  keymap('c', shortcut, command, opts)
 end
 
 local function vmap(shortcut, command)
@@ -259,6 +272,29 @@ noremap('<silent> <C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 vim.api.nvim_command([[
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 ]])
 
+-- " NOTE: You can use other key to expand snippet.
+cnoremap("<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"')
+cnoremap("<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"')
+
+-- Expand
+inoremap('<C-j>', 'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"')
+snoremap('<C-j>', 'vsnip#expandable() ? "<Plug>(vsnip-expand)" : "<C-j>"')
+
+-- Expand or jump
+inoremap('<C-l>',  'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"')
+snoremap('<C-l>',  'vsnip#available(1) ? "<Plug>(vsnip-expand-or-jump)" : "<C-l>"')
+
+--  Jump forward or backward
+inoremap('<Tab>', 'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<Tab>"')
+snoremap('<Tab>',  'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)"  : "<Tab>"')
+inoremap('<S-Tab>',  'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<S-Tab>"')
+snoremap('<S-Tab>' , 'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "<S-Tab>"')
+
+-- Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+--  See https://github.com/hrsh7th/vim-vsnip/pull/50
+nmap('s', '<Plug>(vsnip-select-text)')
+xmap('s',  '<Plug>(vsnip-select-text)')
+nmap('S',  '<Plug>(vsnip-cut-text)')
+xmap('S',  '<Plug>(vsnip-cut-text)')
