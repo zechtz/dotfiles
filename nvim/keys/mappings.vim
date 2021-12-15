@@ -226,4 +226,3 @@ noremap <Leader>jx :%s/[ \t]\([A-Za-z_].*\):/"\1":/<CR>
 
 "sorround non-quoted json keys with double quotes by pressing ,s"
 noremap <Leader>s" :%s/\([A-Z_]*\):/"\1":/<CR>
-
