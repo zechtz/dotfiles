@@ -30,4 +30,9 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jonathanfilip/vim-lucius'
 Plug('dracula/vim', { as = 'dracula' })
-Plug 'ghifarit53/tokyonight-vim'
+
+Plug 'folke/tokyonight.nvim'
+Plug 'lunarvim/colorschemes' -- A bunch of colorschemes you can try out
+Plug 'lunarvim/darkplus.nvim'
+Plug 'catppuccin/nvim'
+Plug 'rose-pine/neovim'

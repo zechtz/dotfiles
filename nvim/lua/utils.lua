@@ -40,7 +40,7 @@ Plug 'stephpy/vim-php-cs-fixer'
 Plug 'rust-lang/rust.vim'
 Plug 'alx741/vim-rustfmt'
 Plug('lvht/phpcd.vim', {['for'] = 'php', ['do'] = 'composer install' })
-Plug('neoclide/coc.nvim', {branch = 'master', ['do'] = 'yarn install --frozen-lockfile'})
+--Plug('neoclide/coc.nvim', {branch = 'master', ['do'] = 'yarn install --frozen-lockfile'})
 Plug 'codota/tabnine-vim'
 Plug 'voldikss/vim-floaterm'
 
@@ -51,24 +51,65 @@ Plug 'roxma/vim-hug-neovim-rpc'
 -- display plugins
 Plug 'Yggdroot/indentLine'
 
--- snippets
-Plug 'SirVer/ultisnips'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-Plug 'honza/vim-snippets'
-
 Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
 Plug 'junegunn/fzf.vim'
 Plug 'markonm/traces.vim'
 Plug 'airblade/vim-rooter'
 
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-Plug 'hrsh7th/cmp-nvim-lsp'
+-- telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-media-files.nvim'
+Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
+
+-- Display Dashboard
+Plug 'goolord/alpha-nvim'
+
+-- Add colors to css definitions
+Plug 'norcalli/nvim-colorizer.lua'
+
+-- Session Manager
+Plug 'Shatur/neovim-session-manager'
+
+
+-- intellesense
 Plug 'glepnir/lspsaga.nvim'
 
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+ -- DAP ( for debugging )
+ Plug 'mfussenegger/nvim-dap'
+ Plug 'theHamsta/nvim-dap-virtual-text'
+ Plug 'rcarriga/nvim-dap-ui'
+ Plug 'Pocco81/DAPInstall.nvim'
+
+-- cmp plugins
+Plug 'hrsh7th/nvim-cmp' -- The completion plugin
+Plug 'hrsh7th/cmp-buffer' -- buffer completions
+Plug 'hrsh7th/cmp-path' -- path completions
+Plug 'hrsh7th/cmp-cmdline' -- cmdline completions
+Plug 'saadparwaiz1/cmp_luasnip' -- snippet completions
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-emoji'
+Plug 'hrsh7th/cmp-nvim-lua'
+
+-- snippets
+Plug 'L3MON4D3/LuaSnip' --snippet engine
+Plug 'rafamadriz/friendly-snippets' -- a bunch of snippets to Plug
+
+-- LSP
+Plug 'neovim/nvim-lspconfig' -- enable LSP
+Plug 'williamboman/nvim-lsp-installer' -- simple to Plug language server installer
+Plug 'tamago324/nlsp-settings.nvim' -- language server settings defined in json for
+Plug 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
+Plug 'filipdutescu/renamer.nvim'
+Plug 'simrat39/symbols-outline.nvim'
+
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
+
+-- Java
+Plug 'mfussenegger/nvim-jdtls'
+
+-- popup windows
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'

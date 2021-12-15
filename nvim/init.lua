@@ -2,7 +2,7 @@ require("settings")
 require("keymappings")
 
 -- require("plugins.go")
-require("plugins.airline")
+require("plugins.config.airline")
 require("plugins.config.floaterm")
 
 -- Use Plug to manage plugins
@@ -15,15 +15,17 @@ require("utils")
 require("syntax")
 vim.call('plug#end')
 
-require("plugins.lspconfig")
-require("plugins.ultisnips")
+--language servers
+require("user.cmp")
+require("user.lsp")
+require("user.telescope")
+require("user.colorizer")
+require("user.project")
+require("user.renamer")
+require("user.session")
+require("user.treesitter")
+require("user.alpha")
 
+-- colorschemes
 require("colors.tokyostorm")
 require("colors.dark")
-
---language servers
-require("ls.rust")
-require("ls.ts")
-require("ls.python-lsp")
-require("ls.bash-lsp")
-require("ls.elixir-lsp")

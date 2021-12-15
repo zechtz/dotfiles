@@ -82,6 +82,7 @@ vim.cmd([[
   set t_ZH=[3m
   set t_ZR=[23m
   set termguicolors
+  filetype plugin on
 ]])
 
 --set list

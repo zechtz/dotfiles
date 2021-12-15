@@ -16,8 +16,8 @@ Plug 'vim-scripts/c.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-pug'
 Plug 'lambdatoast/elm.vim'
-Plug 'StanAngeloff/php.vim'
-Plug 'slashmili/alchemist.vim'
+-- Plug 'StanAngeloff/php.vim'
+-- Plug 'slashmili/alchemist.vim'
 --Plug 'dansomething/vim-eclim'
 Plug 'maxmellon/vim-jsx-pretty'
 -- post install (yarn install | npm install) then load plugin only for editing supported files
@@ -26,7 +26,7 @@ Plug('prettier/vim-prettier', { ['do'] = 'yarn install' })
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug('neoclide/coc.nvim', { branch = 'master', ['do'] = 'yarn install --frozen-lockfile'})
+-- Plug('neoclide/coc.nvim', { branch = 'master', ['do'] = 'yarn install --frozen-lockfile'})
 
 Plug('styled-components/vim-styled-components', { branch = 'main' })
 Plug 'jparise/vim-graphql'
@@ -37,4 +37,4 @@ Plug 'leafOfTree/vim-vue-plugin'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
-Plug 'adoy/vim-php-refactoring-toolbox'
+-- Plug 'adoy/vim-php-refactoring-toolbox'
