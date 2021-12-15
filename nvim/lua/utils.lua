@@ -60,6 +60,7 @@ Plug 'airblade/vim-rooter'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'tom-anders/telescope-vim-bookmarks.nvim'
 Plug 'nvim-telescope/telescope-media-files.nvim'
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 
@@ -71,7 +72,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 -- Session Manager
 Plug 'Shatur/neovim-session-manager'
-
 
 -- intellesense
 Plug 'glepnir/lspsaga.nvim'
@@ -113,3 +113,9 @@ Plug 'mfussenegger/nvim-jdtls'
 -- popup windows
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
+
+-- speeds up nvim load time with lua modules
+Plug 'lewis6991/impatient.nvim'
+
+-- get to any word faster
+Plug 'unblevable/quick-scope'
