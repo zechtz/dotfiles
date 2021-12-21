@@ -22,6 +22,10 @@ require("user.vim-project")
 require("user.vim-zen")
 require("user.whichkey")
 
+require("user.git-signs")
+require("user.git-blame")
+require("user.git-link")
+
 -- packages
 require("user.plugins")
 
