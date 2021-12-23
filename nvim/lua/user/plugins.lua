@@ -42,6 +42,8 @@ packer.init {
 return packer.startup(function(use)
   -- plugins here
   use "wbthomason/packer.nvim" -- let packer manage itself
+  use "nvim-lua/popup.nvim" -- An impletation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim" -- An impletation of the Popup API from vim in Neovim
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
