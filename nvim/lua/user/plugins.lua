@@ -149,6 +149,8 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
+  use("hrsh7th/cmp-vsnip")
+  use("hrsh7th/vim-vsnip")
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -162,8 +164,7 @@ return packer.startup(function(use)
 
   use 'vim-airline/vim-airline' -- for nice status bars
 
-  use 'yuezk/vim-js'
-  use 'maxmellon/vim-jsx-pretty'
+  -- language specific plugins
 
   -- syntax highlightign
   use 'chr4/nginx.vim'
@@ -174,8 +175,15 @@ return packer.startup(function(use)
   use 'adoy/vim-php-refactoring-toolbox'
   use 'prettier/vim-prettier'
 
+  -- javascript & react
+  use 'yuezk/vim-js'
+  use 'maxmellon/vim-jsx-pretty'
+
   -- vim-go
   use 'fatih/vim-go'
+
+  -- elixir
+  use 'elixir-lang/vim-elixir'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
