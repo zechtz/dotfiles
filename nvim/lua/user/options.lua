@@ -49,6 +49,8 @@ local options = {
 }
 
 vim.opt.shortmess:append "c"
+vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd [[set iskeyword+=-]] -- be able to perfom actions on whole words even if it has dash eg hello-word
 
 for k, v in pairs(options) do
   vim.opt[k] = v
