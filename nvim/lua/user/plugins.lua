@@ -45,6 +45,31 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An impletation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- An impletation of the Popup API from vim in Neovim
 
+  -- color schemes
+  use "lunarvim/colorschemes"
+  use "folke/tokyonight.nvim" -- a nice dark color theme
+  use "lunarvim/darkplus.nvim"
+  use "catppuccin/nvim"
+  use "rose-pine/neovim"
+  use "sonph/onehalf"
+  use "joshdick/onedark.vim"
+  use 'morhetz/gruvbox'
+  use 'altercation/vim-colors-solarized'
+  use 'antlypls/vim-colors-codeschool'
+  use 'tomasr/molokai'
+  use 'jpo/vim-railscasts-theme'
+  use 'gosukiwi/vim-atom-dark'
+  use 'trevordmiller/nova-vim'
+  use 'ayu-theme/ayu-vim'
+  use 'gregsexton/Atom'
+  use 'endel/vim-github-colorscheme'
+  use 'connorholyday/vim-snazzy'
+  use 'lifepillar/vim-solarized8'
+  use 'arcticicestudio/nord-vim'
+  use 'whatyouhide/vim-gotham'
+  use 'NLKNguyen/papercolor-theme'
+  use 'EdenEast/nightfox.nvim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
