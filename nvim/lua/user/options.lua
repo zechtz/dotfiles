@@ -13,8 +13,8 @@ local options = {
   showtabline = 0,                         -- always hide tabs
   smartcase = true,                        -- smart case
   smartindent = true,                      -- make indenting smarter again
-  splitbelow = true,                       -- force all horizontal splits to go below current window
   incsearch = true,
+  splitbelow = true,                       -- force all horizontal splits to go below current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
   swapfile = false,                        -- creates a swapfile
   termguicolors = true,                    -- set term gui colors (most terminals support this)
@@ -49,8 +49,6 @@ local options = {
 }
 
 vim.opt.shortmess:append "c"
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]] -- be able to perfom actions on whole words even if it has dash eg hello-word
 
 for k, v in pairs(options) do
   vim.opt[k] = v

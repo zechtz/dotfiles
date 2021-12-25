@@ -79,7 +79,7 @@ nmap('<Leader><Space', ':noh<CR>')
 -- Open the current file in the default program
 nmap('<Leader>x', ':!xdg-open %<CR><CR>')
 
-nmap('<Space>', ':')
+-- nmap('<Space>', ':')
 vmap('<Space>', '<Esc>')
 
 -- Allow gf to open non-existent file
