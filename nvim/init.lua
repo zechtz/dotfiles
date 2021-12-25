@@ -29,6 +29,7 @@ require "user.settings.airline"
 
 require "user.autocmd"
 require "user.autopairs"
+require "user.indent-line"
 
 -- packages
 require "user.plugins"

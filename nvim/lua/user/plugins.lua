@@ -54,7 +54,6 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim" -- a nice vim dashboard
   use "ThePrimeagen/harpoon"
   use "JoosepAlviste/nvim-ts-context-commentstring"
-  use "lukas-reineke/indent-blankline.nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "rcarriga/nvim-notify"
   use "folke/lua-dev.nvim"
@@ -165,6 +164,7 @@ return packer.startup(function(use)
   use "windwp/nvim-spectre"
 
   use 'vim-airline/vim-airline' -- for nice status bars
+  use "lukas-reineke/indent-blankline.nvim"
 
   -- language specific plugins
 
