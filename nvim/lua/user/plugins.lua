@@ -84,6 +84,7 @@ return packer.startup(function(use)
   use 'whatyouhide/vim-gotham'
   use 'NLKNguyen/papercolor-theme'
   use 'EdenEast/nightfox.nvim'
+  use 'rebelot/kanagawa.nvim'
 
   -- Treesitter
   use {

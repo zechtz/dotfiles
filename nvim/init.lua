@@ -1,7 +1,7 @@
+require "user.colorschemes.tokyostorm"
 require "user.options" 
 require "user.keymapping"
 require "user.plugins"
-require "user.colorscheme"
 require "user.cmp"
 require "user.lsp"
 
