@@ -46,6 +46,11 @@ local options = {
   softtabstop=2,
   autoindent = true,
   guifont="Fira\\ Code:h12",
+
+  undofile=true,           -- enable undo history between sessions
+  undolevels=10000,        -- How many undos
+  undoreload=10000,       -- number of lines to save for undo
+  undodir="~/.config/nvim/undo",
 }
 
 vim.opt.shortmess:append "c"
