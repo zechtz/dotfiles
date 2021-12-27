@@ -25,35 +25,40 @@ vim.cmd [[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
-augroup vimrcEx
-  autocmd!
-  autocmd FileType text setlocal textwidth=78
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal g`\"" |
-        \ endif
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
-  autocmd FileType python set sw=4 sts=4 et
+  augroup vimrcEx
+    autocmd!
+    autocmd FileType text setlocal textwidth=78
+    autocmd BufReadPost *
+          \ if line("'\"") > 0 && line("'\"") <= line("$") |
+          \   exe "normal g`\"" |
+          \ endif
+    autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+    autocmd FileType python set sw=4 sts=4 et
 
-  autocmd! BufRead,BufNewFile *.sass setfiletype=css
-  autocmd! BufRead,BufNewFile *.scss setfiletype=css
-  autocmd! BufRead,BufNewFile *.cap setfiletype=ruby
-  autocmd! BufRead,BufNewFile *.conf setfiletype=conf
-  autocmd! BufRead,BufNewFile *.ejs setfiletype=html
-  autocmd! BufRead,BufNewFile *.blade.php set filetype=html
-  autocmd! BufRead,BufNewFile *.cshtml set filetype=html
-  autocmd! BufRead,BufNewFile *.ejs set filetype=html
+    autocmd! BufRead,BufNewFile *.sass setfiletype=css
+    autocmd! BufRead,BufNewFile *.scss setfiletype=css
+    autocmd! BufRead,BufNewFile *.cap setfiletype=ruby
+    autocmd! BufRead,BufNewFile *.conf setfiletype=conf
+    autocmd! BufRead,BufNewFile *.ejs setfiletype=html
+    autocmd! BufRead,BufNewFile *.blade.php set filetype=html
+    autocmd! BufRead,BufNewFile *.cshtml set filetype=html
+    autocmd! BufRead,BufNewFile *.ejs set filetype=html
 
-  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
-  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
+    autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
+    autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
 
-  autocmd! FileType mkd setlocal syn=off
+    autocmd! FileType mkd setlocal syn=off
 
-  autocmd! CmdwinEnter * :unmap <cr>
-  autocmd! CmdwinLeave * :call MapCR()
+    autocmd! CmdwinEnter * :unmap <cr>
+    autocmd! CmdwinLeave * :call MapCR()
 
-  autocmd! BufNewFile,BufRead *.md setlocal ft=
+    autocmd! BufNewFile,BufRead *.md setlocal ft=
 
-  autocmd! FileType *.slim set sw=2 sts=2 et
-augroup end
+    autocmd! FileType *.slim set sw=2 sts=2 et
+  augroup end
+
+  augroup sourcing
+    autocmd!
+    autocmd BufWritePost init.lua source %
+  augroup END
 ]]

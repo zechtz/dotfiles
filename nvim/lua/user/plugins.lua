@@ -58,6 +58,7 @@ return packer.startup(function(use)
   use "rcarriga/nvim-notify"
   use "folke/lua-dev.nvim"
   use "kyazdani42/nvim-web-devicons"
+  use 'tpope/vim-surround' -- surround characters shortcuts
 
   -- colorschemes
   use "folke/tokyonight.nvim" -- a nice dark color theme
@@ -185,7 +186,9 @@ return packer.startup(function(use)
   use 'fatih/vim-go'
 
   -- elixir
-  use 'elixir-lang/vim-elixir'
+  use { 'elixir-lang/vim-elixir', ft = 'elixir' }
+  use { 'mattreduce/vim-mix', ft = 'elixir' }
+  use { 'slashmili/alchemist.vim', ft = 'elixir' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

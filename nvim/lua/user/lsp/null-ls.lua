@@ -11,9 +11,7 @@ local diagnostics = null_ls.builtins.diagnostics
 local filetypes = {
   "javascript",
   "javascriptreact",
-  "typescript",
   "typescriptreact",
-  "vue",
   "css",
   "scss",
   "less",
@@ -23,6 +21,7 @@ local filetypes = {
   "markdown",
   "graphql",
   "solidity",
+  "php",
 }
 
 null_ls.setup({

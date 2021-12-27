@@ -1,3 +1,6 @@
+USER = vim.fn.expand('$USER')
+local undo_dir_path = "/home/" .. USER .. "/.config/nvim/undo" -- /home/mtabe/.config/nvim
+
 local options = {
   backup = false,                          -- creates a backup file
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
@@ -13,7 +16,7 @@ local options = {
   showtabline = 0,                         -- always hide tabs
   smartcase = true,                        -- smart case
   smartindent = true,                      -- make indenting smarter again
-  incsearch = true,
+  incsearch = true,                        -- incremental search
   splitbelow = true,                       -- force all horizontal splits to go below current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
   swapfile = false,                        -- creates a swapfile
@@ -27,30 +30,25 @@ local options = {
   tabstop = 2,                             -- insert 2 spaces for a tab
   cursorline = true,                       -- highlight the current line
   number = true,                           -- set numbered lines
-  relativenumber = true,                  -- set relative numbered lines
+  relativenumber = true,                   -- set relative numbered lines
   numberwidth = 4,                         -- set number column width to 2 {default 4}
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   encoding="utf-8",
-  shell="/bin/fish",                        -- set shell option to fish shell
-  autowriteall = true,
-  exrc = true,
-  lazyredraw = true,
-  wildmenu = true,
-  undolevels=10000,
-  undoreload=10000,
-  undodir="~/.config/nvim/undo",
-  backupskip="/tmp/*,/private/tmp/*",
+  shell="/bin/fish",                       -- set shell option to fish shell
+  autowriteall = true,                     -- automatically save the edited but not saved file  when switching buffers
+  exrc = true,                             -- allow for project specific vimrc
+  lazyredraw = true,                       -- Makes scrolling faster
+  wildmenu = true,                         -- Enhance command-line completion (displays all matching files when we tab complete)
+  undolevels=10000,                        -- How many undos
+  undoreload=10000,                        -- number of lines to save for undo
+  undodir=undo_dir_path,                   -- where to save undo history
+  backupskip="/tmp/*,/private/tmp/*",      -- Don’t create backups when editing files in certain directories
   softtabstop=2,
   autoindent = true,
   guifont="Fira\\ Code:h12",
-
-  undofile=true,           -- enable undo history between sessions
-  undolevels=10000,        -- How many undos
-  undoreload=10000,       -- number of lines to save for undo
-  undodir="~/.config/nvim/undo",
 }
 
 vim.opt.shortmess:append "c"
