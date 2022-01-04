@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-JAR="/home/mtabe/.cache/nvim/nvim_lsp/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
+JAR="/home/$(echo "$USER")/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
 GRADLE_HOME=$HOME/gradle /usr/lib/jvm/java-11-openjdk-amd64/bin/java \
  -Declipse.application=org.eclipse.jdt.ls.core.id1 \
  -Dosgi.bundles.defaultStartLevel=4 \
@@ -10,8 +10,8 @@ GRADLE_HOME=$HOME/gradle /usr/lib/jvm/java-11-openjdk-amd64/bin/java \
  -Xms1g \
  -Xmx2G \
  -jar $(echo "$JAR") \
- -configuration "/home/mtabe/.cache/nvim/nvim_lsp/jdtls/config_linux" \
- -data "/home/mtabe/workspace" \
+ -configuration "/home/$(echo "$USER")/.local/share/nvim/lsp_servers/jdtls/config_linux" \
+ -data "/home/$(echo "$USER")/workspace" \
   ## do not add these if you are on java less than 9+
  --add-module=ALL-SYSTEM \
  --add-opens java.base/java.util=ALL-UNNAMED \

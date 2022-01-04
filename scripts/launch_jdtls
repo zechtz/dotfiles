@@ -1,6 +1,7 @@
 #!/usr/bin/env fish
 
-set JAR "/home/mtabe/.cache/nvim/nvim_lsp/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
+set USER $USER
+set JAR /home/$USER/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar
 GRADLE_HOME=$HOME/gradle /usr/lib/jvm/java-11-openjdk-amd64/bin/java \
  -Declipse.application=org.eclipse.jdt.ls.core.id1 \
  -Dosgi.bundles.defaultStartLevel=4 \
@@ -10,8 +11,8 @@ GRADLE_HOME=$HOME/gradle /usr/lib/jvm/java-11-openjdk-amd64/bin/java \
  -Xms1g \
  -Xmx2G \
  -jar $JAR \
- -configuration "/home/mtabe/.cache/nvim/nvim_lsp/jdtls/config_linux" \
- -data "/home/mtabe/workspace" \
+ -configuration /home/$USER/.local/share/nvim/lsp_servers/jdtls/config_linux \
+ -data /home/$USER/workspace \
  --add-module=ALL-SYSTEM \
  --add-opens java.base/java.util=ALL-UNNAMED \
  --add-opens java.base/java.lang=ALL-UNNAMED 
