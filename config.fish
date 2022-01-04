@@ -28,8 +28,9 @@ set -gx EMMETLS /home/mtabe/.local/share/nvim/lsp_servers/emmet_ls/node_modules/
 set -gx LEMMINX /home/mtabe/.local/share/nvim/lsp_servers/lemminx
 set -gx TAILWINDLS /home/mtabe/.local/share/nvim/lsp_servers/tailwindcss_npm/node_modules/.bin
 set -gx ESLINTLS /home/mtabe/.local/share/nvim/lsp_servers/vscode-eslint/node_modules/.bin
+set -gx SUMNEKO_LUALS /home/mtabe/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin
 
-set -gx PATH /home/mtabe/.asdf/bin $CARGOPATH/bin $GOROOT/bin $SCRIPTS $RUST_ANALYZER $DENO $JAVA_HOME $ASDF $GOPLS $CMAKE $CSS $DOCKERLS $ANGULARLS $DIAGNOSTICS $DOTLS $CLANGLS $GRAPHQLS $YAMLS $KOTLINLS $VOLARLS $VUELS $SQLLS $SQLS $EMMETLS $LEMMINX $TAILWINDLS $ESLINTLS $PATH
+set -gx PATH /home/mtabe/.asdf/bin $CARGOPATH/bin $GOROOT/bin $SCRIPTS $RUST_ANALYZER $DENO $JAVA_HOME $ASDF $GOPLS $CMAKE $CSS $DOCKERLS $ANGULARLS $DIAGNOSTICS $DOTLS $CLANGLS $GRAPHQLS $YAMLS $KOTLINLS $VOLARLS $VUELS $SQLLS $SQLS $EMMETLS $LEMMINX $TAILWINDLS $ESLINTLS $SUMNEKO_LUALS $PATH
 
 # source asdf at the bottom
 source ~/.asdf/asdf.fish
