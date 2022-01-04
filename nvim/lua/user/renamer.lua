@@ -15,6 +15,12 @@ vim.api.nvim_set_keymap(
 	'<cmd>lua require("renamer").rename({empty = true})<cr>',
 	{ noremap = true, silent = true }
 )
+vim.api.nvim_set_keymap(
+	"n",
+	",rn",
+	'<cmd>lua require("renamer").rename({empty = true})<cr>',
+	{ noremap = true, silent = true }
+)
 local mappings_utils = require("renamer.mappings.utils")
 renamer.setup({
 	-- The popup title, shown if `border` is true
