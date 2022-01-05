@@ -30,6 +30,7 @@ require("user.settings.airline")
 require("user.autocmd")
 require("user.autopairs")
 require("user.indent-line")
+require("user.phpcs-fixer")
 
 -- packages
 require("user.plugins")

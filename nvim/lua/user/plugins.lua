@@ -64,7 +64,7 @@ return packer.startup(function(use)
 	use("folke/tokyonight.nvim") -- a nice dark color theme
 	use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out
 	use("lunarvim/darkplus.nvim")
-	use("catppuccin/nvim")
+	use({ "catppuccin/nvim", as = "catppuccin" })
 	use("rose-pine/neovim")
 	use("sonph/onehalf")
 	use("joshdick/onedark.vim")
@@ -186,6 +186,10 @@ return packer.startup(function(use)
 
 	-- vim-go
 	use("fatih/vim-go")
+
+	-- phpcsfixer
+	use("stephpy/vim-php-cs-fixer")
+	use("editorconfig/editorconfig-vim")
 
 	-- elixir
 	use({ "elixir-lang/vim-elixir", ft = "elixir" })

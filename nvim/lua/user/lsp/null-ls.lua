@@ -21,20 +21,21 @@ local filetypes = {
 	"markdown",
 	"graphql",
 	"solidity",
-	"php",
+	"vue",
 }
 
 null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.prettier.with({
-			-- filetypes = filetypes,
+			filetypes = filetypes,
 			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 		}),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
-		formatting.mix,
-		-- diagnostics.flake8
+		-- formatting.mix,
+		diagnostics.phpcs,
+		diagnostics.misspell,
 	},
 	on_attach = function(client)
 		if client.resolved_capabilities.document_formatting then
