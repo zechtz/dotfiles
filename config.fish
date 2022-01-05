@@ -29,8 +29,42 @@ set -gx LEMMINX /home/mtabe/.local/share/nvim/lsp_servers/lemminx
 set -gx TAILWINDLS /home/mtabe/.local/share/nvim/lsp_servers/tailwindcss_npm/node_modules/.bin
 set -gx ESLINTLS /home/mtabe/.local/share/nvim/lsp_servers/vscode-eslint/node_modules/.bin
 set -gx SUMNEKO_LUALS /home/mtabe/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin
+set -gx PHPCS /home/mtabe/.config/composer/vendor/squizlabs/php_codesniffer/bin
+set -gx MISSPELL /home/mtabe/misc/bin
+set -gx PHPCSFIXER /home/mtabe/misc/vendor/bin
 
-set -gx PATH /home/mtabe/.asdf/bin $CARGOPATH/bin $GOROOT/bin $SCRIPTS $RUST_ANALYZER $DENO $JAVA_HOME $ASDF $GOPLS $CMAKE $CSS $DOCKERLS $ANGULARLS $DIAGNOSTICS $DOTLS $CLANGLS $GRAPHQLS $YAMLS $KOTLINLS $VOLARLS $VUELS $SQLLS $SQLS $EMMETLS $LEMMINX $TAILWINDLS $ESLINTLS $SUMNEKO_LUALS $PATH
+set -gx PATH /home/mtabe/.asdf/bin \
+        $CARGOPATH/bin \
+        $GOROOT/bin \
+        $SCRIPTS \
+        $RUST_ANALYZER \
+        $DENO \
+        $JAVA_HOME \
+        $ASDF \
+        $GOPLS \
+        $CMAKE \
+        $CSS \
+        $DOCKERLS \
+        $ANGULARLS \
+        $DIAGNOSTICS \
+        $DOTLS \
+        $CLANGLS \
+        $GRAPHQLS \
+        $YAMLS \
+        $KOTLINLS \
+        $VOLARLS \
+        $VUELS \
+        $SQLLS \
+        $SQLS \
+        $EMMETLS \
+        $LEMMINX \
+        $TAILWINDLS \
+        $ESLINTLS \
+        $SUMNEKO_LUALS \
+        $PATH \
+        $PHPCS \
+        $MISSPELL \
+        $PHPCSFIXER \
 
 # source asdf at the bottom
 source ~/.asdf/asdf.fish
