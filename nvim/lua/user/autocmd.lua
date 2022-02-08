@@ -62,8 +62,17 @@ vim.cmd([[
     autocmd BufWritePost init.lua source %
   augroup END
 
-  augroup lsp
+  augroup jdtls
     au!
      au FileType java lua require'user.lsp.jdtls_config'.setup()
   augroup END
+
+  augroup elixir
+    au!
+     au FileType java lua require'user.lsp.elixir_config'.setup()
+  augroup END
+
+  augroup FormatAutogroup
+    autocmd! BufWritePost *.java, *.proto, .sql, .js FormatWrite
+  augroup end
 ]])

@@ -129,6 +129,9 @@ return packer.startup(function(use)
 	use("RishabhRD/nvim-lsputils")
 	use("RishabhRD/popfix")
 
+	-- code formatters
+	use("mhartington/formatter.nvim")
+
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
@@ -154,7 +157,8 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-emoji")
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-vsnip")
-	use("hrsh7th/vim-vsnip")
+	-- use("hrsh7th/vim-vsnip")
+	use("hrsh7th/vim-vsnip-integ")
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
@@ -162,6 +166,21 @@ return packer.startup(function(use)
 
 	-- emmet AKA zen coding
 	use("mattn/emmet-vim")
+
+	-- Lua
+	use({
+		"folke/twilight.nvim",
+		config = function()
+			require("twilight").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
+
+	-- elm
+	use("elmcast/elm-vim")
 
 	use("norcalli/nvim-colorizer.lua")
 	use("windwp/nvim-spectre")
@@ -195,6 +214,9 @@ return packer.startup(function(use)
 	use({ "elixir-lang/vim-elixir", ft = "elixir" })
 	use({ "mattreduce/vim-mix", ft = "elixir" })
 	use({ "slashmili/alchemist.vim", ft = "elixir" })
+
+	-- protocol buffers
+	use("uarun/vim-protobuf")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

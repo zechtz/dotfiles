@@ -1,4 +1,4 @@
-require("user.colorschemes.tokyostorm")
+require("user.colorschemes.tokyonight")
 require("user.options")
 require("user.keymapping")
 require("user.plugins")
@@ -31,6 +31,7 @@ require("user.autocmd")
 require("user.autopairs")
 require("user.indent-line")
 require("user.phpcs-fixer")
+require("user.tabnine")
 
 -- packages
 require("user.plugins")

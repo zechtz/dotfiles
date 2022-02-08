@@ -10,12 +10,13 @@ local diagnostics = null_ls.builtins.diagnostics
 
 local filetypes = {
 	"javascript",
+	"typescript",
 	"javascriptreact",
 	"typescriptreact",
 	"css",
 	"scss",
 	"less",
-	"html",
+	-- "html",
 	"json",
 	"yaml",
 	"markdown",
@@ -29,7 +30,7 @@ null_ls.setup({
 	sources = {
 		formatting.prettier.with({
 			filetypes = filetypes,
-			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+			-- extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 		}),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,

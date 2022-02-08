@@ -144,11 +144,11 @@ vmap <Leader>tb <Esc>:Tabularize/
 
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
+nmap <leader>h :bprevious<CR>
 nmap <leader>tn :tabnext<CR>
  map <leader>tp :tabprevious<CR>
 
 " Move to the previous buffer
-nmap <leader>h :bprevious<CR>
 
 nmap <leader>bf :bfirst<CR>
 nmap <leader>bf :Buffers<CR>

@@ -109,9 +109,11 @@ local mappings = {
 		"Buffers",
 	},
 	["e"] = { "<cmd>:NERDTreeToggle<CR><cr>", "Explorer" },
+	["n"] = { ":bnext<CR>", "Next Buffer" },
+	["d"] = { ":bprevious<CR>", "Prev Buffer" },
 	-- ["w"] = { "<cmd>w!<CR>", "Save" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No HL" },
-	-- ["q"] = { "<cmd>q!<CR>", "Quit" },
+	["q"] = { "<cmd>q!<CR>", "Quit" },
 	["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["f"] = {
@@ -120,7 +122,7 @@ local mappings = {
 	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
-	["R"] = { '<cmd>lua require("renamer").rename()<cr>', "Projects" },
+	["R"] = { '<cmd>lua require("renamer").rename()<cr>', "Rename" },
 	["z"] = { "<cmd>ZenMode<cr>", "Zen" },
 	["gy"] = "Link",
 
@@ -131,6 +133,12 @@ local mappings = {
 		s = { "<cmd>PackerSync<cr>", "Sync" },
 		S = { "<cmd>PackerStatus<cr>", "Status" },
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
+	},
+
+	u = {
+		name = "Diagnostic List",
+		w = { "<cmd>lua require('diaglist').open_all_diagnostics()<cr>" },
+		o = { "<cmd>lua require('diaglist').open_buffer_diagnostics()<cr>" },
 	},
 
 	r = {

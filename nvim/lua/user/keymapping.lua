@@ -166,6 +166,7 @@ nmap("<Left>", ':echo "no!"<CR>')
 nmap("<Right>", ':echo "no!"<CR>')
 nmap("<Up>", ':echo "no!"<CR>')
 nmap("<Down>", ':echo "no!"<CR>')
+nmap("<Leader>rnf", "<cmd>lua require('user.helpers.helpers').RenameFile()<cr>")
 
 -- nnoremap <Leader>rg :Rg<C-W><CR>
 nmap("<Leader>rg", ":Rg<CR>")

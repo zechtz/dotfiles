@@ -8,6 +8,8 @@ GRADLE_HOME=$HOME/gradle /usr/lib/jvm/java-11-openjdk-amd64/bin/java \
  -Declipse.product=org.eclipse.jdt.ls.core.product \
  -Dlog.protocol=true \
  -Dlog.level=ALL \
+ -javaagent:/home/$USER/.local/share/nvim/lsp_servers/jdtls/lombok.jar \
+ -Xbootclasspath/a:/home/$USER/.local/share/nvim/lsp_servers/jdtls/lombok.jar \
  -Xms1g \
  -Xmx2G \
  -jar $JAR \
