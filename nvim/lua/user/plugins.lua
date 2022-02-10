@@ -109,6 +109,7 @@ return packer.startup(function(use)
 	use("ruifm/gitlinker.nvim")
 	use("mattn/vim-gist")
 	use("mattn/webapi-vim")
+	use("airblade/vim-gitgutter")
 
 	-- NerdTree i still prefer this one to nvim-tree
 	use("scrooloose/nerdtree")
