@@ -49,7 +49,8 @@ local options = {
 	softtabstop = 2,
 	autoindent = true,
 	re = 0,
-	guifont = "Fira\\ Code:h12",
+	-- guifont = "Fira\\ Code:h12",
+	guifont = "JetBrainsMono\\ Mono\\ Nerd\\ Font\\ Medium\\ 12",
 }
 
 vim.opt.shortmess:append("c")
@@ -68,3 +69,6 @@ vim.g.codefmt = 1
 vim.g.codefmt_google_java_executable = "java -jar /data/work/java-formatter/google-java-format-1.13.0-all-deps.jar"
 
 vim.g.elm_format_autosave = 1
+vim.g.airline_powerline_fonts = 1
+-- vim.g.airline#extensions#tabline#enabled = 1
+-- "editor.fontLigatures": true,

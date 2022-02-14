@@ -2,3 +2,4 @@
 /nvim/lua/user/helpers/
 /nvim/undo
 nvim/lua/user/lsp/jdtls.lua
+/lunar
