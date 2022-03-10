@@ -32,6 +32,7 @@ require("user.gps")
 require("user.hop")
 require("user.hot-reload")
 require("user.illuminate")
+require("user.functions")
 
 require("user.autocmd")
 require("user.autopairs")

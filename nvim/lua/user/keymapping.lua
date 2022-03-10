@@ -198,6 +198,7 @@ autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 ]])
 
+
 -- " NOTE: You can use other key to expand snippet.
 cnoremap("<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"')
 cnoremap("<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"')

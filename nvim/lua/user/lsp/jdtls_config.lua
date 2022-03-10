@@ -101,7 +101,6 @@ function M.setup()
 		-- bundles = bundles;
 		extendedClientCapabilities = extendedClientCapabilities,
 	}
-
 	-- Server
 	require("jdtls").start_or_attach(config)
 end

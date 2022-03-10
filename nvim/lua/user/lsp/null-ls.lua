@@ -3,11 +3,6 @@ if not null_ls_status_ok then
 	return
 end
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local diagnostics = null_ls.builtins.diagnostics
-
 local filetypes = {
 	"javascript",
 	"typescript",
@@ -17,7 +12,7 @@ local filetypes = {
 	"scss",
 	"less",
 	-- "html",
-	"json",
+	-- "json",
 	"yaml",
 	"markdown",
 	"graphql",
@@ -25,12 +20,18 @@ local filetypes = {
 	"vue",
 }
 
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+local formatting = null_ls.builtins.formatting
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+local diagnostics = null_ls.builtins.diagnostics
+
 null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.prettier.with({
 			filetypes = filetypes,
-			-- extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+			extra_filetypes = { "toml", "solidity" },
+			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 		}),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,

@@ -70,6 +70,7 @@ return packer.startup(function(use)
 	use("tversteeg/registers.nvim")
 	use("nyngwang/NeoZoom.lua")
 	use({ "michaelb/sniprun", run = "bash ./install.sh" })
+	use("pierreglaser/folding-nvim")
 	use({
 
 		"iamcco/markdown-preview.nvim",

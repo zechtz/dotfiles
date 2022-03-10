@@ -48,9 +48,12 @@ local options = {
 	backupskip = "/tmp/*,/private/tmp/*", -- Don’t create backups when editing files in certain directories
 	softtabstop = 2,
 	autoindent = true,
+	wildignorecase = true,
 	re = 0,
 	-- guifont = "Fira\\ Code:h12",
 	guifont = "JetBrainsMono\\ Mono\\ Nerd\\ Font\\ Medium\\ 12",
+	foldmethod = "marker",
+	wildoptions = "pum",
 }
 
 vim.opt.shortmess:append("c")
