@@ -1,15 +1,12 @@
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("user.lsp.handlers").capabilities
+local on_attach = require("user.lsp.handlers").on_attach
+
 local M = {}
 
 function M.setup()
 	vim.cmd([[set softtabstop=2]])
 	vim.cmd([[set shiftwidth=2]])
 	vim.cmd([[set noexpandtab]])
-
-	local on_attach = function(client, bufnr)
-		client.resolved_capabilities.document_formatting = true
-		client.resolved_capabilities.document_range_formatting = true
-	end
 
 	local config = {
 		flags = {
