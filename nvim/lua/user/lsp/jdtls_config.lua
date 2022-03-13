@@ -8,6 +8,12 @@ function M.setup()
 	local on_attach = function(client, bufnr)
 		client.resolved_capabilities.document_formatting = false
 		client.resolved_capabilities.document_range_formatting = false
+		require("lsp_signature").on_attach({
+			bind = true, -- This is mandatory, otherwise border config won't get registered.
+			handler_opts = {
+				border = "rounded",
+			},
+		}, bufnr)
 		require("jdtls.setup").add_commands()
 		require("jdtls").setup_dap()
 	end

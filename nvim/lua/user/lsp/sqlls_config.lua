@@ -1,4 +1,5 @@
 local M = {}
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities)
 
 function M.setup()
 	vim.cmd([[set softtabstop=2]])
