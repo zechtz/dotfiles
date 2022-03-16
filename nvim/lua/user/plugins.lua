@@ -43,7 +43,6 @@ return packer.startup(function(use)
 	-- plugins here
 	use("wbthomason/packer.nvim") -- let packer manage itself
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("numToStr/Comment.nvim") -- comment plugin/ instead of nerdcommenter
 	use("folke/which-key.nvim") -- never forget you key mappings again
@@ -121,6 +120,9 @@ return packer.startup(function(use)
 	use("rcarriga/nvim-dap-ui")
 	use("Pocco81/DAPInstall.nvim")
 
+	-- restore the cursor position
+	use({ "farmergreg/vim-lastplace" })
+
 	-- Git
 	use("lewis6991/gitsigns.nvim")
 	use("f-person/git-blame.nvim")
@@ -157,8 +159,19 @@ return packer.startup(function(use)
 	-- code formatters
 	use("mhartington/formatter.nvim")
 
+	-- linter and formatter
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
+			"neovim/nvim-lspconfig", -- enable LSP
+		},
+		config = function()
+			require("user/lsp/null-ls")
+		end,
+	})
+
 	-- LSP
-	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
@@ -236,10 +249,6 @@ return packer.startup(function(use)
 	use("natebosch/vim-lsc-dart")
 	use("adoy/vim-php-refactoring-toolbox")
 	use("prettier/vim-prettier")
-
-	-- javascript & react
-	use("yuezk/vim-js")
-	use("maxmellon/vim-jsx-pretty")
 
 	-- vim-go
 	use("fatih/vim-go")

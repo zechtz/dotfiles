@@ -1,5 +1,6 @@
 fish_vi_key_bindings
 
+
 set -gx HOME_DIR /home/$USER
 set -gx JAVA_HOME /usr/bin
 set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.4/go
@@ -35,8 +36,7 @@ set -gx KNEX /home/mtabe/misc/knex/node_modules/.bin
 set -gx ESCRIPTS /home/mtabe/.asdf/installs/elixir/1.13.2/.mix/escripts
 set -gx SQLLS /home/mtabe/.config/yarn/global/node_modules/.bin
 set -gx SPRING_HOME /home/mtabe/.asdf/installs/spring-boot/2.6.4
-# set -gx SQLLS /home/mtabe/.local/share/nvim/lsp_servers/sqlls/node_modules/.bin
-# set -gx SQLS /home/mtabe/.local/share/nvim/lsp_servers/sqls
+set -gx DENO_INSTALL /home/mtabe/.deno
 
 set -gx PATH /home/mtabe/.asdf/bin \
         $CARGOPATH/bin \
@@ -74,6 +74,7 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $SQLLS \
         $GOPATH/bin \
         $SPRING_HOME/bin \
+        $DENO_INSTALL/bin \
 
 # source asdf at the bottom
 source ~/.asdf/asdf.fish

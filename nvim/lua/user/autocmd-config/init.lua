@@ -66,8 +66,4 @@ vim.cmd([[
     au!
      au FileType elixir lua require'user.lsp.elixir_config'.setup()
   augroup END
-
-  augroup FormatAutogroup
-    autocmd! BufWritePost *.java,*.proto,*.sql,*.js,*.javascriptreact FormatWrite
-  augroup end
 ]])
