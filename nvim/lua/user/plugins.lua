@@ -207,6 +207,8 @@ return packer.startup(function(use)
 	-- protocol buffers
 	use("uarun/vim-protobuf")
 
+  -- formatter
+  use 'mhartington/formatter.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
