@@ -88,6 +88,8 @@ local config = {
 	-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 	-- for a list of options
 	settings = {
+		["java.format.settings.url"] = home .. "/.config/nvim/language-servers/java-google-formatter.xml",
+		["java.format.settings.profile"] = "GoogleStyle",
 		java = {
 			-- jdt = {
 			--   ls = {
@@ -164,7 +166,25 @@ local config = {
 -- or attaches to an existing client & server depending on the `root_dir`.
 require("jdtls").start_or_attach(config)
 
--- require('jdtls').setup_dap()
+require("jdtls").setup_dap()
+
+require("formatter").setup({
+	filetype = {
+		java = {
+			function()
+				return {
+					exe = "java",
+					args = {
+						"-jar",
+						os.getenv("HOME") .. "/.local/jars/google-java-format-1.13.0-all-deps.jar",
+						vim.api.nvim_buf_get_name(0),
+					},
+					stdin = true,
+				}
+			end,
+		},
+	},
+})
 
 vim.cmd(
 	"command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
