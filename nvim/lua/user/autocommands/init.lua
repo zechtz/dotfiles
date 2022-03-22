@@ -39,4 +39,9 @@ vim.cmd [[
   autocmd!
   autocmd BufWritePost *.java FormatWrite
   augroup END
+
+  augroup _lsp
+    autocmd!
+    autocmd BufWritePre * lua vim.lsp.buf.formatting()
+  augroup end
 ]]
