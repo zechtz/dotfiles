@@ -1,8 +1,7 @@
 fish_vi_key_bindings
 
-
 set -gx HOME_DIR /home/$USER
-set -gx JAVA_HOME /usr/bin
+set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
 set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.4/go
 set -gx GOPATH /data/go/src
 set -gx CARGOPATH  /home/mtabe/.cargo
