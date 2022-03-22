@@ -4,7 +4,12 @@ local fn = vim.fn
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
-    "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
   }
   print "Installing packer close and reopen Neovim..."
   vim.cmd [[packadd packer.nvim]]
@@ -20,15 +25,17 @@ vim.cmd [[
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
-if not status_ok then return end
+if not status_ok then
+  return
+end
 
 -- Have packer use a popup window
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float {border = "rounded"}
-    end
-  }
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
 }
 
 -- Install your plugins here
@@ -40,7 +47,7 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim"
   use "kyazdani42/nvim-web-devicons"
-  use {"kyazdani42/nvim-tree.lua", commit = "f183c7f31197ae499c3420341fb8b275636a49b8"}
+  use { "kyazdani42/nvim-tree.lua", commit = "f183c7f31197ae499c3420341fb8b275636a49b8" }
   use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
@@ -73,8 +80,8 @@ return packer.startup(function(use)
   -- use "metakirby5/codi.vim"
   use "nyngwang/NeoZoom.lua"
   use "SmiteshP/nvim-gps"
-  use {"michaelb/sniprun", run = "bash ./install.sh"}
-  use {"iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown"}
+  use { "michaelb/sniprun", run = "bash ./install.sh" }
+  use { "iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown" }
 
   -- Colorschemes
   use "folke/tokyonight.nvim"
@@ -84,7 +91,7 @@ return packer.startup(function(use)
   use "rebelot/kanagawa.nvim"
 
   -- cmp plugins
-  use {"hrsh7th/nvim-cmp", commit = "d93104244c3834fbd8f3dd01da9729920e0b5fe7"} -- The completion plugin
+  use { "hrsh7th/nvim-cmp", commit = "d93104244c3834fbd8f3dd01da9729920e0b5fe7" } -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
@@ -97,7 +104,7 @@ return packer.startup(function(use)
     "tzachar/cmp-tabnine",
     config = function()
       local tabnine = require "cmp_tabnine.config"
-      tabnine:setup{
+      tabnine:setup {
         max_lines = 1000,
         max_num_results = 20,
         sort = true,
@@ -106,12 +113,12 @@ return packer.startup(function(use)
         ignored_file_types = { -- default is not to ignore
           -- uncomment to ignore in lua:
           -- lua = true
-        }
+        },
       }
     end,
 
     run = "./install.sh",
-    requires = "hrsh7th/nvim-cmp"
+    requires = "hrsh7th/nvim-cmp",
   }
   -- use 'David-Kunz/cmp-npm' -- doesn't seem to work
 
@@ -123,12 +130,12 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use {"jose-elias-alvarez/null-ls.nvim", config = "require('user.null-ls-config')"} -- for formatters and linters
+  use { "jose-elias-alvarez/null-ls.nvim", config = "require('user.null-ls-config')" } -- for formatters and linters
   use "filipdutescu/renamer.nvim"
   use "simrat39/symbols-outline.nvim"
   use "ray-x/lsp_signature.nvim"
   use "b0o/SchemaStore.nvim"
-  use {"folke/trouble.nvim", cmd = "TroubleToggle"}
+  use { "folke/trouble.nvim", cmd = "TroubleToggle" }
   use "github/copilot.vim"
   use "RRethy/vim-illuminate"
 
@@ -143,9 +150,9 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-file-browser.nvim"
 
   -- Treesitter
-  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "JoosepAlviste/nvim-ts-context-commentstring"
-  use {'p00f/nvim-ts-rainbow', commit = 'c6c26c4def0e9cd82f371ba677d6fc9baa0038af'}
+  use { "p00f/nvim-ts-rainbow", commit = "c6c26c4def0e9cd82f371ba677d6fc9baa0038af" }
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
   use "romgrk/nvim-treesitter-context"
@@ -167,33 +174,35 @@ return packer.startup(function(use)
 
   -- language specific plugins
   -- syntax highlightign
-  use("chr4/nginx.vim")
-  use("leafOfTree/vim-vue-plugin")
-  use("dart-lang/dart-vim-plugin")
-  use("natebosch/vim-lsc")
-  use("natebosch/vim-lsc-dart")
-  use("adoy/vim-php-refactoring-toolbox")
-  use("prettier/vim-prettier")
+  use "chr4/nginx.vim"
+  use "leafOfTree/vim-vue-plugin"
+  use "dart-lang/dart-vim-plugin"
+  use "natebosch/vim-lsc"
+  use "natebosch/vim-lsc-dart"
+  use "adoy/vim-php-refactoring-toolbox"
+  use "prettier/vim-prettier"
 
   -- vim-go
-  use("fatih/vim-go")
+  use "fatih/vim-go"
 
   -- phpcsfixer
-  use("stephpy/vim-php-cs-fixer")
-  use("editorconfig/editorconfig-vim")
+  use "stephpy/vim-php-cs-fixer"
+  use "editorconfig/editorconfig-vim"
 
   -- elixir
-  use({"elixir-lang/vim-elixir", ft = "elixir"})
-  use({"mattreduce/vim-mix", ft = "elixir"})
-  use({"slashmili/alchemist.vim", ft = "elixir"})
+  use { "elixir-lang/vim-elixir", ft = "elixir" }
+  use { "mattreduce/vim-mix", ft = "elixir" }
+  use { "slashmili/alchemist.vim", ft = "elixir" }
 
   -- protocol buffers
-  use("uarun/vim-protobuf")
+  use "uarun/vim-protobuf"
 
   -- formatter
-  use 'mhartington/formatter.nvim'
+  use "mhartington/formatter.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then require("packer").sync() end
+  if PACKER_BOOTSTRAP then
+    require("packer").sync()
+  end
 end)

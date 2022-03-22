@@ -42,6 +42,6 @@ vim.cmd [[
 
   augroup _lsp
     autocmd!
-    autocmd BufWritePre * lua vim.lsp.buf.formatting()
+    autocmd BufWritePre,TextChanged,InsertLeave *.js,*.lua,*.vue,*.jsx,*.tsx,*.css,*.scss,*.sass,*.html lua vim.lsp.buf.formatting()
   augroup end
 ]]
