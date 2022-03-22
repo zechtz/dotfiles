@@ -26,10 +26,6 @@ lsp_installer.on_server_ready(function(server)
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
-  if server.name == "jdtls" then
-    return
-  end
-
   if server.name == "solang" then
     local solang_opts = require "user.lsp.servers.solang"
     opts = vim.tbl_deep_extend("force", solang_opts, opts)

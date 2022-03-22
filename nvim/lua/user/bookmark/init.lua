@@ -14,4 +14,3 @@ vim.g.bookmark_center = 1
 vim.g.bookmark_location_list = 0
 vim.g.bookmark_disable_ctrlp = 1
 vim.g.bookmark_display_annotation = 0
--- vim.g.bookmark_auto_save_file = '~/.config/lvim/bookmarks'

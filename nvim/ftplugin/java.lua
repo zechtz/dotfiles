@@ -31,9 +31,9 @@ local workspace_dir = WORKSPACE_PATH .. project_name
 
 -- TODO: Testing
 -- local bundles = {
---     vim.fn.glob(home .. "/.config/lvim/java/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
+--     vim.fn.glob(home .. "/.config/nvim/java/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
 -- };
--- vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/lvim/java/vscode-java-test/server/*.jar"), "\n"))
+-- vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/nvim/java/vscode-java-test/server/*.jar"), "\n"))
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
@@ -176,7 +176,7 @@ require("formatter").setup({
 					exe = "java",
 					args = {
 						"-jar",
-						os.getenv("HOME") .. "/.local/jars/google-java-format-1.13.0-all-deps.jar",
+						os.getenv("HOME") .. "/.local/jars/google-java-format-1.15.0-all-deps.jar",
 						vim.api.nvim_buf_get_name(0),
 					},
 					stdin = true,
