@@ -12,8 +12,7 @@ null_ls.setup {
   debug = false,
   sources = {
     formatting.black.with {extra_args = {"--fast"}}, -- formatting.stylua,
-    formatting.deno_fmt, formatting.mix, formatting.phpcsfixer, formatting.prettierd,
-    formatting.lua_format.with {
+    formatting.deno_fmt, formatting.phpcsfixer, formatting.prettierd, formatting.lua_format.with {
       extra_args = {
         "--no-keep-simple-function-one-line", "--no-break-after-operator", "--column-limit=100",
         "--break-after-table-lb", "--indent-width=2"

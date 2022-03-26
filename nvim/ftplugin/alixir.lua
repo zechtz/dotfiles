@@ -1,4 +1,4 @@
-local capabilities = require "lua.user.lsp.lsp-installer".capabilities
+local capabilities = require"lua.user.lsp.lsp-installer".capabilities
 local lspconfig = require "lspconfig"
 
 -- A callback that will get called when a buffer connects to the language server.
@@ -22,6 +22,7 @@ local on_attach = function(_, bufnr)
   -- now, I'm leaving them as they are for this article because this is
   -- what I actually use, and hey, it works ¯\_(ツ)_/¯.
   vim.cmd [[imap <expr> <C-l> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>']]
+
   vim.cmd [[smap <expr> <C-l> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>']]
 
   vim.cmd [[imap <expr> <Tab> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>']]
@@ -42,7 +43,8 @@ end
 -- Finally, let's initialize the Elixir language server
 
 -- Replace the following with the path to your installation
-local path_to_elixirls = vim.fn.expand("~/.local/share/nvim/lsp_servers/elixir/elixir-ls/language_server.sh")
+local path_to_elixirls = vim.fn.expand(
+                             "~/.local/share/nvim/lsp_servers/elixir/elixir-ls/language_server.sh")
 
 lspconfig.elixirls.setup({
   cmd = {path_to_elixirls},
