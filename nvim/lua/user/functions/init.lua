@@ -44,9 +44,7 @@ function M.toggle_sniprun()
 end
 
 function M.remove_augroup(name)
-  if vim.fn.exists("#" .. name) == 1 then
-    vim.cmd("au! " .. name)
-  end
+  if vim.fn.exists("#" .. name) == 1 then vim.cmd("au! " .. name) end
 end
 
 vim.cmd [[ command! SnipRunToggle execute 'lua require("user.functions").toggle_sniprun()' ]]

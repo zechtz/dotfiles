@@ -1,7 +1,5 @@
 local status_ok, gps = pcall(require, "nvim-gps")
-if not status_ok then
-  return
-end
+if not status_ok then return end
 
 local icons = require "user.icons"
 
@@ -31,7 +29,7 @@ gps.setup {
     ["date-time-name"] = icons.ui.Table .. " ",
     ["inline-table-name"] = icons.ui.Calendar .. " ",
     ["time-name"] = icons.misc.Watch .. " ",
-    ["module-name"] = icons.kind.Module .. " ",
+    ["module-name"] = icons.kind.Module .. " "
   },
 
   -- Add custom configuration per language or
@@ -72,7 +70,7 @@ gps.setup {
   --		["class-name"] = '::',
   --		["method-name"] = '#',
   --	}
-  --}
+  -- }
   -- },
 
   separator = " " .. icons.ui.ChevronRight .. " ",
@@ -84,5 +82,5 @@ gps.setup {
   depth = 0,
 
   -- indicator used when context is hits depth limit
-  depth_limit_indicator = "..",
+  depth_limit_indicator = ".."
 }

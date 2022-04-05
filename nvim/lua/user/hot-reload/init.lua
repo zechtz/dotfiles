@@ -11,23 +11,15 @@ local function _assign(old, new, k)
 end
 
 local function _replace(old, new, repeat_tbl)
-  if repeat_tbl[old] then
-    return
-  end
+  if repeat_tbl[old] then return end
   repeat_tbl[old] = true
 
-  --收集该删除的
+  -- 收集该删除的
   local dellist = {}
-  for k, v in pairs(old) do
-    if not new[k] then
-      table.insert(dellist, k)
-    end
-  end
-  for _, v in ipairs(dellist) do
-    old[v] = nil
-  end
+  for k, v in pairs(old) do if not new[k] then table.insert(dellist, k) end end
+  for _, v in ipairs(dellist) do old[v] = nil end
 
-  --增加和替换
+  -- 增加和替换
   for k, v in pairs(new) do
     if not old[k] then
       old[k] = new[k]

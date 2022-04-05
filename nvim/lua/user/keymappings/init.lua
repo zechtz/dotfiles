@@ -1,57 +1,57 @@
-local opts = { noremap = true, silent = true }
+local opts = {noremap = true, silent = true}
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
---Remap , as leader key
+-- Remap , as leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 keymap("", "<Space>", "<Nop>", opts)
 
 -- helper functions
 local function map(mode, shortcut, command)
-	opts = {}
-	vim.api.nvim_set_keymap(mode, shortcut, command, opts)
+  opts = {}
+  vim.api.nvim_set_keymap(mode, shortcut, command, opts)
 end
 
 local function nmap(shortcut, command)
-	map("n", shortcut, command)
+  map("n", shortcut, command)
 end
 
 local function imap(shortcut, command)
-	map("i", shortcut, command)
+  map("i", shortcut, command)
 end
 
 local function snoremap(shortcut, command)
-	opts = { noremap = true, silent = true, expr = true }
-	keymap("s", shortcut, command, opts)
+  opts = {noremap = true, silent = true, expr = true}
+  keymap("s", shortcut, command, opts)
 end
 
 local function inoremap(shortcut, command)
-	opts = { noremap = true, silent = true, expr = true }
-	keymap("i", shortcut, command, opts)
+  opts = {noremap = true, silent = true, expr = true}
+  keymap("i", shortcut, command, opts)
 end
 
 local function cnoremap(shortcut, command)
-	opts = { noremap = true, expr = true }
-	keymap("c", shortcut, command, opts)
+  opts = {noremap = true, expr = true}
+  keymap("c", shortcut, command, opts)
 end
 
 local function vnoremap(shortcut, command)
-	opts = { noremap = true, expr = true }
-	keymap("v", shortcut, command, opts)
+  opts = {noremap = true, expr = true}
+  keymap("v", shortcut, command, opts)
 end
 
 local function vmap(shortcut, command)
-	map("v", shortcut, command)
+  map("v", shortcut, command)
 end
 
 local function xmap(shortcut, command)
-	map("x", shortcut, command)
+  map("x", shortcut, command)
 end
 
 local function noremap(shortcut, command)
-	vim.api.nvim_set_keymap("n", shortcut, command, { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", shortcut, command, {noremap = true, silent = true})
 end
 
 -- Modes
@@ -85,7 +85,7 @@ vmap("<Space>", "<Esc>")
 -- Allow gf to open non-existent file
 nmap("gf", ":edit <cfile><CR>")
 
---leader ++  => encrement number under cursor, leader xx  => decrement number
+-- leader ++  => encrement number under cursor, leader xx  => decrement number
 nmap("<Leader>++", "<c-a>")
 nmap("<Leader>aa", "<c-a>")
 nmap("<Leader>xx", "<c-x>")
@@ -157,7 +157,7 @@ imap("jk", "<Esc><Esc>")
 imap("jj", "<Esc><Esc>")
 imap("kk", "<Esc><Esc>")
 
---move selected line /block of text in visual mode
+-- move selected line /block of text in visual mode
 xmap("K", ":move '<-2<cr>gv-gv")
 xmap("J", ":move '>+1<cr>gv-gv")
 
@@ -180,7 +180,7 @@ nmap("<Leader>jx", ':%s/[ \\t]\\([A-Za-z_].*\\):/"\1":/<CR>')
 -- sorround non-quoted json keys with double quotes by pressing ,s'
 nmap("<Leader>js", ':%s/\\([A-Z_]*\\):/"\1":/<CR>')
 
---" LSP config (the mappings used in the default file don't quite work right)
+-- " LSP config (the mappings used in the default file don't quite work right)
 noremap("<silent> gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 noremap("<silent> gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 noremap("<silent> gr", "<cmd>lua vim.lsp.buf.references()<CR>")
@@ -197,7 +197,6 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 ]])
-
 
 -- " NOTE: You can use other key to expand snippet.
 cnoremap("<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"')
@@ -225,9 +224,7 @@ nmap("S", "<Plug>(vsnip-cut-text)")
 xmap("S", "<Plug>(vsnip-cut-text)")
 
 vnoremap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
-noremap(
-	"<C-p>",
-	"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>"
-)
+noremap("<C-p>",
+        "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>")
 noremap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>")
 noremap("<C-\\>", "<cmd>vsplit<cr>")

@@ -196,7 +196,13 @@ return packer.startup(function(use)
   use 'Townk/vim-autoclose'
   use 'machakann/vim-highlightedyank'
   use 'terryma/vim-multiple-cursors'
-use 'tommcdo/vim-exchange'
+  use 'tommcdo/vim-exchange'
+
+  -- restore the cursor position
+  use {"farmergreg/vim-lastplace"}
+
+  -- rust
+  use 'simrat39/rust-tools.nvim'
 
   -- protocol buffers
   use "uarun/vim-protobuf"

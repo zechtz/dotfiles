@@ -43,6 +43,31 @@ vim.cmd [[
   augroup _lsp
     autocmd!
     " autocmd BufWritePre,TextChanged,InsertLeave *.js,*.lua,*.vue,*.jsx,*.tsx,*.css,*.scss,*.sass,*.html lua vim.lsp.buf.formatting()
-    autocmd BufWritePre *.js,*.lua,*.vue,*.jsx,*.tsx,*.css,*.scss,*.sass,*.html,*ex,*.exs lua vim.lsp.buf.formatting()
+    autocmd BufWritePre *.js,*.lua,*.vue,*.jsx,*.tsx,*.css,*.scss,*.sass,*.html,*ex,*.exs,*.py lua vim.lsp.buf.formatting()
   augroup end
+
+
+  augroup nvimEx
+  " Clear all autocmds in the group
+  autocmd!
+  autocmd FileType text setlocal textwidth=78
+  " Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
+  "for ruby, autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+  autocmd FileType python set sw=4 sts=4 et
+
+  autocmd! BufRead,BufNewFile *.sass setfiletype=css
+  autocmd! BufRead,BufNewFile *.scss setfiletype=css
+  autocmd! BufRead,BufNewFile *.cap setfiletype=ruby
+  autocmd! BufRead,BufNewFile *.conf setfiletype=conf
+  autocmd! BufRead,BufNewFile *.ejs setfiletype=html
+  autocmd! BufRead,BufNewFile *.blade.php set filetype=html
+  autocmd! BufRead,BufNewFile *.cshtml set filetype=html
+  autocmd! BufRead,BufNewFile *.ejs set filetype=html
+  augroup END
 ]]
