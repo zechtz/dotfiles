@@ -1,6 +1,7 @@
 fish_vi_key_bindings
 
 set -gx HOME_DIR /home/$USER
+set -gx RUBY_GEM_PATH /home/mtabe/.gem/ruby/3.0.0/bin
 set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
 set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.4/go
 set -gx GOPATH /data/go/src
@@ -72,6 +73,7 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $KNEX \
         $ESCRIPTS \
         $SQLLS \
+        $RUBY_GEM_PATH \
         $GOPATH/bin \
         $SPRING_HOME/bin \
         $DENO_INSTALL/bin \
