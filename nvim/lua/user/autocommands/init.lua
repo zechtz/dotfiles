@@ -71,3 +71,4 @@ vim.cmd [[
   autocmd! BufRead,BufNewFile *.ejs set filetype=html
   augroup END
 ]]
+

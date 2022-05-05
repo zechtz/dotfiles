@@ -52,7 +52,14 @@ return packer.startup(function(use)
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
   use "unblevable/quick-scope"
-  use "phaazon/hop.nvim"
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v1', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    end
+  }
   use "andymass/vim-matchup"
   use "nacro90/numb.nvim"
   use "monaqa/dial.nvim"
@@ -105,112 +112,112 @@ return packer.startup(function(use)
         run_on_every_keystroke = true,
         snippet_placeholder = "..",
         ignored_file_types = { -- default is not to ignore
-          -- uncomment to ignore in lua:
-          -- lua = true
-        }
+        -- uncomment to ignore in lua:
+        -- lua = true
       }
-    end,
+    }
+  end,
 
-    run = "./install.sh",
-    requires = "hrsh7th/nvim-cmp"
-  }
-  -- use 'David-Kunz/cmp-npm' -- doesn't seem to work
+  run = "./install.sh",
+  requires = "hrsh7th/nvim-cmp"
+}
+-- use 'David-Kunz/cmp-npm' -- doesn't seem to work
 
-  -- snippets
-  use "L3MON4D3/LuaSnip" -- snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+-- snippets
+use "L3MON4D3/LuaSnip" -- snippet engine
+use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
-  -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use {"jose-elias-alvarez/null-ls.nvim", config = "require('user.null-ls-config')"} -- for formatters and linters
-  use "filipdutescu/renamer.nvim"
-  use "simrat39/symbols-outline.nvim"
-  use "ray-x/lsp_signature.nvim"
-  use "b0o/SchemaStore.nvim"
-  use {"folke/trouble.nvim", cmd = "TroubleToggle"}
-  use "github/copilot.vim"
-  use "RRethy/vim-illuminate"
+-- LSP
+use "neovim/nvim-lspconfig" -- enable LSP
+use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+use {"jose-elias-alvarez/null-ls.nvim", config = "require('user.null-ls-config')"} -- for formatters and linters
+use "filipdutescu/renamer.nvim"
+use "simrat39/symbols-outline.nvim"
+use "ray-x/lsp_signature.nvim"
+use "b0o/SchemaStore.nvim"
+use {"folke/trouble.nvim", cmd = "TroubleToggle"}
+use "github/copilot.vim"
+use "RRethy/vim-illuminate"
 
-  -- Java
-  use "mfussenegger/nvim-jdtls"
+-- Java
+use "mfussenegger/nvim-jdtls"
 
-  -- Telescope
-  use "nvim-telescope/telescope.nvim"
-  use "tom-anders/telescope-vim-bookmarks.nvim"
-  use "nvim-telescope/telescope-media-files.nvim"
-  use "nvim-telescope/telescope-ui-select.nvim"
-  use "nvim-telescope/telescope-file-browser.nvim"
+-- Telescope
+use "nvim-telescope/telescope.nvim"
+use "tom-anders/telescope-vim-bookmarks.nvim"
+use "nvim-telescope/telescope-media-files.nvim"
+use "nvim-telescope/telescope-ui-select.nvim"
+use "nvim-telescope/telescope-file-browser.nvim"
 
-  -- Treesitter
-  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-  use "JoosepAlviste/nvim-ts-context-commentstring"
-  use {"p00f/nvim-ts-rainbow", commit = "c6c26c4def0e9cd82f371ba677d6fc9baa0038af"}
-  use "nvim-treesitter/playground"
-  use "windwp/nvim-ts-autotag"
-  use "romgrk/nvim-treesitter-context"
-  use "mizlan/iswap.nvim"
+-- Treesitter
+use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+use "JoosepAlviste/nvim-ts-context-commentstring"
+use {"p00f/nvim-ts-rainbow", commit = "c6c26c4def0e9cd82f371ba677d6fc9baa0038af"}
+use "nvim-treesitter/playground"
+use "windwp/nvim-ts-autotag"
+use "romgrk/nvim-treesitter-context"
+use "mizlan/iswap.nvim"
 
-  -- Git
-  use "lewis6991/gitsigns.nvim"
-  use "f-person/git-blame.nvim"
-  use "ruifm/gitlinker.nvim"
-  use "mattn/vim-gist"
-  use "mattn/webapi-vim"
-  use "https://github.com/rhysd/conflict-marker.vim"
+-- Git
+use "lewis6991/gitsigns.nvim"
+use "f-person/git-blame.nvim"
+use "ruifm/gitlinker.nvim"
+use "mattn/vim-gist"
+use "mattn/webapi-vim"
+use "https://github.com/rhysd/conflict-marker.vim"
 
-  -- DAP
-  use "mfussenegger/nvim-dap"
-  use "theHamsta/nvim-dap-virtual-text"
-  use "rcarriga/nvim-dap-ui"
-  use "Pocco81/DAPInstall.nvim"
+-- DAP
+use "mfussenegger/nvim-dap"
+use "theHamsta/nvim-dap-virtual-text"
+use "rcarriga/nvim-dap-ui"
+use "Pocco81/DAPInstall.nvim"
 
-  -- language specific plugins
-  -- syntax highlightign
-  use "chr4/nginx.vim"
-  use "leafOfTree/vim-vue-plugin"
-  use "dart-lang/dart-vim-plugin"
-  use "natebosch/vim-lsc"
-  use "natebosch/vim-lsc-dart"
-  use "adoy/vim-php-refactoring-toolbox"
-  use "prettier/vim-prettier"
+-- language specific plugins
+-- syntax highlightign
+use "chr4/nginx.vim"
+use "leafOfTree/vim-vue-plugin"
+use "dart-lang/dart-vim-plugin"
+use "natebosch/vim-lsc"
+use "natebosch/vim-lsc-dart"
+use "adoy/vim-php-refactoring-toolbox"
+use "prettier/vim-prettier"
 
-  -- vim-go
-  use "fatih/vim-go"
+-- vim-go
+use "fatih/vim-go"
 
-  -- phpcsfixer
-  use "stephpy/vim-php-cs-fixer"
-  use "editorconfig/editorconfig-vim"
+-- phpcsfixer
+use "stephpy/vim-php-cs-fixer"
+use "editorconfig/editorconfig-vim"
 
-  -- elixir
-  use {"elixir-lang/vim-elixir", ft = "elixir"}
-  use {"mattreduce/vim-mix", ft = "elixir"}
-  use {"slashmili/alchemist.vim", ft = "elixir"}
+-- elixir
+use {"elixir-lang/vim-elixir", ft = "elixir"}
+use {"mattreduce/vim-mix", ft = "elixir"}
+use {"slashmili/alchemist.vim", ft = "elixir"}
 
-  use 'tpope/vim-fugitive'
-  use 'mattn/emmet-vim'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-dispatch'
-  use 'godlygeek/tabular'
-  use 'Townk/vim-autoclose'
-  use 'machakann/vim-highlightedyank'
-  use 'terryma/vim-multiple-cursors'
-  use 'tommcdo/vim-exchange'
+use 'tpope/vim-fugitive'
+use 'mattn/emmet-vim'
+use 'tpope/vim-surround'
+use 'tpope/vim-dispatch'
+use 'godlygeek/tabular'
+use 'Townk/vim-autoclose'
+use 'machakann/vim-highlightedyank'
+use 'terryma/vim-multiple-cursors'
+use 'tommcdo/vim-exchange'
 
-  -- restore the cursor position
-  use {"farmergreg/vim-lastplace"}
+-- restore the cursor position
+use {"farmergreg/vim-lastplace"}
 
-  -- rust
-  use 'simrat39/rust-tools.nvim'
+-- rust
+use 'simrat39/rust-tools.nvim'
 
-  -- protocol buffers
-  use "uarun/vim-protobuf"
+-- protocol buffers
+use "uarun/vim-protobuf"
 
-  -- formatter
-  use "mhartington/formatter.nvim"
+-- formatter
+use "mhartington/formatter.nvim"
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then require("packer").sync() end
+-- Automatically set up your configuration after cloning packer.nvim
+-- Put this at the end after all plugins
+if PACKER_BOOTSTRAP then require("packer").sync() end
 end)
