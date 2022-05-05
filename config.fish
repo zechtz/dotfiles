@@ -4,6 +4,7 @@ set -gx HOME_DIR /home/$USER
 set -gx RUBY_GEM_PATH /home/mtabe/.gem/ruby/3.0.0/bin
 set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
 set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.4/go
+set -gx LUA_FORMATTER_BIN /home/mtabe/.asdf/installs/lua/5.4.4/luarocks/bin
 set -gx GOPATH /data/go/src
 set -gx CARGOPATH  /home/mtabe/.cargo
 set -gx SCRIPTS /data/work/dotfiles/scripts
@@ -76,6 +77,7 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $RUBY_GEM_PATH \
         $GOPATH/bin \
         $SPRING_HOME/bin \
+        $LUA_FORMATTER_BIN \
         $DENO_INSTALL/bin \
 
 # source asdf at the bottom
