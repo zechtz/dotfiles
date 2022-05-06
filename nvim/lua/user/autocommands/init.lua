@@ -43,7 +43,7 @@ vim.cmd [[
   augroup _lsp
     autocmd!
     " autocmd BufWritePre,TextChanged,InsertLeave *.js,*.lua,*.vue,*.jsx,*.tsx,*.css,*.scss,*.sass,*.html lua vim.lsp.buf.formatting()
-    autocmd BufWritePre *.js,*.lua,*.vue,*.jsx,*.tsx,*.css,*.scss,*.sass,*.html,*ex,*.exs,*.py lua vim.lsp.buf.formatting()
+    autocmd BufWritePre *.js,*.lua,*.vue,*.jsx,*.tsx,*.css,*.scss,*.sass,*.html,*ex,*.exs,*.py lua vim.lsp.buf.format { async = true }
   augroup end
 
 
@@ -71,4 +71,3 @@ vim.cmd [[
   autocmd! BufRead,BufNewFile *.ejs set filetype=html
   augroup END
 ]]
-
