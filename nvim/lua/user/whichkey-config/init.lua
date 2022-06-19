@@ -92,36 +92,38 @@ local m_mappings = {
   h = {'<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon"},
   j = {"<cmd>BookmarkNext<cr>", "Next"},
   k = {"<cmd>BookmarkPrev<cr>", "Prev"},
-  s = {
-    "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
-    "Show"
-  },
+  s = {"<cmd>BookmarkShowAll<cr>", "Prev"},
+  -- s = {
+  --   "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
+  --   "Show",
+  -- },
   x = {"<cmd>BookmarkClearAll<cr>", "Clear All"},
   u = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI"}
 }
 
 local mappings = {
   ["a"] = {"<cmd>Alpha<cr>", "Alpha"},
-  ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Buffers"
-  },
+  b = {"<cmd>JABSOpen<cr>", "Buffers"},
+  -- ["b"] = {
+  --   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+  --   "Buffers",
+  -- },
   ["e"] = {"<cmd>NvimTreeToggle<cr>", "Explorer"},
-  -- ["w"] = { "<cmd>w!<CR>", "Save" },
-
-  ["n"] = {":bnext<CR>", "Next Buffer"},
-  ["d"] = {":bprevious<CR>", "Prev Buffer"},
+  -- ["w"] = { "<cmd>w<CR>", "Write" },
   ["h"] = {"<cmd>nohlsearch<CR>", "No HL"},
-  -- ["q"] = { "<cmd>q!<CR>", "Quit" },
+  ["q"] = {'<cmd>lua require("user.functions").smart_quit()<CR>', "Quit"},
   ["/"] = {'<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment"},
+  -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["c"] = {"<cmd>Bdelete!<CR>", "Close Buffer"},
+
+  -- :lua require'lir.float'.toggle()
   -- ["f"] = {
   --   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
   --   "Find files",
   -- },
   -- ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = {"<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects"},
-  ["R"] = {'<cmd>lua require("renamer").rename()<cr>', "Rename"},
+  -- ["R"] = { '<cmd>lua require("renamer").rename()<cr>', "Rename" },
   ["z"] = {"<cmd>ZenMode<cr>", "Zen"},
   ["gy"] = "Link",
 
@@ -134,6 +136,17 @@ local mappings = {
     u = {"<cmd>PackerUpdate<cr>", "Update"}
   },
 
+  o = {
+    name = "Options",
+    w = {'<cmd>lua require("user.functions").toggle_option("wrap")<cr>', "Wrap"},
+    r = {'<cmd>lua require("user.functions").toggle_option("relativenumber")<cr>', "Relative"},
+    l = {'<cmd>lua require("user.functions").toggle_option("cursorline")<cr>', "Cursorline"},
+    s = {'<cmd>lua require("user.functions").toggle_option("spell")<cr>', "Spell"},
+    t = {'<cmd>lua require("user.functions").toggle_tabline()<cr>', "Tabline"}
+  },
+
+  s = {name = "Split", s = {"<cmd>split<cr>", "HSplit"}, v = {"<cmd>vsplit<cr>", "VSplit"}},
+
   r = {
     name = "Replace",
     r = {"<cmd>lua require('spectre').open()<cr>", "Replace"},
@@ -141,8 +154,27 @@ local mappings = {
     f = {"<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer"}
   },
 
+  d = {
+    name = "Debug",
+    b = {"<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint"},
+    c = {"<cmd>lua require'dap'.continue()<cr>", "Continue"},
+    i = {"<cmd>lua require'dap'.step_into()<cr>", "Into"},
+    o = {"<cmd>lua require'dap'.step_over()<cr>", "Over"},
+    O = {"<cmd>lua require'dap'.step_out()<cr>", "Out"},
+    r = {"<cmd>lua require'dap'.repl.toggle()<cr>", "Repl"},
+    l = {"<cmd>lua require'dap'.run_last()<cr>", "Last"},
+    u = {"<cmd>lua require'dapui'.toggle()<cr>", "UI"},
+    x = {"<cmd>lua require'dap'.terminate()<cr>", "Exit"}
+  },
+
+  -- nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+  -- nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+  -- require("dapui").open()
+  -- require("dapui").close()
+  -- require("dapui").toggle()
+
   f = {
-    name = "Fin",
+    name = "Find",
     b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
     c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
     f = {
@@ -170,7 +202,6 @@ local mappings = {
     r = {"<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
     R = {"<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer"},
     s = {"<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
-    m = {"<cmd>Gvdiffsplit!<cr>", "Merge Conflict"},
     u = {"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk"},
     o = {"<cmd>Telescope git_status<cr>", "Open changed file"},
     b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
@@ -192,7 +223,7 @@ local mappings = {
     a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action"},
     d = {"<cmd>TroubleToggle<cr>", "Diagnostics"},
     w = {"<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics"},
-    f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "Format"},
+    f = {"<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format"},
     F = {"<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat"},
     i = {"<cmd>LspInfo<cr>", "Info"},
     I = {"<cmd>LspInstallInfo<cr>", "Installer Info"},
@@ -204,18 +235,19 @@ local mappings = {
     r = {"<cmd>lua vim.lsp.buf.rename()<cr>", "Rename"},
     R = {"<cmd>TroubleToggle lsp_references<cr>", "References"},
     s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
-    S = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols"}
+    S = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols"},
+    t = {'<cmd>lua require("user.functions").toggle_diagnostics()<cr>', "Toggle Diagnostics"}
   },
 
-  s = {
-    name = "Surround",
-    ["."] = {"<cmd>lua require('surround').repeat_last()<cr>", "Repeat"},
-    a = {"<cmd>lua require('surround').surround_add(true)<cr>", "Add"},
-    d = {"<cmd>lua require('surround').surround_delete()<cr>", "Delete"},
-    r = {"<cmd>lua require('surround').surround_replace()<cr>", "Replace"},
-    q = {"<cmd>lua require('surround').toggle_quotes()<cr>", "Quotes"},
-    b = {"<cmd>lua require('surround').toggle_brackets()<cr>", "Brackets"}
-  },
+  -- s = {
+  --   name = "Surround",
+  --   ["."] = { "<cmd>lua require('surround').repeat_last()<cr>", "Repeat" },
+  --   a = { "<cmd>lua require('surround').surround_add(true)<cr>", "Add" },
+  --   d = { "<cmd>lua require('surround').surround_delete()<cr>", "Delete" },
+  --   r = { "<cmd>lua require('surround').surround_replace()<cr>", "Replace" },
+  --   q = { "<cmd>lua require('surround').toggle_quotes()<cr>", "Quotes" },
+  --   b = { "<cmd>lua require('surround').toggle_brackets()<cr>", "Brackets" },
+  -- },
 
   S = {
     -- name = "Session",

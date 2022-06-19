@@ -1,6 +1,7 @@
 fish_vi_key_bindings
 
 set -gx HOME_DIR /home/$USER
+set -gx PIP_BIN /home/mtabe/.asdf/installs/python/3.10.0/bin
 set -gx RUBY_GEM_PATH /home/mtabe/.gem/ruby/3.0.0/bin
 set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
 set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.5/go
@@ -79,6 +80,7 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $SPRING_HOME/bin \
         $LUA_FORMATTER_BIN \
         $DENO_INSTALL/bin \
+        $PIP_BIN \
 
 # source asdf at the bottom
 source ~/.asdf/asdf.fish

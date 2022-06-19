@@ -4,8 +4,8 @@ local undo_dir_path = "/home/" .. USER .. "/.config/nvim/undo" -- /home/mtabe/.c
 local options = {
   backup = false, -- creates a backup file
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
-  cmdheight = 2, -- more space in the neovim command line for displaying messages
-  completeopt = {"menuone", "noselect"}, -- mostly just for cmp
+  cmdheight = 1, -- more space in the neovim command line for displaying messages
+  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   fileencoding = "utf-8", -- the encoding written to a file
   hlsearch = true, -- highlight all matches on previous search pattern
@@ -53,10 +53,14 @@ local options = {
   -- guifont = "Fira\\ Code:h12",
   guifont = "JetBrainsMono\\ Mono\\ Nerd\\ Font\\ Medium\\ 12",
   foldmethod = "marker",
-  wildoptions = "pum"
+  wildoptions = "pum",
+  showcmd = false,
+  ruler = false
 }
 
 vim.opt.shortmess:append("c")
+
+-- vim.g.codi#aliases =  'javascript.jsx': 'javascript'
 
 for k, v in pairs(options) do vim.opt[k] = v end
 
@@ -67,8 +71,7 @@ vim.cmd([[
 vim.lsp.set_log_level("debug")
 
 vim.g.codefmt = 1
-vim.g.codefmt_google_java_executable =
-    "java -jar /data/work/java-formatter/google-java-format-1.13.0-all-deps.jar"
+vim.g.codefmt_google_java_executable = "java -jar /data/work/java-formatter/google-java-format-1.13.0-all-deps.jar"
 
 vim.g.elm_format_autosave = 1
 vim.g.airline_powerline_fonts = 1

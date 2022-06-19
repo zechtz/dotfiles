@@ -26,7 +26,7 @@ if not status_ok then return end
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float {border = "rounded"}
+      return require("packer.util").float { border = "rounded" }
     end
   }
 }
@@ -40,7 +40,8 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim"
   use "kyazdani42/nvim-web-devicons"
-  use {"kyazdani42/nvim-tree.lua", commit = "f183c7f31197ae499c3420341fb8b275636a49b8"}
+  use { "kyazdani42/nvim-tree.lua", commit = "f183c7f31197ae499c3420341fb8b275636a49b8" }
+  use "tamago324/lir.nvim"
   use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
@@ -57,7 +58,7 @@ return packer.startup(function(use)
     branch = 'v1', -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
-      require'hop'.setup {keys = 'etovxqpdygfblzhckisuran'}
+      require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
     end
   }
   use "andymass/vim-matchup"
@@ -77,11 +78,20 @@ return packer.startup(function(use)
   use "Shatur/neovim-session-manager"
   use "rcarriga/nvim-notify"
   use "tversteeg/registers.nvim"
-  -- use "metakirby5/codi.vim"
-  use "nyngwang/NeoZoom.lua"
-  use "SmiteshP/nvim-gps"
-  use {"michaelb/sniprun", run = "bash ./install.sh"}
-  use {"iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown"}
+  use "metakirby5/codi.vim"
+  use { "nyngwang/NeoZoom.lua", branch = "neo-zoom-original" }
+  use { "christianchiarulli/nvim-gps", branch = "text_hl" }
+  use { "michaelb/sniprun", run = "bash ./install.sh" }
+  use { "iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown" }
+  use {
+    "christianchiarulli/JABS.nvim",
+    requires = { "kyazdani42/nvim-web-devicons" } -- optional
+  }
+
+  use {
+    "ghillb/cybu.nvim",
+    requires = { "kyazdani42/nvim-web-devicons" } -- optional
+  }
 
   -- Colorschemes
   use "folke/tokyonight.nvim"
@@ -92,7 +102,7 @@ return packer.startup(function(use)
   use 'navarasu/onedark.nvim'
 
   -- cmp plugins
-  use {"hrsh7th/nvim-cmp", commit = "d93104244c3834fbd8f3dd01da9729920e0b5fe7"} -- The completion plugin
+  use { "hrsh7th/nvim-cmp" } -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
@@ -100,12 +110,13 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"
   use "tsuyoshicho/vim-efm-langserver-settings"
   use "hrsh7th/cmp-emoji"
+  use "rcarriga/cmp-dap"
   use "hrsh7th/cmp-nvim-lua"
   use {
     "tzachar/cmp-tabnine",
     config = function()
       local tabnine = require "cmp_tabnine.config"
-      tabnine:setup{
+      tabnine:setup {
         max_lines = 1000,
         max_num_results = 20,
         sort = true,
@@ -121,7 +132,6 @@ return packer.startup(function(use)
     run = "./install.sh",
     requires = "hrsh7th/nvim-cmp"
   }
-  -- use 'David-Kunz/cmp-npm' -- doesn't seem to work
 
   -- snippets
   use "L3MON4D3/LuaSnip" -- snippet engine
@@ -131,12 +141,12 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use {"jose-elias-alvarez/null-ls.nvim", config = "require('user.null-ls-config')"} -- for formatters and linters
+  use { "jose-elias-alvarez/null-ls.nvim", config = "require('user.null-ls-config')" } -- for formatters and linters
   use "filipdutescu/renamer.nvim"
   use "simrat39/symbols-outline.nvim"
   use "ray-x/lsp_signature.nvim"
   use "b0o/SchemaStore.nvim"
-  use {"folke/trouble.nvim", cmd = "TroubleToggle"}
+  use { "folke/trouble.nvim", cmd = "TroubleToggle" }
   use "github/copilot.vim"
   use "RRethy/vim-illuminate"
 
@@ -151,10 +161,10 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-file-browser.nvim"
 
   -- Treesitter
-  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-  use "JoosepAlviste/nvim-ts-context-commentstring"
-  use {"p00f/nvim-ts-rainbow", commit = "c6c26c4def0e9cd82f371ba677d6fc9baa0038af"}
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "nvim-treesitter/playground"
+  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use { "p00f/nvim-ts-rainbow" }
   use "windwp/nvim-ts-autotag"
   use "romgrk/nvim-treesitter-context"
   use "mizlan/iswap.nvim"
@@ -191,9 +201,9 @@ return packer.startup(function(use)
   use "editorconfig/editorconfig-vim"
 
   -- elixir
-  use {"elixir-lang/vim-elixir", ft = "elixir"}
-  use {"mattreduce/vim-mix", ft = "elixir"}
-  use {"slashmili/alchemist.vim", ft = "elixir"}
+  use { "elixir-lang/vim-elixir", ft = "elixir" }
+  use { "mattreduce/vim-mix", ft = "elixir" }
+  use { "slashmili/alchemist.vim", ft = "elixir" }
 
   use 'tpope/vim-fugitive'
   use 'mattn/emmet-vim'
@@ -206,7 +216,7 @@ return packer.startup(function(use)
   use 'tommcdo/vim-exchange'
 
   -- restore the cursor position
-  use {"farmergreg/vim-lastplace"}
+  use { "farmergreg/vim-lastplace" }
 
   -- rust
   use 'simrat39/rust-tools.nvim'

@@ -1,6 +1,9 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then return end
 
+local cmp_dap_status_ok, cmp_dap = pcall(require, "cmp_dap")
+if not cmp_dap_status_ok then return end
+
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then return end
 
@@ -21,17 +24,22 @@ cmp.setup {
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end
   },
-  mapping = {
+
+  enabled = function()
+    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or cmp_dap.is_dap_buffer()
+  end,
+
+  mapping = cmp.mapping.preset.insert {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), {"i", "c"}),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), {"i", "c"}),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ["<C-e>"] = cmp.mapping {i = cmp.mapping.abort(), c = cmp.mapping.close()},
+    ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm {select = true},
+    ["<CR>"] = cmp.mapping.confirm { select = true },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -44,7 +52,7 @@ cmp.setup {
       else
         fallback()
       end
-    end, {"i", "s"}),
+    end, { "i", "s" }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -53,10 +61,10 @@ cmp.setup {
       else
         fallback()
       end
-    end, {"i", "s"})
+    end, { "i", "s" })
   },
   formatting = {
-    fields = {"kind", "abbr", "menu"},
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       -- Kind icons
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
@@ -82,17 +90,31 @@ cmp.setup {
         luasnip = "",
         buffer = "",
         path = "",
-        emoji = ""
+        emoji = "",
+        dap = ""
       })[entry.source.name]
       return vim_item
     end
   },
   sources = {
-    {name = "nvim_lsp"}, {name = "nvim_lua"}, {name = "luasnip"}, {name = "buffer"},
-    {name = "cmp_tabnine"}, {name = "path"}, {name = "emoji"}
+    { name = "nvim_lsp" }, { name = "nvim_lua" }, { name = "luasnip" }, { name = "buffer" },
+    { name = "cmp_tabnine" }, { name = "path" }, { name = "emoji" }, { name = "dap" }
   },
-  confirm_opts = {behavior = cmp.ConfirmBehavior.Replace, select = false},
+  confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false },
   -- documentation = true,
-  documentation = {border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}},
-  experimental = {ghost_text = true, native_menu = false}
+  window = {
+    -- documentation = "native",
+    documentation = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None"
+    },
+    completion = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None"
+    }
+  },
+  experimental = {
+    ghost_text = true
+    -- native_menu = false,
+  }
 }

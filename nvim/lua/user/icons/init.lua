@@ -2,7 +2,8 @@
 -- go to the above and then enter <c-v>u<unicode> and the symbold should appear
 -- or go here and upload the font file: https://mathew-kurian.github.io/CharacterMap/
 -- find more here: https://www.nerdfonts.com/cheat-sheet
-if vim.fn.has "mac" == 1 then
+vim.g.use_nerd_icons = false
+if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
   -- elseif vim.fn.has "mac" == 1 then
   return {
     kind = {
@@ -39,8 +40,8 @@ if vim.fn.has "mac" == 1 then
       Operator = "",
       TypeParameter = ""
     },
-    type = {Array = "", Number = "", String = "", Boolean = "蘒", Object = ""},
-    documents = {File = "", Files = "", Folder = "", OpenFolder = ""},
+    type = { Array = "", Number = "", String = "", Boolean = "蘒", Object = "" },
+    documents = { File = "", Files = "", Folder = "", OpenFolder = "" },
     git = {
       Add = "",
       Mod = "",
@@ -51,6 +52,8 @@ if vim.fn.has "mac" == 1 then
       Repo = ""
     },
     ui = {
+      ArrowClosed = "",
+      ArrowOpen = "",
       Lock = "",
       Circle = "",
       BigCircle = "",
@@ -70,6 +73,7 @@ if vim.fn.has "mac" == 1 then
       Package = "",
       List = "",
       SignIn = "",
+      SignOut = "",
       Check = "",
       Fire = "",
       Note = "",
@@ -78,7 +82,8 @@ if vim.fn.has "mac" == 1 then
       -- ChevronRight = "",
       ChevronRight = ">",
       Table = "",
-      Calendar = ""
+      Calendar = "",
+      CloudDownload = ""
     },
     diagnostics = {
       Error = "",
@@ -87,7 +92,7 @@ if vim.fn.has "mac" == 1 then
       Question = "",
       Hint = ""
     },
-    misc = {Robot = "ﮧ", Squirrel = "", Tag = "", Watch = ""}
+    misc = { Robot = "ﮧ", Squirrel = "", Tag = "", Watch = "" }
   }
 else
   --   פּ ﯟ   蘒練 some other good icons
@@ -120,8 +125,8 @@ else
       TypeParameter = " ",
       Misc = " "
     },
-    type = {Array = " ", Number = " ", String = " ", Boolean = " ", Object = " "},
-    documents = {File = " ", Files = " ", Folder = " ", OpenFolder = " "},
+    type = { Array = " ", Number = " ", String = " ", Boolean = " ", Object = " " },
+    documents = { File = " ", Files = " ", Folder = " ", OpenFolder = " " },
     git = {
       Add = " ",
       Mod = " ",
@@ -132,6 +137,8 @@ else
       Repo = " "
     },
     ui = {
+      ArrowClosed = "",
+      ArrowOpen = "",
       Lock = " ",
       Circle = " ",
       BigCircle = " ",
@@ -151,6 +158,8 @@ else
       Package = " ",
       List = " ",
       SignIn = " ",
+      SignOut = " ",
+      NoteBook = " ",
       Check = " ",
       Fire = " ",
       Note = " ",
@@ -158,7 +167,8 @@ else
       Pencil = " ",
       ChevronRight = "",
       Table = " ",
-      Calendar = " "
+      Calendar = " ",
+      CloudDownload = " "
     },
     diagnostics = {
       Error = " ",
@@ -167,6 +177,7 @@ else
       Question = " ",
       Hint = " "
     },
-    misc = {Robot = " ", Squirrel = " ", Tag = " ", Watch = " "}
+    misc = { Robot = " ", Squirrel = " ", Tag = " ", Watch = " " }
   }
 end
+
