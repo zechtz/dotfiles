@@ -1,8 +1,8 @@
-function start-poralg-vpn --wraps='sudo openvpn --config /etc/openvpn/poralg.ovpn' --description 'alias start-poralg-vpn=sudo openvpn --config /etc/openvpn/poralg.ovpn'
+function start-poralg-vpn --wraps='sudo openvpn --auth-nocache --config /etc/openvpn/poralg.ovpn' --description 'alias start-poralg-vpn=sudo openvpn --config /etc/openvpn/poralg.ovpn'
 
 echo > /etc/openvpn/credentials/poralg "\
-$PORALG_USER
-$PORALG_PASS$argv
+$PRG_USER
+$PRG_PASSWORD$argv
 "
-sudo openvpn --config /etc/openvpn/poralg.ovpn;
+sudo openvpn --auth-nocache --config /etc/openvpn/poralg.ovpn;
 end

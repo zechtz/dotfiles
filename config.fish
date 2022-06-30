@@ -40,6 +40,8 @@ set -gx SQLLS /home/mtabe/.config/yarn/global/node_modules/.bin
 set -gx SPRING_HOME /home/mtabe/.asdf/installs/spring-boot/2.6.4
 set -gx DENO_INSTALL /home/mtabe/.deno
 set -gx TERMINAL gnome-terminal
+set -gx PRG_USER zachariah.ngonyani
+set -gx PRG_PASSWORD Ng@m1@0022!
 
 set -gx PATH /home/mtabe/.asdf/bin \
         $CARGOPATH/bin \
