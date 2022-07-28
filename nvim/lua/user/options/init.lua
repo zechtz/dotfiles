@@ -5,7 +5,7 @@ local options = {
   backup = false, -- creates a backup file
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   cmdheight = 1, -- more space in the neovim command line for displaying messages
-  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+  completeopt = {"menuone", "noselect"}, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   fileencoding = "utf-8", -- the encoding written to a file
   hlsearch = true, -- highlight all matches on previous search pattern
@@ -71,7 +71,8 @@ vim.cmd([[
 vim.lsp.set_log_level("debug")
 
 vim.g.codefmt = 1
-vim.g.codefmt_google_java_executable = "java -jar /data/work/java-formatter/google-java-format-1.13.0-all-deps.jar"
+vim.g.codefmt_google_java_executable =
+    "java -jar /data/work/java-formatter/google-java-format-1.13.0-all-deps.jar"
 
 vim.g.elm_format_autosave = 1
 vim.g.airline_powerline_fonts = 1

@@ -198,7 +198,7 @@ return packer.startup(function(use)
 
   -- phpcsfixer
   use "stephpy/vim-php-cs-fixer"
-  use "editorconfig/editorconfig-vim"
+  use "gpanders/editorconfig.nvim"
 
   -- elixir
   use { "elixir-lang/vim-elixir", ft = "elixir" }
