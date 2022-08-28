@@ -252,10 +252,10 @@ run = "./install.sh" }
   -- use "lunarvim/vim-solidity"
   -- use "tpope/vim-repeat"
   -- use "Shatur/neovim-session-manager"
-  -- use "metakirby5/codi.vim"
+  use "metakirby5/codi.vim"
   -- use { "nyngwang/NeoZoom.lua", branch = "neo-zoom-original" }
   -- use "rcarriga/cmp-dap"
-  -- use "filipdutescu/renamer.nvim"
+  use "filipdutescu/renamer.nvim"
   -- use "https://github.com/rhysd/conflict-marker.vim"
   -- use "rebelot/kanagawa.nvim"
   -- use "unblevable/quick-scope"
