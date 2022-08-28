@@ -38,10 +38,21 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
       Struct = "",
       Event = "",
       Operator = "",
-      TypeParameter = ""
+      TypeParameter = "",
     },
-    type = { Array = "", Number = "", String = "", Boolean = "蘒", Object = "" },
-    documents = { File = "", Files = "", Folder = "", OpenFolder = "" },
+    type = {
+      Array = "",
+      Number = "",
+      String = "",
+      Boolean = "蘒",
+      Object = "",
+    },
+    documents = {
+      File = "",
+      Files = "",
+      Folder = "",
+      OpenFolder = "",
+    },
     git = {
       Add = "",
       Mod = "",
@@ -49,7 +60,8 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
       Ignore = "",
       Rename = "",
       Diff = "",
-      Repo = ""
+      Repo = "",
+      Octoface = "",
     },
     ui = {
       ArrowClosed = "",
@@ -83,16 +95,24 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
       ChevronRight = ">",
       Table = "",
       Calendar = "",
-      CloudDownload = ""
+      CloudDownload = "",
     },
     diagnostics = {
       Error = "",
       Warning = "",
       Information = "",
       Question = "",
-      Hint = ""
+      Hint = "",
     },
-    misc = { Robot = "ﮧ", Squirrel = "", Tag = "", Watch = "" }
+    misc = {
+      Robot = "ﮧ",
+      Squirrel = "",
+      Tag = "",
+      Watch = "",
+      Smiley = "ﲃ",
+      Package = "",
+      CircuitBoard = "",
+    },
   }
 else
   --   פּ ﯟ   蘒練 some other good icons
@@ -123,10 +143,21 @@ else
       Event = " ",
       Operator = " ",
       TypeParameter = " ",
-      Misc = " "
+      Misc = " ",
     },
-    type = { Array = " ", Number = " ", String = " ", Boolean = " ", Object = " " },
-    documents = { File = " ", Files = " ", Folder = " ", OpenFolder = " " },
+    type = {
+      Array = " ",
+      Number = " ",
+      String = " ",
+      Boolean = " ",
+      Object = " ",
+    },
+    documents = {
+      File = " ",
+      Files = " ",
+      Folder = " ",
+      OpenFolder = " ",
+    },
     git = {
       Add = " ",
       Mod = " ",
@@ -134,7 +165,8 @@ else
       Ignore = " ",
       Rename = " ",
       Diff = " ",
-      Repo = " "
+      Repo = " ",
+      Octoface = " ",
     },
     ui = {
       ArrowClosed = "",
@@ -168,16 +200,23 @@ else
       ChevronRight = "",
       Table = " ",
       Calendar = " ",
-      CloudDownload = " "
+      CloudDownload = " ",
     },
     diagnostics = {
       Error = " ",
       Warning = " ",
       Information = " ",
       Question = " ",
-      Hint = " "
+      Hint = " ",
     },
-    misc = { Robot = " ", Squirrel = " ", Tag = " ", Watch = " " }
+    misc = {
+      Robot = " ",
+      Squirrel = " ",
+      Tag = " ",
+      Watch = " ",
+      Smiley = " ",
+      Package = " ",
+      CircuitBoard = " ",
+    },
   }
 end
-

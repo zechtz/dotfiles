@@ -1,23 +1,36 @@
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then return end
+if not status_ok then
+  return
+end
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then return end
+if not config_status_ok then
+  return
+end
 
-local icons = require("user.icons")
+local icons = require "user.icons"
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
-  hijack_directories = { enable = false },
+  hijack_directories = {
+    enable = false,
+  },
   -- update_to_buf_dir = {
   --   enable = false,
   -- },
   -- disable_netrw = true,
   -- hijack_netrw = true,
   -- open_on_setup = false,
-  ignore_ft_on_setup = { "startify", "dashboard", "alpha" },
-  filters = { custom = { ".git" }, exclude = { ".gitignore" } },
+  ignore_ft_on_setup = {
+    "startify",
+    "dashboard",
+    "alpha",
+  },
+  filters = {
+    custom = { ".git" },
+    exclude = { ".gitignore" },
+  },
   -- auto_close = true,
   -- open_on_tab = false,
   -- hijack_cursor = false,
@@ -37,13 +50,25 @@ nvim_tree.setup {
     highlight_git = false,
     highlight_opened_files = "none",
     root_folder_modifier = ":t",
-    indent_markers = { enable = false, icons = { corner = "└ ", edge = "│ ", none = "  " } },
+    indent_markers = {
+      enable = false,
+      icons = {
+        corner = "└ ",
+        edge = "│ ",
+        none = "  ",
+      },
+    },
     icons = {
       webdev_colors = true,
       git_placement = "before",
       padding = " ",
       symlink_arrow = " ➛ ",
-      show = { file = true, folder = true, folder_arrow = true, git = true },
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = true,
+      },
       glyphs = {
         default = "",
         symlink = "",
@@ -55,7 +80,7 @@ nvim_tree.setup {
           empty = "",
           empty_open = "",
           symlink = "",
-          symlink_open = ""
+          symlink_open = "",
         },
         git = {
           unstaged = "",
@@ -64,16 +89,25 @@ nvim_tree.setup {
           renamed = "➜",
           untracked = "U",
           deleted = "",
-          ignored = "◌"
-        }
-      }
-    }
+          ignored = "◌",
+        },
+      },
+    },
   },
   diagnostics = {
     enable = true,
-    icons = { hint = "", info = "", warning = "", error = "" }
+    icons = {
+      hint = icons.diagnostics.Hint,
+      info = icons.diagnostics.Information,
+      warning = icons.diagnostics.Warning,
+      error = icons.diagnostics.Error,
+    },
   },
-  update_focused_file = { enable = true, update_cwd = true, ignore_list = {} },
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+    ignore_list = {},
+  },
   -- system_open = {
   --   cmd = nil,
   --   args = {},
@@ -82,7 +116,11 @@ nvim_tree.setup {
   --   dotfiles = false,
   --   custom = {},
   -- },
-  git = { enable = true, ignore = true, timeout = 500 },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 500,
+  },
   view = {
     width = 30,
     height = 30,
@@ -92,12 +130,12 @@ nvim_tree.setup {
     mappings = {
       custom_only = false,
       list = {
-        { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" }, { key = "h", cb = tree_cb "close_node" },
-        { key = "v", cb = tree_cb "vsplit" }
-      }
+        { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
+        { key = "h", cb = tree_cb "close_node" },
+        { key = "v", cb = tree_cb "vsplit" },
+      },
     },
     number = false,
-    relativenumber = false
-  }
+    relativenumber = false,
+  },
 }
-

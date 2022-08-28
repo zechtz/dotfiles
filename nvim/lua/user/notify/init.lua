@@ -1,5 +1,7 @@
 local status_ok, notify = pcall(require, "notify")
-if not status_ok then return end
+if not status_ok then
+  return
+end
 
 local icons = require "user.icons"
 
@@ -32,8 +34,20 @@ notify.setup {
     WARN = icons.diagnostics.Warning,
     INFO = icons.diagnostics.Information,
     DEBUG = icons.ui.Bug,
-    TRACE = icons.ui.Pencil
-  }
+    TRACE = icons.ui.Pencil,
+  },
 }
 
 vim.notify = notify
+
+local notify_filter = vim.notify
+vim.notify = function(msg, ...)
+  if msg:match "character_offset must be called" then
+    return
+  end
+  if msg:match "method textDocument" then
+    return
+  end
+
+  notify_filter(msg, ...)
+end
