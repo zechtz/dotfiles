@@ -104,6 +104,7 @@ run = "./install.sh" }
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
   use "nvim-treesitter/nvim-treesitter-textobjects"
+  use "romgrk/nvim-treesitter-context"
   -- use "wellle/targets.vim"
   -- use "RRethy/nvim-treesitter-textsubjects"
   use "kylechui/nvim-surround"
@@ -131,7 +132,9 @@ run = "./install.sh" }
   -- Colorschemes
   use "lunarvim/onedarker.nvim"
   use "lunarvim/darkplus.nvim"
-  -- use "folke/tokyonight.nvim"
+  use "folke/tokyonight.nvim"
+  use "rose-pine/neovim"
+  use "rebelot/kanagawa.nvim"
   -- use "lunarvim/colorschemes"
 
   -- Utility
@@ -181,7 +184,7 @@ run = "./install.sh" }
 
   -- Project
   use "ahmedkhalf/project.nvim"
-  use "windwp/nvim-spectre"
+  use "nvim-pack/nvim-spectre"
 
   -- Session
   use "rmagatti/auto-session"
@@ -241,36 +244,12 @@ run = "./install.sh" }
     ft = "markdown",
   }
 
-  -- Graveyard
-  -- use "romgrk/nvim-treesitter-context"
-  -- use "mizlan/iswap.nvim"
-  -- use {'christianchiarulli/nvim-ts-rainbow'}
-  -- use "nvim-telescope/telescope-ui-select.nvim"
-  -- use "nvim-telescope/telescope-file-browser.nvim"
-  -- use 'David-Kunz/cmp-npm' -- doesn't seem to work
-  -- use { "christianchiarulli/JABS.nvim" }
-  -- use "lunarvim/vim-solidity"
-  -- use "tpope/vim-repeat"
-  -- use "Shatur/neovim-session-manager"
   use "metakirby5/codi.vim"
-  -- use { "nyngwang/NeoZoom.lua", branch = "neo-zoom-original" }
-  -- use "rcarriga/cmp-dap"
   use "filipdutescu/renamer.nvim"
-  -- use "https://github.com/rhysd/conflict-marker.vim"
-  -- use "rebelot/kanagawa.nvim"
-  -- use "unblevable/quick-scope"
-  -- use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  -- use "gbprod/cutlass.nvim"
-  -- use "christianchiarulli/lsp-inlay-hints"
-  -- use "rmagatti/goto-preview"
-  -- use "stevearc/aerial.nvim"
-  -- use "nvim-lua/lsp_extensions.nvim"
   use { "christianchiarulli/nvim-gps", branch = "text_hl" }
-  -- use "stevearc/stickybuf.nvim"
-  -- use "folke/trouble.nvim"
-  -- use "drybalka/tree-climber.nvim"
-  -- use "phaazon/hop.nvim"
-  -- use { "michaelb/sniprun", run = "bash ./install.sh" }
+
+  -- formatter
+  use "mhartington/formatter.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
