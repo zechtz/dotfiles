@@ -1,7 +1,5 @@
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
-if not null_ls_status_ok then
-  return
-end
+if not null_ls_status_ok then return end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
@@ -13,22 +11,21 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup {
   debug = false,
   sources = {
-    formatting.prettier.with {
-      extra_filetypes = { "toml", "solidity" },
-      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-    },
-    formatting.black.with { extra_args = { "--fast" } },
-    formatting.stylua,
-    formatting.shfmt,
-    formatting.google_java_format,
-    -- diagnostics.flake8,
-    diagnostics.shellcheck,
-  },
+    formatting.deno_fmt, formatting.phpcsfixer, formatting.prettierd, formatting.lua_format.with {
+      extra_args = {
+        "--no-keep-simple-function-one-line", "--no-break-after-operator", "--column-limit=100",
+        "--break-after-table-lb", "--indent-width=2"
+      }
+    }, formatting.black.with {extra_args = {"--fast"}}, formatting.stylua, formatting.shfmt,
+    formatting.google_java_format, formatting.isort,
+    formatting.codespell.with {filetypes = {"markdown"}}, -- diagnostics.flake8,
+    diagnostics.shellcheck
+  }
 }
 
 local unwrap = {
   method = null_ls.methods.DIAGNOSTICS,
-  filetypes = { "rust" },
+  filetypes = {"rust"},
   generator = {
     fn = function(params)
       local diagnostics = {}
@@ -44,14 +41,14 @@ local unwrap = {
             col = col,
             end_col = end_col,
             source = "unwrap",
-            message = "hey " .. os.getenv("USER") .. ", don't forget to handle this" ,
-            severity = 2,
+            message = "hey " .. os.getenv("USER") .. ", don't forget to handle this",
+            severity = 2
           })
         end
       end
       return diagnostics
-    end,
-  },
+    end
+  }
 }
 
 null_ls.register(unwrap)
