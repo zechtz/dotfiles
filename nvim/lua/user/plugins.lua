@@ -131,6 +131,7 @@ return packer.startup(function(use)
   use "folke/tokyonight.nvim"
   use "rose-pine/neovim"
   use "rebelot/kanagawa.nvim"
+  use 'whatyouhide/vim-gotham'
   -- use "lunarvim/colorschemes"
 
   -- Utility
