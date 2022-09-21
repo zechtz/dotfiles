@@ -53,7 +53,7 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim"
   use "christianchiarulli/lua-dev.nvim"
 
--- LSP
+  -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   -- use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "williamboman/mason.nvim"
@@ -63,6 +63,7 @@ return packer.startup(function(use)
   use "SmiteshP/nvim-navic"
   use "simrat39/symbols-outline.nvim"
   use "b0o/SchemaStore.nvim"
+
   -- use "github/copilot.vim"
   use {
     "zbirenbaum/copilot.lua",
@@ -79,7 +80,7 @@ return packer.startup(function(use)
   -- use "simrat39/inlay-hints.nvim"
   use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
- -- Completion
+  -- Completion
   use "christianchiarulli/nvim-cmp"
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
@@ -89,9 +90,11 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
   use "zbirenbaum/copilot-cmp"
-  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", 
-run = "./install.sh" }
-
+  use {
+    "tzachar/cmp-tabnine",
+    commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e",
+    run = "./install.sh",
+  }
 
   -- Snippet
   use "L3MON4D3/LuaSnip" -- snippet engine
@@ -122,7 +125,7 @@ run = "./install.sh" }
   -- Note Taking
   use "mickael-menu/zk-nvim"
 
- -- Color
+  -- Color
   use "NvChad/nvim-colorizer.lua"
   use "nvim-colortils/colortils.nvim"
 
@@ -187,10 +190,7 @@ run = "./install.sh" }
 
   -- Code Runner
   use "is0n/jaq-nvim"
-  use {
-    "0x100101/lab.nvim",
-    run = "cd js && npm ci",
-  }
+  use { "0x100101/lab.nvim", run = "cd js && npm ci" }
 
   -- Git
   use "lewis6991/gitsigns.nvim"
