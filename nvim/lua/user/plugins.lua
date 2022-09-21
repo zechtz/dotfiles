@@ -5,7 +5,12 @@ local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 ---@diagnostic disable-next-line: missing-parameter
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
-    "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
   }
   print "Installing packer close and reopen Neovim..."
   vim.cmd [[packadd packer.nvim]]
@@ -21,7 +26,9 @@ vim.cmd [[
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
-if not status_ok then return end
+if not status_ok then
+  return
+end
 
 -- Have packer use a popup window
 packer.init {
@@ -30,10 +37,10 @@ packer.init {
   max_jobs = 50,
   display = {
     open_fn = function()
-      return require("packer.util").float {border = "rounded"}
+      return require("packer.util").float { border = "rounded" }
     end,
-    prompt_border = "rounded" -- Border style of prompt popups.
-  }
+    prompt_border = "rounded", -- Border style of prompt popups.
+  },
 }
 
 -- Install your plugins here
@@ -45,9 +52,8 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "nvim-lua/popup.nvim"
   use "christianchiarulli/lua-dev.nvim"
-  -- use "folke/lua-dev.nvim"
 
-  -- LSP
+-- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   -- use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "williamboman/mason.nvim"
@@ -60,12 +66,12 @@ return packer.startup(function(use)
   -- use "github/copilot.vim"
   use {
     "zbirenbaum/copilot.lua",
-    event = {"VimEnter"},
+    event = { "VimEnter" },
     config = function()
       vim.defer_fn(function()
         require "user.copilot"
       end, 100)
-    end
+    end,
   }
   use "RRethy/vim-illuminate"
   use "j-hui/fidget.nvim"
@@ -73,7 +79,7 @@ return packer.startup(function(use)
   -- use "simrat39/inlay-hints.nvim"
   use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
-  -- Completion
+ -- Completion
   use "christianchiarulli/nvim-cmp"
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
@@ -83,11 +89,9 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
   use "zbirenbaum/copilot-cmp"
-  use {
-    "tzachar/cmp-tabnine",
-    commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e",
-    run = "./install.sh"
-  }
+  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", 
+run = "./install.sh" }
+
 
   -- Snippet
   use "L3MON4D3/LuaSnip" -- snippet engine
@@ -100,13 +104,10 @@ return packer.startup(function(use)
   use "nvim-treesitter/playground"
   use "windwp/nvim-ts-autotag"
   use "nvim-treesitter/nvim-treesitter-textobjects"
-  use "romgrk/nvim-treesitter-context"
-  -- use "wellle/targets.vim"
-  -- use "RRethy/nvim-treesitter-textsubjects"
   use "kylechui/nvim-surround"
   use {
     "abecodes/tabout.nvim",
-    wants = {"nvim-treesitter"} -- or require if not used so far
+    wants = { "nvim-treesitter" }, -- or require if not used so far
   }
 
   -- Marks
@@ -121,9 +122,9 @@ return packer.startup(function(use)
   -- Note Taking
   use "mickael-menu/zk-nvim"
 
-  -- Color
+ -- Color
   use "NvChad/nvim-colorizer.lua"
-  use "ziontee113/color-picker.nvim"
+  use "nvim-colortils/colortils.nvim"
 
   -- Colorschemes
   use "lunarvim/onedarker.nvim"
@@ -131,7 +132,7 @@ return packer.startup(function(use)
   use "folke/tokyonight.nvim"
   use "rose-pine/neovim"
   use "rebelot/kanagawa.nvim"
-  use 'whatyouhide/vim-gotham'
+  use "whatyouhide/vim-gotham"
   -- use "lunarvim/colorschemes"
 
   -- Utility
@@ -151,12 +152,6 @@ return packer.startup(function(use)
   -- Debugging
   use "mfussenegger/nvim-dap"
   use "rcarriga/nvim-dap-ui"
-  -- use "theHamsta/nvim-dap-virtual-text"
-  -- use "Pocco81/DAPInstall.nvim"
-
-  -- Tabline
-  -- use "akinsho/bufferline.nvim"
-  -- use "tiagovla/scope.nvim"
 
   -- Statusline
   use "christianchiarulli/lualine.nvim"
@@ -173,8 +168,8 @@ return packer.startup(function(use)
 
   -- Comment
   use "numToStr/Comment.nvim"
-  -- use "folke/todo-comments.nvim"
-  use "B4mbus/todo-comments.nvim"
+  use "folke/todo-comments.nvim"
+  --[[ use "B4mbus/todo-comments.nvim" ]]
 
   -- Terminal
   use "akinsho/toggleterm.nvim"
@@ -192,7 +187,10 @@ return packer.startup(function(use)
 
   -- Code Runner
   use "is0n/jaq-nvim"
-  use {"0x100101/lab.nvim", run = "cd js && npm ci"}
+  use {
+    "0x100101/lab.nvim",
+    run = "cd js && npm ci",
+  }
 
   -- Git
   use "lewis6991/gitsigns.nvim"
@@ -210,13 +208,11 @@ return packer.startup(function(use)
   use "nacro90/numb.nvim"
   use "andymass/vim-matchup"
   use "folke/zen-mode.nvim"
-  -- use "Pocco81/true-zen.nvim"
   use "karb94/neoscroll.nvim"
   use "junegunn/vim-slash"
 
   -- Motion
   use "phaazon/hop.nvim"
-  -- use "jinh0/eyeliner.nvim"
 
   -- Keybinding
   use "folke/which-key.nvim"
@@ -225,18 +221,18 @@ return packer.startup(function(use)
   use "mfussenegger/nvim-jdtls"
 
   -- Rust
-  use {"christianchiarulli/rust-tools.nvim", branch = "modularize_and_inlay_rewrite"}
+  use { "christianchiarulli/rust-tools.nvim", branch = "modularize_and_inlay_rewrite" }
   use "Saecki/crates.nvim"
 
   -- Typescript TODO: set this up, also add keybinds to ftplugin
   use "jose-elias-alvarez/typescript.nvim"
 
   -- Markdown
-  use {"iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown"}
+  use { "iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown" }
 
   use "metakirby5/codi.vim"
   use "filipdutescu/renamer.nvim"
-  use {"christianchiarulli/nvim-gps", branch = "text_hl"}
+  use { "christianchiarulli/nvim-gps", branch = "text_hl" }
 
   -- formatter
   use "mhartington/formatter.nvim"
@@ -247,24 +243,26 @@ return packer.startup(function(use)
   use "gpanders/editorconfig.nvim"
 
   -- elixir
-  use {"elixir-lang/vim-elixir", ft = "elixir"}
-  use {"mattreduce/vim-mix", ft = "elixir"}
-  use {"slashmili/alchemist.vim", ft = "elixir"}
+  use { "elixir-lang/vim-elixir", ft = "elixir" }
+  use { "mattreduce/vim-mix", ft = "elixir" }
+  use { "slashmili/alchemist.vim", ft = "elixir" }
 
-  use 'tpope/vim-fugitive'
-  use 'mattn/emmet-vim'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-dispatch'
-  use 'godlygeek/tabular'
-  use 'Townk/vim-autoclose'
-  use 'machakann/vim-highlightedyank'
-  use 'terryma/vim-multiple-cursors'
-  use 'tommcdo/vim-exchange'
+  use "tpope/vim-fugitive"
+  use "mattn/emmet-vim"
+  use "tpope/vim-surround"
+  use "tpope/vim-dispatch"
+  use "godlygeek/tabular"
+  use "Townk/vim-autoclose"
+  use "machakann/vim-highlightedyank"
+  use "terryma/vim-multiple-cursors"
+  use "tommcdo/vim-exchange"
 
   -- restore the cursor position
-  use {"farmergreg/vim-lastplace"}
+  use { "farmergreg/vim-lastplace" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then require("packer").sync() end
+  if PACKER_BOOTSTRAP then
+    require("packer").sync()
+  end
 end)
