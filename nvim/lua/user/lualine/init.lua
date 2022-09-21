@@ -182,7 +182,11 @@ local diagnostics = {
 local diff = {
   "diff",
   colored = false,
-  symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
+  symbols = {
+    added = icons.git.Add .. " ",
+    modified = icons.git.Mod .. " ",
+    removed = icons.git.Remove .. " ",
+  }, -- changes diff symbols
   cond = hide_in_width_60,
   separator = "%#SLSeparator#" .. "│ " .. "%*",
 }
@@ -449,8 +453,9 @@ lualine.setup {
   sections = {
     lualine_a = { left_pad, mode, branch, right_pad },
     lualine_b = { left_pad_alt, diagnostics, right_pad_alt },
+    lualine_c = { left_pad_alt, diff, right_pad_alt },
     -- lualine_c = {},
-    lualine_c = { current_signature },
+    lualine_d = { current_signature },
     -- lualine_x = { diff, spaces, "encoding", filetype },
     -- lualine_x = { diff, lanuage_server, spaces, filetype },
     -- lualine_x = { lanuage_server, spaces, filetype },
