@@ -228,7 +228,7 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/typescript.nvim"
 
   -- Markdown
-  use { "iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown" }
+  use { "iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown", cmd = { "MarkdownPreview" } }
 
   use "metakirby5/codi.vim"
   use "filipdutescu/renamer.nvim"
@@ -246,6 +246,13 @@ return packer.startup(function(use)
   use { "elixir-lang/vim-elixir", ft = "elixir" }
   use { "mattreduce/vim-mix", ft = "elixir" }
   use { "slashmili/alchemist.vim", ft = "elixir" }
+
+  -- ruby & rails
+  use "tpope/vim-rails"
+  use "vim-ruby/vim-ruby"
+
+  -- yaml
+  use { "cuducos/yaml.nvim", ft = { "yaml" }, requires = { "nvim-treesitter/nvim-treesitter" } }
 
   use "tpope/vim-fugitive"
   use "mattn/emmet-vim"
