@@ -24,18 +24,10 @@ configs.setup {
     disable = { "markdown" }, -- list of language that will be disabled
     -- additional_vim_regex_highlighting = true,
   },
-  autopairs = {
-    enable = true,
-  },
-  indent = { enable = true, disable = { "python", "css", "rust" } },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
-  autotag = {
-    enable = true,
-    disable = { "xml", "markdown" },
-  },
+  autopairs = { enable = true },
+  indent = { enable = true, disable = { "python", "rust" } },
+  context_commentstring = { enable = true, enable_autocmd = false },
+  autotag = { enable = true, disable = { "xml", "markdown" } },
   rainbow = {
     enable = true,
     extended_mode = false,
@@ -52,9 +44,7 @@ configs.setup {
     },
     disable = { "html" },
   },
-  playground = {
-    enable = true,
-  },
+  playground = { enable = true },
   textobjects = {
     select = {
       enable = true,
@@ -89,31 +79,15 @@ configs.setup {
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
-      },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
+      goto_next_start = { ["]m"] = "@function.outer", ["]]"] = "@class.outer" },
+      goto_next_end = { ["]M"] = "@function.outer", ["]["] = "@class.outer" },
+      goto_previous_start = { ["[m"] = "@function.outer", ["[["] = "@class.outer" },
+      goto_previous_end = { ["[M"] = "@function.outer", ["[]"] = "@class.outer" },
     },
     swap = {
       enable = true,
-      swap_next = {
-        ["<leader>."] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>,"] = "@parameter.inner",
-      },
+      swap_next = { ["<leader>."] = "@parameter.inner" },
+      swap_previous = { ["<leader>,"] = "@parameter.inner" },
     },
   },
 }

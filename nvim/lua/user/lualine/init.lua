@@ -50,8 +50,8 @@ if lualine_scheme == "darkplus_dark" then
   purple = "#B48EAD"
 end
 
-local sl_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
-local sl_hl_sep = vim.api.nvim_get_hl_by_name("StatusLineSeparator", true)
+-- local sl_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
+-- local sl_hl_sep = vim.api.nvim_get_hl_by_name("StatusLineSeparator", true)
 
 vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#E8AB53", bg = dark_gray })
 vim.api.nvim_set_hl(0, "SLTermIcon", { fg = purple, bg = gray })
@@ -453,12 +453,12 @@ lualine.setup {
   sections = {
     lualine_a = { left_pad, mode, branch, right_pad },
     lualine_b = { left_pad_alt, diagnostics, right_pad_alt },
-    lualine_c = { left_pad_alt, diff, right_pad_alt },
     -- lualine_c = {},
-    lualine_d = { current_signature },
+    lualine_c = { current_signature },
     -- lualine_x = { diff, spaces, "encoding", filetype },
     -- lualine_x = { diff, lanuage_server, spaces, filetype },
     -- lualine_x = { lanuage_server, spaces, filetype },
+    -- lualine_d = { left_pad_alt, diff, right_pad_alt },
     lualine_x = { lanuage_server, spaces, filetype },
     lualine_y = {},
     lualine_z = { location, progress },

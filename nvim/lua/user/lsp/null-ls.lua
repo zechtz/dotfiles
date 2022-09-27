@@ -18,6 +18,8 @@ null_ls.setup {
       }
     }, formatting.black.with {extra_args = {"--fast"}}, formatting.stylua, formatting.shfmt,
     formatting.google_java_format, formatting.isort,
+    formatting.rubocop,
+    formatting.mix,
     formatting.codespell.with {filetypes = {"markdown"}}, -- diagnostics.flake8,
     diagnostics.shellcheck
   }

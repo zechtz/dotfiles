@@ -37,7 +37,7 @@ vim.cmd [[
 
   augroup _lsp
     autocmd!
-    autocmd BufWritePre *.ex,*.exs,*.ruby,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*ex,*.exs,*.py,*.php lua vim.lsp.buf.format { async = true }
+    autocmd BufWritePre *.ex,*.exs,*.rb,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*.py,*.php,*.elixir lua vim.lsp.buf.format { async = true }
   augroup end
 
   augroup nvimEx
