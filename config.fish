@@ -5,7 +5,8 @@ set -gx GOGH /data/work/gogh/gogh.sh
 set -gx ANDROID_HOME /home/mtabe/AndroidSDK
 set -gx PIP_BIN /home/mtabe/.asdf/installs/python/3.10.0/bin
 set -gx RUBY_GEM_PATH /home/mtabe/.gem/ruby/3.0.0/bin
-set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
+set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-17
+set -gx GRADLE_HOME /opt/gradle/bin
 set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.5/go
 set -gx LUA_FORMATTER_BIN /home/mtabe/.asdf/installs/lua/5.4.4/luarocks/bin
 set -gx GOPATH /data/go/src
@@ -86,6 +87,7 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $DENO_INSTALL/bin \
         $PIP_BIN \
         $GOGH \
+        $GRADLE_HOME \
 
 # source asdf at the bottom
 source ~/.asdf/asdf.fish

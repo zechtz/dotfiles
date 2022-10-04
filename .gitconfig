@@ -174,3 +174,5 @@
 [user]
 	email = zachariahn@gmail.com
 	name = Zachariah Ngonyani
+[init]
+	defaultBranch = main
