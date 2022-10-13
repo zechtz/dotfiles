@@ -65,15 +65,16 @@ return packer.startup(function(use)
   use "b0o/SchemaStore.nvim"
 
   -- use "github/copilot.vim"
-  use {
-    "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
-    config = function()
-      vim.defer_fn(function()
-        require "user.copilot"
-      end, 100)
-    end,
-  }
+  -- use {
+  --   "zbirenbaum/copilot.lua",
+  --   event = { "VimEnter" },
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require "user.copilot"
+  --     end, 100)
+  --   end,
+  -- }
+
   use "RRethy/vim-illuminate"
   use "j-hui/fidget.nvim"
   use "lvimuser/lsp-inlayhints.nvim"
@@ -228,7 +229,12 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/typescript.nvim"
 
   -- Markdown
-  use { "iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown", cmd = { "MarkdownPreview" } }
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = "markdown",
+    cmd = { "MarkdownPreview" },
+  }
 
   use "metakirby5/codi.vim"
   use "filipdutescu/renamer.nvim"
@@ -246,7 +252,7 @@ return packer.startup(function(use)
   use { "elixir-lang/vim-elixir", ft = "elixir" }
   use { "mattreduce/vim-mix", ft = "elixir" }
   use { "slashmili/alchemist.vim", ft = "elixir" }
-  use({ "mhanberg/elixir.nvim", requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" }})
+  use { "mhanberg/elixir.nvim", requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" } }
 
   -- ruby & rails
   use "tpope/vim-rails"

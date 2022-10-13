@@ -56,7 +56,7 @@ local config = {
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED", -- 💀
     "-jar",
-    home .. "/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
+    vim.fn.glob(home .. "/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     -- Must point to the                                                     Change this to
     -- eclipse.jdt.ls installation                                           the actual version
 
@@ -100,10 +100,7 @@ local config = {
       references = { includeDecompiledSources = true },
       format = {
         enabled = true,
-        settings = {
-          url = home .. "/.config/nvim/formatters/java-google-formatter.xml",
-          profile = "GoogleStyle",
-        },
+        -- settings = { url = home .. "/.config/nvim/formatters/java-google-formatter.xml" },
       },
     },
     signatureHelp = { enabled = true },
@@ -143,28 +140,30 @@ local config = {
     -- bundles = bundles,
   },
 }
+
+require("formatter").setup {
+  filetype = {
+    java = {
+      function()
+        return {
+          exe = "java",
+          args = {
+            "-jar",
+            os.getenv "HOME" .. "/.local/jars/google-java-format-1.15.0-all-deps.jar",
+            vim.api.nvim_buf_get_name(0),
+          },
+          stdin = true,
+        }
+      end,
+    },
+  },
+}
+
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require("jdtls").start_or_attach(config)
 
 require("jdtls").setup_dap()
-
--- require("formatter").setup({
---   filetype = {
---     java = {
---       function()
---         return {
---           exe = "java",
---           args = {
---             "-jar", os.getenv("HOME") .. "/.local/jars/google-java-format-1.15.0-all-deps.jar",
---             vim.api.nvim_buf_get_name(0)
---           },
---           stdin = true
---         }
---       end
---     }
---   }
--- })
 
 vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
 vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)"

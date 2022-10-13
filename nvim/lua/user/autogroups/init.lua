@@ -30,9 +30,14 @@ vim.cmd [[
     autocmd BufWritePost init.lua source %
   augroup END
 
+  augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost *.java FormatWrite
+  augroup END
+
   augroup _lsp
     autocmd!
-    autocmd BufWritePre *.java,*.ex,*.exs,*.rb,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*.py,*.php,*.elixir lua vim.lsp.buf.format { async = true }
+    autocmd BufWritePre *.ex,*.exs,*.rb,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*.py,*.php,*.elixir lua vim.lsp.buf.format { async = true }
   augroup end
 
   augroup nvimEx
