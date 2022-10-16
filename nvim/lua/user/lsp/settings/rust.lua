@@ -70,57 +70,15 @@ return {
         $ chmod +x ~/.local/bin/rust-analyzer
     --]]
     -- cmd = { os.getenv "HOME" .. "/.local/bin/rust-analyzer" },
-    cmd = { "rustup", "run", "nightly", os.getenv "HOME" .. "/.local/bin/rust-analyzer" },
+    cmd = {
+      "rustup",
+      "run",
+      "nightly",
+      os.getenv "HOME" .. "/.local/share/nvim/lsp_servers/rust/rust-analyzer",
+    },
     on_attach = require("user.lsp.handlers").on_attach,
     capabilities = require("user.lsp.handlers").capabilities,
 
-    settings = {
-      ["rust-analyzer"] = {
-        lens = {
-          enable = true,
-        },
-        checkOnSave = {
-          command = "clippy",
-        },
-      },
-    },
+    settings = { ["rust-analyzer"] = { lens = { enable = true }, checkOnSave = { command = "clippy" } } },
   },
 }
--- return {
---   settings = {
---     rust_analyzer = {
---       inlayHints = {
---         bindingModeHints = {
---           enable = true,
---         },
---         typeHints = {
---           enable = true,
---           hideClosureInitialization = false,
---           hideNamedConstructor = false,
---         },
---         chainingHints = {
---           enable = true,
---         },
---         closingBraceHints = {
---           enable = true,
---           minLines = 25,
---         },
---         closureReturnTypeHints = {
---           enable = "never",
---         },
---         lifetimeElisionHints = {
---           enable = "never",
---           useParameterNames = false,
---           maxLength = 25,
---         },
---         parameterHints = {
---           enable = true,
---         },
---         reborrowHints = {
---           enable = "never",
---         },
---         renderColons = true,
---       },
---     },
---   },
--- }
