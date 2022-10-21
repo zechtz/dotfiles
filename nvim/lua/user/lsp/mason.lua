@@ -7,7 +7,8 @@ if not status_ok_1 then return end
 local servers = {
   "cssls", "cssmodules_ls", "emmet_ls", "html", "jdtls", "jsonls", "solc", "solidity_ls",
   "sumneko_lua", "tflint", "terraformls", "tsserver", "pyright", "yamlls", "bashls", "clangd",
-  "rust_analyzer", "taplo", "zk@v0.10.1", "lemminx", "solargraph", "sorbet", "elixirls"
+  "rust_analyzer", "taplo", "zk@v0.10.1", "lemminx", "solargraph", "sorbet", "elixirls",
+  "intelephense", "tailwindcss", "erlangls", "cssmodules_ls"
 }
 
 local settings = {

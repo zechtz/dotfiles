@@ -5,11 +5,12 @@ set -gx GOGH /data/work/gogh/gogh.sh
 set -gx ANDROID_HOME /home/mtabe/AndroidSDK
 set -gx PIP_BIN /home/mtabe/.asdf/installs/python/3.10.0/bin
 set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
+set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=/opt/openssl-1.1.1n"
 set -gx GRADLE_HOME /opt/gradle/bin
-set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.5/go
+set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.4/go
 set -gx LUA_FORMATTER_BIN /home/mtabe/.asdf/installs/lua/5.4.4/luarocks/bin
 set -gx GOPATH /data/go/src
-set -gx CARGOPATH  /home/mtabe/.cargo
+set -gx CARGOPATH  /home/mtabe/.asdf/installs/rust/1.60.0
 set -gx SCRIPTS /data/work/dotfiles/scripts
 set -gx RUST_ANALYZER /home/mtabe/.local/share/nvim/lsp_servers/rust
 set -gx DENO /home/mtabe/.local/share/nvim/lsp_servers/denols
