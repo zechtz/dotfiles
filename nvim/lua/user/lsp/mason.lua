@@ -8,7 +8,7 @@ local servers = {
   "cssls", "cssmodules_ls", "emmet_ls", "html", "jdtls", "jsonls", "solc", "sumneko_lua", "tflint",
   "terraformls", "tsserver", "pyright", "yamlls", "bashls", "clangd", "rust_analyzer", "taplo",
   "zk@v0.10.1", "lemminx", "solargraph", "sorbet", "elixirls", "intelephense", "tailwindcss",
-  "erlangls", "cssmodules_ls"
+  "erlangls", "cssmodules_ls", "ruby_ls", "gopls"
 }
 
 local settings = {
@@ -67,17 +67,22 @@ for _, server in pairs(servers) do
 
   if server == "tsserver" then
     local tsserver_opts = require "user.lsp.settings.tsserver"
-    opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+    vim.tbl_deep_extend("force", tsserver_opts, opts)
   end
 
   if server == "pyright" then
     local pyright_opts = require "user.lsp.settings.pyright"
-    opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+    vim.tbl_deep_extend("force", pyright_opts, opts)
+  end
+
+  if server == "gopls" then
+    local gopls_opts = require "user.lsp.settings.gopls"
+    vim.tbl_deep_extend("force", gopls_opts, opts)
   end
 
   if server == "solc" then
     local solc_opts = require "user.lsp.settings.solc"
-    opts = vim.tbl_deep_extend("force", solc_opts, opts)
+    vim.tbl_deep_extend("force", solc_opts, opts)
   end
 
   if server == "emmet_ls" then
