@@ -280,6 +280,9 @@ return packer.startup(function(use)
   use "terryma/vim-multiple-cursors"
   use "tommcdo/vim-exchange"
 
+  -- protocol buffers
+  use 'prabirshrestha/vim-lsp'
+
   -- restore the cursor position
   use { "farmergreg/vim-lastplace" }
 

@@ -1,37 +1,68 @@
 local status_ok, mason = pcall(require, "mason")
-if not status_ok then return end
+if not status_ok then
+  return
+end
 
 local status_ok_1, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not status_ok_1 then return end
+if not status_ok_1 then
+  return
+end
 
 local servers = {
-  "cssls", "cssmodules_ls", "emmet_ls", "html", "jdtls", "jsonls", "solc", "sumneko_lua", "tflint",
-  "terraformls", "tsserver", "pyright", "yamlls", "bashls", "clangd", "rust_analyzer", "taplo",
-  "zk@v0.10.1", "lemminx", "solargraph", "sorbet", "elixirls", "intelephense", "tailwindcss",
-  "erlangls", "cssmodules_ls", "ruby_ls", "gopls"
+  "cssls",
+  "cssmodules_ls",
+  "emmet_ls",
+  "html",
+  "jdtls",
+  "jsonls",
+  "solc",
+  "sumneko_lua",
+  "tflint",
+  "terraformls",
+  "tsserver",
+  "pyright",
+  "yamlls",
+  "bashls",
+  "clangd",
+  "rust_analyzer",
+  "taplo",
+  "zk@v0.10.1",
+  "lemminx",
+  "solargraph",
+  "sorbet",
+  "elixirls",
+  "intelephense",
+  "tailwindcss",
+  "erlangls",
+  "cssmodules_ls",
+  "ruby_ls",
+  "gopls",
+  "volar",
 }
 
 local settings = {
   ui = {
     border = "rounded",
-    icons = {package_installed = "◍", package_pending = "◍", package_uninstalled = "◍"}
+    icons = { package_installed = "◍", package_pending = "◍", package_uninstalled = "◍" },
   },
   log_level = vim.log.levels.INFO,
-  max_concurrent_installers = 4
+  max_concurrent_installers = 4,
 }
 
 mason.setup(settings)
-mason_lspconfig.setup {ensure_installed = servers, automatic_installation = true}
+mason_lspconfig.setup { ensure_installed = servers, automatic_installation = true }
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then return end
+if not lspconfig_status_ok then
+  return
+end
 
 local opts = {}
 
 for _, server in pairs(servers) do
   opts = {
     on_attach = require("user.lsp.handlers").on_attach,
-    capabilities = require("user.lsp.handlers").capabilities
+    capabilities = require("user.lsp.handlers").capabilities,
   }
 
   server = vim.split(server, "@")[1]
@@ -46,9 +77,16 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
   end
 
+  if server == "clangd" then
+    local clangd_opts = require "user.lsp.settings.clangd"
+    vim.tbl_deep_extend("force", clangd_opts, opts)
+  end
+
   if server == "sumneko_lua" then
     local l_status_ok, lua_dev = pcall(require, "lua-dev")
-    if not l_status_ok then return end
+    if not l_status_ok then
+      return
+    end
     -- local sumneko_opts = require "user.lsp.settings.sumneko_lua"
     -- opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
     -- opts = vim.tbl_deep_extend("force", require("lua-dev").setup(), opts)
@@ -57,9 +95,9 @@ for _, server in pairs(servers) do
       -- lspconfig = opts,
       lspconfig = {
         on_attach = opts.on_attach,
-        capabilities = opts.capabilities
+        capabilities = opts.capabilities,
         --   -- settings = opts.settings,
-      }
+      },
     }
     lspconfig.sumneko_lua.setup(luadev)
     goto continue
@@ -95,22 +133,24 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", zk_opts, opts)
   end
 
-  if server == "jdtls" then goto continue end
+  if server == "jdtls" then
+    goto continue
+  end
 
   if server == "elixir_ls" then
-    local elixir = require("elixir")
+    local elixir = require "elixir"
     -- setup when the mix project is present
     local cwd = vim.loop.cwd()
-    local mix_exs_fullpath = table.concat({cwd, "mix.exs"}, "/")
+    local mix_exs_fullpath = table.concat({ cwd, "mix.exs" }, "/")
     local file_exists = not vim.tbl_isempty(vim.loop.fs_stat(mix_exs_fullpath) or {})
 
     if file_exists then
-      elixir.setup({
-        cmd = {"/data/work/elixir_ls/release/language_server.sh"},
+      elixir.setup {
+        cmd = { "/data/work/elixir_ls/release/language_server.sh" },
         on_attach = require("user.lsp.handlers").on_attach,
         capabilities = require("user.lsp.handlers").capabilities,
-        elixir.settings({dialyzerEnabled = true, fetchDeps = true})
-      })
+        elixir.settings { dialyzerEnabled = true, fetchDeps = true },
+      }
     end
   end
 
@@ -118,7 +158,9 @@ for _, server in pairs(servers) do
     local rust_opts = require "user.lsp.settings.rust"
     -- opts = vim.tbl_deep_extend("force", rust_opts, opts)
     local rust_tools_status_ok, rust_tools = pcall(require, "rust-tools")
-    if not rust_tools_status_ok then return end
+    if not rust_tools_status_ok then
+      return
+    end
 
     rust_tools.setup(rust_opts)
     goto continue
