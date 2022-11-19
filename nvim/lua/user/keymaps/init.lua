@@ -247,9 +247,9 @@ vmap(",w", "<c-y>,")
 -----------------------------------------------------------------'
 -- Insert a hash rocket with <c-l> saves lots of time when writing ruby hashes, go channels etc
 ------------------------------------------------------------------'
-imap("<c-l>", "<Space>=><Space>")
-imap("<c-k>", "<Space>-><Space>")
 imap("<c-j>", "<Space><-<Space>")
+imap("<c-k>", "<Space>-><Space>")
+imap("<c-l>", "<Space>=><Space>")
 
 nmap("<Leader>bb", "<Esc>:Tabularize/= <CR>")
 nmap("<Leader>tb", "<Esc>:Tabularize/")
