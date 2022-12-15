@@ -1,10 +1,12 @@
 fish_vi_key_bindings
 
 set -gx HOME_DIR /home/$USER
-set -gx GOGH /data/work/Gogh/gogh.sh
+set -gx GOGH /data/work/Gogh/gogh
 set -gx ANDROID_HOME /home/mtabe/AndroidSDK
 set -gx PIP_BIN /home/mtabe/.asdf/installs/python/3.10.0/bin
 set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
+set -gx DART_HOME /usr/bin/dart/bin
+set -gx DART_PACKAGES_PATH /home/mtabe/.pub-cache/bin 
 set -gx PYTHON_LIBS /home/mtabe/.local/bin
 set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=/opt/openssl-1.1.1n"
 set -gx GRADLE_HOME /opt/gradle/bin
@@ -92,6 +94,8 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $GRADLE_HOME \
         $PYTHON_LIBS \
         $COMPOSER_BIN \
+        $DART_HOME  \
+        $DART_PACKAGES_PATH  \
 
 # source asdf at the bottom
 source ~/.asdf/asdf.fish

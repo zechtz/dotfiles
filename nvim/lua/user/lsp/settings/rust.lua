@@ -74,7 +74,7 @@ return {
       "rustup",
       "run",
       "nightly",
-      os.getenv "HOME" .. "/.local/share/nvim/lsp_servers/rust/rust-analyzer",
+      os.getenv "HOME" .. "/.local/share/nvim/mason/packages/rust-analyzer/rust-analyzer",
     },
     on_attach = require("user.lsp.handlers").on_attach,
     capabilities = require("user.lsp.handlers").capabilities,

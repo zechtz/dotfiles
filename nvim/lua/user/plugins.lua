@@ -137,6 +137,7 @@ return packer.startup(function(use)
   use "rose-pine/neovim"
   use "rebelot/kanagawa.nvim"
   use "whatyouhide/vim-gotham"
+  use "sam4llis/nvim-tundra"
   -- use "lunarvim/colorschemes"
 
   -- Utility
@@ -260,7 +261,7 @@ return packer.startup(function(use)
   -- elixir
   use { "elixir-lang/vim-elixir", ft = "elixir" }
   use { "mattreduce/vim-mix", ft = "elixir" }
-  use { "slashmili/alchemist.vim", ft = "elixir" }
+  -- use { "slashmili/alchemist.vim", ft = "elixir" }
   use { "mhanberg/elixir.nvim", requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" } }
 
   -- ruby & rails
@@ -281,7 +282,10 @@ return packer.startup(function(use)
   use "tommcdo/vim-exchange"
 
   -- protocol buffers
-  use 'prabirshrestha/vim-lsp'
+  use "prabirshrestha/vim-lsp"
+
+  -- flutter tools
+  use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
 
   -- restore the cursor position
   use { "farmergreg/vim-lastplace" }
