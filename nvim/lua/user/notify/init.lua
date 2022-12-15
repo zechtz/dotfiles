@@ -48,6 +48,9 @@ vim.notify = function(msg, ...)
   if msg:match "method textDocument" then
     return
   end
+  if msg:match "warning: multiple different client offset_encodings" then
+    return
+  end
 
   notify_filter(msg, ...)
 end

@@ -6,3 +6,4 @@ nvim/lua/user/lsp/jdtls.lua
 /nvim2
 /chris
 fonts/*.gz
+fonts

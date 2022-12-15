@@ -6,12 +6,15 @@ set -gx GOGH /data/work/gogh/gogh.sh
 set -gx ANDROID_HOME /home/mtabe/AndroidSDK
 set -gx PIP_BIN /home/mtabe/.asdf/installs/python/3.10.0/bin
 set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
+set -gx DART_HOME /usr/bin/dart/bin
+set -gx DART_PACKAGES_PATH /home/mtabe/.pub-cache/bin 
+set -gx PYTHON_LIBS /home/mtabe/.local/bin
 set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=/opt/openssl-1.1.1n"
 set -gx GRADLE_HOME /opt/gradle/bin
-set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.4/go
+set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.18.8/go
 set -gx LUA_FORMATTER_BIN /home/mtabe/.asdf/installs/lua/5.4.4/luarocks/bin
 set -gx GOPATH /data/go/src
-set -gx CARGOPATH  /home/mtabe/.asdf/installs/rust/1.60.0
+set -gx CARGOPATH  /home/mtabe/.cargo
 set -gx SCRIPTS /data/work/dotfiles/scripts
 set -gx RUST_ANALYZER /home/mtabe/.local/share/nvim/lsp_servers/rust
 set -gx DENO /home/mtabe/.local/share/nvim/lsp_servers/denols
@@ -36,6 +39,7 @@ set -gx ESLINTLS /home/mtabe/.local/share/nvim/lsp_servers/vscode-eslint/node_mo
 set -gx ELIXIRLS /home/mtabe/.local/share/nvim/lsp_servers/elixir/elixir-ls
 set -gx SUMNEKO_LUALS /home/mtabe/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin
 set -gx PHPCS /home/mtabe/.config/composer/vendor/squizlabs/php_codesniffer/bin
+set -gx COMPOSER_BIN /home/mtabe/.config/composer/vendor/bin
 set -gx MISSPELL /home/mtabe/misc/bin
 set -gx PHPCSFIXER /home/mtabe/misc/vendor/bin
 set -gx KNEX /home/mtabe/misc/knex/node_modules/.bin
@@ -53,7 +57,7 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $SCRIPTS \
         $RUST_ANALYZER \
         $DENO \
-        $JAVA_HOME \
+        $JAVA_HOME\bin \
         $ASDF \
         $GOPLS \
         $CMAKE \
@@ -90,6 +94,10 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $GOGH \
         $GRADLE_HOME \
         $CARGO_PATH/bin \ 
+        $PYTHON_LIBS \
+        $COMPOSER_BIN \
+        $DART_HOME  \
+        $DART_PACKAGES_PATH  \
 
 # source asdf at the bottom
 source ~/.asdf/asdf.fish

@@ -37,8 +37,18 @@ vim.cmd [[
 
   augroup _lsp
     autocmd!
-    autocmd BufWritePre *.go,*.rs,*.ex,*.exs,*.rb,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*.py,*.php,*.elixir lua vim.lsp.buf.format { async = true }
+    autocmd BufWritePre *.proto,*.go,*.rs,*.ex,*.exs,*.rb,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*.py,*.elixir lua vim.lsp.buf.format { async = true }
   augroup end
+
+  augroup LspBuf
+  au!
+  autocmd User lsp_setup call lsp#register_server({
+  \ 'name': 'bufls',
+  \ 'cmd': {server_info->['bufls', 'serve']},
+  \ 'whitelist': ['proto'],
+  \ })
+  autocmd FileType proto nmap <buffer> gd <plug>(lsp-definition)
+  augroup END
 
   augroup nvimEx
   " Clear all autocmds in the group
