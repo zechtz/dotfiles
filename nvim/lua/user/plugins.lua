@@ -134,6 +134,8 @@ return packer.startup(function(use)
   use "lunarvim/onedarker.nvim"
   use "lunarvim/darkplus.nvim"
   use "folke/tokyonight.nvim"
+-- If you are using Packer
+use 'shaunsingh/solarized.nvim'
   use "rose-pine/neovim"
   use "rebelot/kanagawa.nvim"
   use "whatyouhide/vim-gotham"
