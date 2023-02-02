@@ -29,7 +29,6 @@ local servers = {
   "zk@v0.10.1",
   "lemminx",
   "solargraph",
-  "sorbet",
   "elixirls",
   "intelephense",
   "tailwindcss",
