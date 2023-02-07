@@ -1,7 +1,8 @@
 fish_vi_key_bindings
 
 set -gx HOME_DIR /home/$USER
-set -gx GOGH /data/work/Gogh/gogh
+set -gx CARGO_PATH /home/mtabe/.cargo
+set -gx GOGH /data/work/gogh/gogh.sh
 set -gx ANDROID_HOME /home/mtabe/AndroidSDK
 set -gx PIP_BIN /home/mtabe/.asdf/installs/python/3.10.0/bin
 set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
@@ -92,6 +93,7 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $PIP_BIN \
         $GOGH \
         $GRADLE_HOME \
+        $CARGO_PATH/bin \ 
         $PYTHON_LIBS \
         $COMPOSER_BIN \
         $DART_HOME  \
