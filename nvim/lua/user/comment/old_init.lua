@@ -18,7 +18,10 @@ comment.setup {
 
     require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
 
-    if vim.bo.filetype == "javascript" or vim.bo.filetype == "typescript" then
+    if
+      vim.bo.filetype == "javascriptreact"
+      or vim.bo.filetype == "typescriptreact"
+    then
       local U = require "Comment.utils"
 
       -- Determine whether to use linewise or blockwise commentstring
