@@ -1,7 +1,7 @@
 M = {}
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 
-local term_opts = {silent = true}
+local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -21,22 +21,22 @@ local function imap(shortcut, command)
 end
 
 local function snoremap(shortcut, command)
-  opts = {noremap = true, silent = true, expr = true}
+  opts = { noremap = true, silent = true, expr = true }
   keymap("s", shortcut, command, opts)
 end
 
 local function inoremap(shortcut, command)
-  opts = {noremap = true, silent = true, expr = true}
+  opts = { noremap = true, silent = true, expr = true }
   keymap("i", shortcut, command, opts)
 end
 
 local function cnoremap(shortcut, command)
-  opts = {noremap = true, expr = true}
+  opts = { noremap = true, expr = true }
   keymap("c", shortcut, command, opts)
 end
 
 local function vnoremap(shortcut, command)
-  opts = {noremap = true, expr = true}
+  opts = { noremap = true, expr = true }
   keymap("v", shortcut, command, opts)
 end
 
@@ -49,7 +49,7 @@ local function xmap(shortcut, command)
 end
 
 local function noremap(shortcut, command)
-  keymap("n", shortcut, command, {noremap = true, silent = true})
+  keymap("n", shortcut, command, { noremap = true, silent = true })
 end
 
 -- Remap space as leader key
@@ -102,9 +102,12 @@ nmap("<F1>", ":e ~/Notes/<cr>")
 nmap("<F3>", ":e .<cr>")
 nmap("<F4>", "<cmd>Telescope resume<cr>")
 nmap("<F5>", "<cmd>Telescope commands<CR>")
-keymap("n", "<F6>",
-       [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>]],
-       opts)
+keymap(
+  "n",
+  "<F6>",
+  [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>]],
+  opts
+)
 nmap("<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>")
 nmap("<F8>", "<cmd>TSPlaygroundToggle<cr>")
 nmap("<F11>", "<cmd>lua vim.lsp.buf.references()<CR>")
@@ -130,9 +133,9 @@ nmap("<m-v>", "<cmd>lua require('lsp_lines').toggle()<cr>")
 
 M.show_documentation = function()
   local filetype = vim.bo.filetype
-  if vim.tbl_contains({"vim", "help"}, filetype) then
+  if vim.tbl_contains({ "vim", "help" }, filetype) then
     vim.cmd("h " .. vim.fn.expand "<cword>")
-  elseif vim.tbl_contains({"man"}, filetype) then
+  elseif vim.tbl_contains({ "man" }, filetype) then
     vim.cmd("Man " .. vim.fn.expand "<cword>")
   elseif vim.fn.expand "%:t" == "Cargo.toml" then
     require("crates").show_popup()
@@ -144,10 +147,14 @@ end
 nmap("K", ":lua require('user.keymaps').show_documentation()<CR>")
 nmap("<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>")
 xmap("<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
-nmap("<tab>",
-     "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>")
-nmap("<s-tab>",
-     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>")
+nmap(
+  "<tab>",
+  "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
+)
+nmap(
+  "<s-tab>",
+  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
+)
 -- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
 nmap("<m-g>", "<cmd>Telescope git_branches<cr>")
 nmap("<s-enter>", "<cmd>TodoQuickFix<cr>")
@@ -218,6 +225,12 @@ nmap("<Leader>WW", "<C-w>J")
 noremap("k", "gk")
 noremap("gk", "k")
 
+-- enter vim hardmode disables hjkl navigation break the bad habbits
+noremap("h", "<NOP>")
+noremap("j", "<NOP>")
+noremap("k", "<NOP>")
+noremap("l", "<NOP>")
+
 noremap("j", "gj")
 noremap("gj", "j")
 
@@ -232,11 +245,11 @@ noremap("`", "'")
 imap("<Leader>[", "<Esc>")
 
 -- Indents html on save and takes you to the top of the page
-vim.cmd([[
+vim.cmd [[
 autocmd BufRead,BufWritePre *.html normal gg=G
 autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-]])
+]]
 
 -------------------------------------------------------------------'
 -- map ctrl + c keys to autocomplete using emmet
@@ -294,13 +307,13 @@ noremap("<silent> <C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 noremap("<silent> <C-n>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
 noremap("<silent> <C-p>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
 
-vim.api.nvim_command([[
+vim.api.nvim_command [[
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-]])
+]]
 
 -- " NOTE: You can use other key to expand snippet.
 cnoremap("<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"')
@@ -328,8 +341,10 @@ nmap("S", "<Plug>(vsnip-cut-text)")
 xmap("S", "<Plug>(vsnip-cut-text)")
 
 vnoremap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
-noremap("<C-p>",
-        "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>")
+noremap(
+  "<C-p>",
+  "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>"
+)
 noremap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>")
 noremap("<C-\\>", "<cmd>vsplit<cr>")
 
