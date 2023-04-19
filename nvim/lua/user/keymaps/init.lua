@@ -224,15 +224,14 @@ nmap("<Leader>WW", "<C-w>J")
 -- navigating through lines should be easy, don't have to gj & gk anymore
 noremap("k", "gk")
 noremap("gk", "k")
-
--- enter vim hardmode disables hjkl navigation break the bad habbits
-noremap("h", "<NOP>")
-noremap("j", "<NOP>")
-noremap("k", "<NOP>")
-noremap("l", "<NOP>")
-
 noremap("j", "gj")
 noremap("gj", "j")
+
+-- enter vim hardmode disables hjkl navigation break the bad habbits
+noremap("hh", "<NOP>")
+noremap("jj", "<NOP>")
+noremap("kk", "<NOP>")
+noremap("ll", "<NOP>")
 
 -- The ' key just takes back to the mark's line, the `(backtick)
 -- key takes you the exact position of the mark and i rarely
@@ -264,7 +263,7 @@ imap("<c-j>", "<Space><-<Space>")
 imap("<c-k>", "<Space>-><Space>")
 imap("<c-l>", "<Space>=><Space>")
 
-nmap("<Leader>bb", "<Esc>:Tabularize/= <CR>")
+nmap("<Leader>bt", "<Esc>:Tabularize/= <CR>")
 nmap("<Leader>tb", "<Esc>:Tabularize/")
 
 -----------------------------------------------------------------'

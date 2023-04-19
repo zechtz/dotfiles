@@ -37,7 +37,7 @@ vim.cmd [[
 
   augroup _lsp
     autocmd!
-    autocmd BufWritePre *.proto,*.go,*.rs,*.ex,*.exs,*.rb,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*.py,*.elixir lua vim.lsp.buf.format { async = true }
+    autocmd BufWritePre *.prisma,*.proto,*.go,*.rs,*.ex,*.exs,*.rb,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*.py,*.elixir lua vim.lsp.buf.format { async = true }
   augroup end
 
   augroup LspBuf
@@ -60,7 +60,7 @@ vim.cmd [[
   \   exe "normal g`\"" |
   \ endif
   "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber,prisma set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
   autocmd! BufRead,BufNewFile *.sass setfiletype=css
   autocmd! BufRead,BufNewFile *.scss setfiletype=css

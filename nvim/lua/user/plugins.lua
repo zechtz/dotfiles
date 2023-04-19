@@ -134,8 +134,8 @@ return packer.startup(function(use)
   use "lunarvim/onedarker.nvim"
   use "lunarvim/darkplus.nvim"
   use "folke/tokyonight.nvim"
--- If you are using Packer
-use 'shaunsingh/solarized.nvim'
+  -- If you are using Packer
+  use "shaunsingh/solarized.nvim"
   use "rose-pine/neovim"
   use "rebelot/kanagawa.nvim"
   use "whatyouhide/vim-gotham"
@@ -287,10 +287,13 @@ use 'shaunsingh/solarized.nvim'
   use "prabirshrestha/vim-lsp"
 
   -- flutter tools
-  use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
+  use { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" }
 
   -- restore the cursor position
   use { "farmergreg/vim-lastplace" }
+
+  -- vim prisma
+  use "pantharshit00/vim-prisma" -- Prisma ORM
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

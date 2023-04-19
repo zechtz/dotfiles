@@ -16,7 +16,6 @@ local servers = {
   "jdtls",
   "jsonls",
   "solc",
-  "sumneko_lua",
   "tflint",
   "terraformls",
   "tsserver",
@@ -36,6 +35,7 @@ local servers = {
   "cssmodules_ls",
   "ruby_ls",
   "gopls",
+  "prismals",
   "volar",
 }
 
