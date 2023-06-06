@@ -12,7 +12,7 @@ set -gx FLUTTER_PATH /data/work/flutter/flutter/bin
 set -gx DART_PACKAGES_PATH /home/mtabe/.pub-cache/bin 
 set -gx PYTHON_LIBS /home/mtabe/.local/bin
 set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=/opt/openssl-1.1.1n"
-set -gx GRADLE_HOME /opt/gradle/bin
+set -gx GRADLE_HOME /opt/gradle
 set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.18.8/go
 set -gx LUA_FORMATTER_BIN /home/mtabe/.asdf/installs/lua/5.4.4/luarocks/bin
 set -gx GOPATH /data/go/src
@@ -94,7 +94,7 @@ set -gx PATH /home/mtabe/.asdf/bin \
         $DENO_INSTALL/bin \
         $PIP_BIN \
         $GOGH \
-        $GRADLE_HOME \
+        $GRADLE_HOME/bin \
         $PYTHON_LIBS \
         $COMPOSER_BIN \
         $DART_HOME  \
@@ -106,3 +106,7 @@ set -gx PATH /home/mtabe/.asdf/bin \
 
 # source asdf at the bottom
 source ~/.asdf/asdf.fish
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

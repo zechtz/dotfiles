@@ -32,7 +32,7 @@ require "user.lsp.mason"
 require("user.lsp.handlers").setup()
 require "user.lsp.null-ls"
 
--- require("flutter-tools").setup{} -- use defaults
+require("flutter-tools").setup {} -- use defaults
 
 local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
 if not l_status_ok then

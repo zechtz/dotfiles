@@ -119,9 +119,16 @@ return packer.startup(function(use)
   use "MattesGroeger/vim-bookmarks"
 
   -- Fuzzy Finder/Telescope
-  use "nvim-telescope/telescope.nvim"
+  use { "nvim-telescope/telescope.nvim", tag = "0.1.1" }
   use "nvim-telescope/telescope-media-files.nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
+
+  -- Session
+  use "rmagatti/auto-session"
+  -- use {
+  --   "rmagatti/session-lens",
+  --   requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
+  -- }
 
   -- Note Taking
   use "mickael-menu/zk-nvim"
@@ -194,10 +201,6 @@ return packer.startup(function(use)
   use "ahmedkhalf/project.nvim"
   use "nvim-pack/nvim-spectre"
 
-  -- Session
-  use "rmagatti/auto-session"
-  use "rmagatti/session-lens"
-
   -- Quickfix
   use "kevinhwang91/nvim-bqf"
 
@@ -235,7 +238,7 @@ return packer.startup(function(use)
 
   -- Rust
   use { "christianchiarulli/rust-tools.nvim", branch = "modularize_and_inlay_rewrite" }
-  use "Saecki/crates.nvim"
+  use "saecki/crates.nvim"
 
   -- Typescript TODO: set this up, also add keybinds to ftplugin
   use "jose-elias-alvarez/typescript.nvim"
@@ -288,12 +291,16 @@ return packer.startup(function(use)
 
   -- flutter tools
   use { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" }
+  use "dart-lang/dart-vim-plugin"
 
   -- restore the cursor position
   use { "farmergreg/vim-lastplace" }
 
   -- vim prisma
   use "pantharshit00/vim-prisma" -- Prisma ORM
+
+  -- wakatime for tracking my working hrs
+  use 'wakatime/vim-wakatime'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
