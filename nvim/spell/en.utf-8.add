@@ -1,10 +1,7 @@
-LunarVim
 Neovim
-LunarVim's
 treesitter
 autopairs
 linters
-lunarvim
 nvim
 Edsger
 config
@@ -21,7 +18,6 @@ RubyGem
 lsp
 ABI
 healthcheck
-chris
 fnm
 Ethereum
 dapps
@@ -60,7 +56,6 @@ Rinkeby
 rinkeby
 etherscan
 systray
-MachWM
 shiftview
 dragmfact
 focusonnetactive

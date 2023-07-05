@@ -42,7 +42,7 @@ vim.cmd [[
 
   augroup _lsp
     autocmd!
-    autocmd BufWritePre *.prisma,*.heex,*.proto,*.go,*.rs,*.ex,*.exs,*.rb,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*.py,*.elixir lua vim.lsp.buf.format { async = true }
+    autocmd BufWritePre *.elm,*.prisma,*.heex,*.proto,*.go,*.rs,*.ex,*.exs,*.rb,*.ts,*.tsx,*.jsx,*.js,*.lua,*.vue,*.css,*.scss,*.sass,*.html,*.py,*.elixir lua vim.lsp.buf.format { async = true }
   augroup end
 
   augroup LspBuf

@@ -8,7 +8,7 @@ local servers = {
   "cssls", "cssmodules_ls", "emmet_ls", "html", "jdtls", "jsonls", "solc", "tflint", "terraformls",
   "tsserver", "pyright", "yamlls", "bashls", "clangd", "rust_analyzer", "taplo", "zk@v0.10.1",
   "lemminx", "solargraph", "elixirls", "intelephense", "tailwindcss", "erlangls", "cssmodules_ls",
-  "ruby_ls", "gopls", "prismals", "volar"
+  "ruby_ls", "gopls", "prismals", "volar", "elmls", "groovyls"
 }
 
 local settings = {

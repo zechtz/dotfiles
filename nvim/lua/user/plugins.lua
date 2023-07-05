@@ -76,7 +76,7 @@ return packer.startup(function(use)
   }
 
   use "RRethy/vim-illuminate"
-  use "j-hui/fidget.nvim"
+  use { "j-hui/fidget.nvim", tag = "legacy" }
   use "lvimuser/lsp-inlayhints.nvim"
   -- use "simrat39/inlay-hints.nvim"
   use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
@@ -124,12 +124,27 @@ return packer.startup(function(use)
   use "tom-anders/telescope-vim-bookmarks.nvim"
 
   -- Session
-  use "rmagatti/auto-session"
-  -- use {
-  --   "rmagatti/session-lens",
-  --   requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-  -- }
+  use {
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup {
+        log_level = vim.log.levels.ERROR,
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+        auto_session_use_git_branch = false,
 
+        auto_session_enable_last_session = false,
+
+        -- ⚠️ This will only work if Telescope.nvim is installed
+        -- The following are already the default values, no need to provide them if these are already the settings you want.
+        session_lens = {
+          -- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
+          load_on_setup = true,
+          theme_conf = { border = true },
+          previewer = false,
+        },
+      }
+    end,
+  }
   -- Note Taking
   use "mickael-menu/zk-nvim"
 
@@ -300,7 +315,7 @@ return packer.startup(function(use)
   use "pantharshit00/vim-prisma" -- Prisma ORM
 
   -- wakatime for tracking my working hrs
-  use 'wakatime/vim-wakatime'
+  use "wakatime/vim-wakatime"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
