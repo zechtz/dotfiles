@@ -9,6 +9,7 @@
   "clangd_extensions.nvim": { "branch": "main", "commit": "723639da63ad87753c4a9271077a39b5b2f080a4" },
   "cmake-tools.nvim": { "branch": "master", "commit": "20082f85909864a3c93acbc51c20dddc1004f39d" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
+  "cmp-emoji": { "branch": "main", "commit": "19075c36d5820253d32e2478b6aaf3734aeaafa0" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp-tabnine": { "branch": "main", "commit": "b93f82ef5150e578677fc2e2b4b328b19eed77e1" },
