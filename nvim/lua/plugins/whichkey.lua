@@ -29,7 +29,7 @@ return {
     defaults = {
       mode = { "n", "v" },
       ["<leader>a"] = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
-      ["<leader>/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
+      ["<leader>/"] = { "gcc", "Comment" },
       ["<leader>v"] = { "<cmd>vsplit<cr>", "vsplit" },
       ["<leader>h"] = { "<cmd>split<cr>", "split" },
       ["<leader>X"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },

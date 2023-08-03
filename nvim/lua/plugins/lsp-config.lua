@@ -1,4 +1,4 @@
-local icons = require("user.icons")
+local icons = require("config.icons")
 
 local signs = {
 
@@ -61,14 +61,6 @@ local config = {
 
 vim.diagnostic.config(config)
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "rounded",
-})
-
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -83,6 +75,15 @@ return {
         return require("lazyvim.util").has("nvim-cmp")
       end,
     },
+
+    "jose-elias-alvarez/typescript.nvim",
+    init = function()
+      require("lazyvim.util").on_attach(function(_, buffer)
+          -- stylua: ignore
+          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
+        vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
+      end)
+    end,
   },
   ---@class PluginLspOpts
   opts = {

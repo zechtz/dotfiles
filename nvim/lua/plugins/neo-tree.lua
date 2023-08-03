@@ -32,8 +32,12 @@ return {
     end
   end,
   opts = {
+    follow_current_file = true,
     sources = { "filesystem", "buffers", "git_status", "document_symbols" },
     open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "Outline" },
+    hide_root_node = true, --hide the root node
+    retain_hidden_root_indent = true, -- IF the root node is hidden, keep the indentation anyhow.
+    -- This is needed if you use expanders because they render in the indent.
     filesystem = {
       bind_to_cwd = false,
       follow_current_file = { enabled = true },
