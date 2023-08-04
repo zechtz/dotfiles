@@ -1,10 +1,20 @@
 return {
   "numToStr/Comment.nvim",
   config = function()
-    require("Comment").setup({
+    local status_ok, comment = pcall(require, "Comment")
+    if not status_ok then
+      return
+    end
+
+    comment.setup({
       ignore = "^$",
       pre_hook = function(ctx)
         -- For inlay hints
+        local status_ok_1, _ = pcall(require, "lsp-inlayhints")
+        if not status_ok_1 then
+          return
+        end
+
         local line_start = (ctx.srow or ctx.range.srow) - 1
         local line_end = ctx.erow or ctx.range.erow
         require("lsp-inlayhints.core").clear(0, line_start, line_end)
@@ -13,11 +23,8 @@ return {
 
         if vim.bo.filetype == "javascriptreact" or vim.bo.filetype == "typescriptreact" then
           local U = require("Comment.utils")
-
-          -- Determine whether to use linewise or blockwise commentstring
           local type = ctx.ctype == U.ctype.linewise and "__default" or "__multiline"
 
-          -- Determine the location where to calculate commentstring from
           local location = nil
           if ctx.ctype == U.ctype.blockwise then
             location = require("ts_context_commentstring.utils").get_cursor_location()
