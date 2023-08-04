@@ -144,14 +144,9 @@ nmap("K", ":lua require('user.keymaps').show_documentation()<CR>")
 nmap("<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>")
 xmap("<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 nmap(
-  "<tab>",
-  "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
-)
-nmap(
   "<s-tab>",
   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
 )
--- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
 nmap("<m-g>", "<cmd>Telescope git_branches<cr>")
 nmap("<s-enter>", "<cmd>TodoQuickFix<cr>")
 
