@@ -39,8 +39,8 @@ NVIM_APPNAME=zechtz/dotfiles/nvim nvim
 ### colorscheme
 
 - [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
-- [rebelot/kanagawa.nvim](https://dotfyle.com/plugins/rebelot/kanagawa.nvim)
 - [rose-pine/neovim](https://dotfyle.com/plugins/rose-pine/neovim)
+- [rebelot/kanagawa.nvim](https://dotfyle.com/plugins/rebelot/kanagawa.nvim)
 
 ### comment
 
