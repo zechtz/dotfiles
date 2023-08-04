@@ -47,7 +47,6 @@ return {
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
       -- ["<leader>/"] = { "gcc", "Comment" },
       --["<leader>/"] = { "gcc", "Comment" },
-
       ["<leader>g"] = {
         name = "Git",
         g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
@@ -74,6 +73,7 @@ return {
         },
       },
 
+      -- older me will probably hate this, i should group this like others
       ["h"] = {
         name = "Harpoon",
         h = {
@@ -82,10 +82,9 @@ return {
           { noremap = true, silent = true },
         },
         a = { "<cmd> lua require('harpoon.mark').add_file()<CR>", "Add To Harpoon", { noremap = true, silent = true } },
-        n = { "<cmd> lua require('harpoon.ui').nav_file(1)<CR>", "Next File", { noremap = true, silent = true } },
-        p = { "<cmd> lua require('harpoon.ui').nav_file(-1)<CR>", "Prev File", { noremap = true, silent = true } },
+        n = { "<cmd> lua require('harpoon.ui').nav_next()<CR>", "Next File", { noremap = true, silent = true } },
+        p = { "<cmd> lua require('harpoon.ui').nav_prev()<CR>", "Prev File", { noremap = true, silent = true } },
       },
-
       ["<leader>f"] = {
         name = "Find",
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },

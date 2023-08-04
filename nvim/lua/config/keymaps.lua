@@ -140,7 +140,7 @@ nmap("gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR
 vmap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
 nmap("<m-v>", "<cmd>lua require('lsp_lines').toggle()<cr>")
 
-nmap("K", ":lua require('user.keymaps').show_documentation()<CR>")
+nmap("K", ":lua require('config.keymaps').show_documentation()<CR>")
 nmap("<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>")
 xmap("<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 nmap(
