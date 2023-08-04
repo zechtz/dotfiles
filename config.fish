@@ -1,5 +1,8 @@
 fish_vi_key_bindings
 
+set -g theme_color_scheme wombat
+set -g theme_nerd_fonts yes
+
 set -gx HOME_DIR /home/$USER
 set -gx GOGH /data/work/Gogh/gogh
 set -gx ANDROID_HOME /home/mtabe/Android/Sdk
@@ -9,14 +12,14 @@ set -gx PIP_BIN /home/mtabe/.asdf/installs/python/3.10.0/bin
 set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
 set -gx DART_HOME /usr/bin/dart/bin
 set -gx FLUTTER_PATH /data/work/flutter/flutter/bin
-set -gx DART_PACKAGES_PATH /home/mtabe/.pub-cache/bin 
+set -gx DART_PACKAGES_PATH /home/mtabe/.pub-cache/bin
 set -gx PYTHON_LIBS /home/mtabe/.local/bin
 set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=/opt/openssl-1.1.1n"
 set -gx GRADLE_HOME /usr/bin/gradle
-set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.18.8/go
+set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.17.4/go
 set -gx LUA_FORMATTER_BIN /home/mtabe/.asdf/installs/lua/5.4.4/luarocks/bin
 set -gx GOPATH /data/go/src
-set -gx CARGOPATH  /home/mtabe/.cargo
+set -gx CARGOPATH /home/mtabe/.cargo
 set -gx SCRIPTS /data/work/dotfiles/scripts
 set -gx RUST_ANALYZER /home/mtabe/.local/share/nvim/lsp_servers/rust
 set -gx DENO /home/mtabe/.local/share/nvim/lsp_servers/denols
@@ -54,56 +57,55 @@ set -gx PRG_USER zachariah.ngonyani
 set -gx PRG_PASSWORD Ng@m1@0022!
 
 set -gx PATH /home/mtabe/.asdf/bin \
-        $CARGOPATH/bin \
-        $GOROOT/bin \
-        $SCRIPTS \
-        $RUST_ANALYZER \
-        $DENO \
-        $JAVA_HOME\bin \
-        $ASDF \
-        $GOPLS \
-        $CMAKE \
-        $CSS \
-        $DOCKERLS \
-        $ANGULARLS \
-        $DIAGNOSTICS \
-        $DOTLS \
-        $CLANGLS \
-        $GRAPHQLS \
-        $YAMLS \
-        $KOTLINLS \
-        $VOLARLS \
-        $VUELS \
-        $EMMETLS \
-        $LEMMINX \
-        $TAILWINDLS \
-        $ESLINTLS \
-        $ELIXIRLS  \
-        $SUMNEKO_LUALS \
-        $PATH \
-        $PHPCS \
-        $MISSPELL \
-        $PHPCSFIXER \
-        $KNEX \
-        $ESCRIPTS \
-        $SQLLS \
-        # $RUBY_GEM_PATH \
-        $GOPATH/bin \
-        $SPRING_HOME/bin \
-        $LUA_FORMATTER_BIN \
-        $DENO_INSTALL/bin \
-        $PIP_BIN \
-        $GOGH \
-        $GRADLE_HOME/bin \
-        $PYTHON_LIBS \
-        $COMPOSER_BIN \
-        $DART_HOME  \
-        $FLUTTER_PATH  \
-        $ANDROID_HOME  \
-        $ANDROID_HOME_TOOLS  \
-        $ANDROID_STUDIO  \
-        $DART_PACKAGES_PATH  \
-
+    $CARGOPATH/bin \
+    $GOROOT/bin \
+    $SCRIPTS \
+    $RUST_ANALYZER \
+    $DENO \
+    $JAVA_HOME\bin \
+    $ASDF \
+    $GOPLS \
+    $CMAKE \
+    $CSS \
+    $DOCKERLS \
+    $ANGULARLS \
+    $DIAGNOSTICS \
+    $DOTLS \
+    $CLANGLS \
+    $GRAPHQLS \
+    $YAMLS \
+    $KOTLINLS \
+    $VOLARLS \
+    $VUELS \
+    $EMMETLS \
+    $LEMMINX \
+    $TAILWINDLS \
+    $ESLINTLS \
+    $ELIXIRLS \
+    $SUMNEKO_LUALS \
+    $PATH \
+    $PHPCS \
+    $MISSPELL \
+    $PHPCSFIXER \
+    $KNEX \
+    $ESCRIPTS \
+    $SQLLS \
+    # $RUBY_GEM_PATH \
+    $GOPATH/bin \
+    $SPRING_HOME/bin \
+    $LUA_FORMATTER_BIN \
+    $DENO_INSTALL/bin \
+    $PIP_BIN \
+    $GOGH \
+    $GRADLE_HOME/bin \
+    $PYTHON_LIBS \
+    $COMPOSER_BIN \
+    $DART_HOME \
+    $FLUTTER_PATH \
+    $ANDROID_HOME \
+    $ANDROID_HOME_TOOLS \
+    $ANDROID_STUDIO \
+    $DART_PACKAGES_PATH
 # source asdf at the bottom
 source ~/.asdf/asdf.fish
 
@@ -114,6 +116,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 # pnpm
 set -gx PNPM_HOME "/home/mtabe/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end

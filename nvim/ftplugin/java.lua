@@ -4,15 +4,15 @@ if not status then
 end
 
 -- Determine OS
-local home = os.getenv "HOME"
-if vim.fn.has "mac" == 1 then
+local home = os.getenv("HOME")
+if vim.fn.has("mac") == 1 then
   WORKSPACE_PATH = home .. "/workspace/"
   CONFIG = "mac"
-elseif vim.fn.has "unix" == 1 then
+elseif vim.fn.has("unix") == 1 then
   WORKSPACE_PATH = home .. "/workspace/"
   CONFIG = "linux"
 else
-  print "Unsupported system"
+  print("Unsupported system")
 end
 
 -- Find root of project
@@ -30,6 +30,7 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = WORKSPACE_PATH .. project_name
 
 -- TODO: Testing
+--
 -- local bundles = {
 --     vim.fn.glob(home .. "/.config/nvim/java/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
 -- };
@@ -141,7 +142,7 @@ local config = {
   },
 }
 
-require("formatter").setup {
+require("formatter").setup({
   filetype = {
     java = {
       function()
@@ -149,7 +150,7 @@ require("formatter").setup {
           exe = "java",
           args = {
             "-jar",
-            os.getenv "HOME" .. "/.local/jars/google-java-format-1.15.0-all-deps.jar",
+            os.getenv("HOME") .. "/.local/jars/google-java-format-1.15.0-all-deps.jar",
             vim.api.nvim_buf_get_name(0),
           },
           stdin = true,
@@ -157,7 +158,7 @@ require("formatter").setup {
       end,
     },
   },
-}
+})
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
@@ -165,11 +166,15 @@ require("jdtls").start_or_attach(config)
 
 require("jdtls").setup_dap()
 
-vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
-vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)"
-vim.cmd "command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()"
+vim.cmd(
+  "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
+)
+vim.cmd(
+  "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)"
+)
+vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()")
 -- vim.cmd "command! -buffer JdtJol lua require('jdtls').jol()"
-vim.cmd "command! -buffer JdtBytecode lua require('jdtls').javap()"
+vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
 -- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
 
 local status_ok, which_key = pcall(require, "which-key")
@@ -216,5 +221,5 @@ local vmappings = {
 which_key.register(mappings, opts)
 which_key.register(vmappings, vopts)
 
-vim.cmd [[setlocal shiftwidth=2]]
-vim.cmd [[setlocal tabstop=2]]
+vim.cmd([[setlocal shiftwidth=2]])
+vim.cmd([[setlocal tabstop=2]])
