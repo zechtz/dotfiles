@@ -76,7 +76,7 @@ return {
 
       ["h"] = {
         name = "Harpoon",
-        h = {
+        f = {
           "<<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
           "Open Harpoon UI",
           { noremap = true, silent = true },
