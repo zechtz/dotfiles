@@ -23,6 +23,7 @@ function M.sniprun_enable()
      autocmd TextChangedI * call TestI()
     augroup end
   ]])
+
   vim.notify("Enabled SnipRun")
 end
 

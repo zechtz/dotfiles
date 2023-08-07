@@ -45,8 +45,6 @@ return {
       ["<leader>u"] = { name = "+ui" },
       ["<leader>w"] = { name = "+windows" },
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
-      -- ["<leader>/"] = { "gcc", "Comment" },
-      --["<leader>/"] = { "gcc", "Comment" },
       ["<leader>g"] = {
         name = "Git",
         g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },

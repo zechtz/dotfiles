@@ -60,6 +60,10 @@ keymap("n", "<Space>", "", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Set the emmet leader key to '<C-Z>'
+--[[ vim.api.nvim_set_keymap("n", "<C-y>", "<Plug>(emmet-expand-abbr)", { silent = true })
+vim.api.nvim_set_keymap("v", "<C-y>", "<Plug>(emmet-expand-abbr)", { silent = true }) ]]
+
 -- Delete LazyVim default keymaps
 vim.keymap.del("n", "<C-k>")
 vim.keymap.del("n", "<C-j>")

@@ -25,7 +25,12 @@ return {
   ---@type TSConfig
   opts = {
     highlight = { enable = true },
-    indent = { enable = true },
+    indent = {
+      enable = true,
+      -- NOTE: enabling indentation significantly slows down editing in Dart files
+      -- TODO: needs checking
+      disable = { "dart" },
+    },
     ensure_installed = {
       "bash",
       "c",

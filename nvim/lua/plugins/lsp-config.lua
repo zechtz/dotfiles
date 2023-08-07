@@ -150,6 +150,28 @@ return {
           },
         },
       },
+      emmet_ls = {
+        filetypes = {
+          "html",
+          "typescriptreact",
+          "javascriptreact",
+          "css",
+          "sass",
+          "scss",
+          "less",
+          "javascript",
+          "typescript",
+          "markdown",
+        },
+        init_options = {
+          html = {
+            options = {
+              -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L26
+              ["bem.enabled"] = true,
+            },
+          },
+        },
+      },
     },
     -- you can do any additional lsp server setup here
     -- return true if you don't want this server to be setup with lspconfig

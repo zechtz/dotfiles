@@ -6,9 +6,10 @@ vim.opt.showtabline = 0 -- always show tabs
 vim.opt.undolevels = 10000 -- How many undos
 vim.opt.undoreload = 10000 -- number of lines to save for undo
 vim.opt.conceallevel = 3
-vim.g.onedarker_italic_comments = true
 
-vim.cmd([[set iskeyword+=-]])
-vim.api.nvim_set_hl(0, "Comment", { italic = true })
+-- git blame
+vim.g.gitblame_enabled = 0
+vim.g.gitblame_message_template = "<summary> • <date> • <author>"
+vim.g.gitblame_highlight_group = "LineNr"
 
 -- TODO  come back here
