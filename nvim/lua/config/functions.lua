@@ -1,4 +1,15 @@
 local M = {}
+local api = vim.api
+local uv = vim.loop
+
+local is_windows = vim.loop.os_uname().version:match("Windows")
+
+M.sep = is_windows and "\\" or "/"
+
+function M.join(...)
+  local result = table.concat(vim.tbl_flatten({ ... }), M.sep):gsub(M.sep .. "+", M.sep)
+  return result
+end
 
 vim.cmd([[
   function Test()
@@ -114,6 +125,22 @@ function M.smart_quit()
     end)
   else
     vim.cmd("q!")
+  end
+end
+
+function M.find_root_dir(markers, bufname)
+  bufname = bufname or api.nvim_buf_get_name(api.nvim_get_current_buf())
+  local dirname = vim.fn.fnamemodify(bufname, ":p:h")
+  local getparent = function(p)
+    return vim.fn.fnamemodify(p, ":h")
+  end
+  while getparent(dirname) ~= dirname do
+    for _, marker in ipairs(markers) do
+      if uv.fs_stat(M.join(dirname, marker)) then
+        return dirname
+      end
+    end
+    dirname = getparent(dirname)
   end
 end
 
