@@ -72,17 +72,28 @@ return {
     {
       "hrsh7th/cmp-nvim-lsp",
       cond = function()
-        return require("lazyvim.util").has("nvim-cmp")
+        local status_lazy_ok, _ = pcall(require, "lazyvim.util")
+        if not status_lazy_ok then
+          return
+        else
+          return require("lazyvim.util").has("nvim-cmp")
+        end
       end,
     },
 
     "jose-elias-alvarez/typescript.nvim",
     init = function()
-      require("lazyvim.util").on_attach(function(_, buffer)
+      local status_lazy_ok, _ = pcall(require, "lazyvim.util")
+
+      if not status_lazy_ok then
+        return
+      else
+        require("lazyvim.util").on_attach(function(_, buffer)
           -- stylua: ignore
           vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
-        vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
-      end)
+          vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
+        end)
+      end
     end,
   },
   ---@class PluginLspOpts
