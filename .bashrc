@@ -1,4 +1,4 @@
-[ -n "$PS1" ] && source ~/.bash_profile;
+[ -n "$PS1" ] && source ~/.bash_profile
 export PATH=$HOME/local/bin:$PATH
 
 #export NVM_DIR="/home/mtabe/.nvm"
@@ -11,12 +11,12 @@ export PATH=$HOME/local/bin:$PATH
 export PHPBREW_SET_PROMPT=0
 export PHPBREW_RC_ENABLE=0
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 export NVM_DIR="$HOME/.nvm"
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 export ECLIPSE_HOME="/home/mtabe/eclipse/java-2019-06/eclipse"
 
