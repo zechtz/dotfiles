@@ -76,7 +76,7 @@ t["<c-j>"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
 
 require("neoscroll.config").set_mappings(t)
 
-nmap("<C-Space>", "<cmd>WhichKey \\<leader><cr>")
+nmap("<Space>", "<cmd>WhichKey \\<leader><cr>")
 nmap("<C-i>", "<C-i>")
 
 -- Modes
