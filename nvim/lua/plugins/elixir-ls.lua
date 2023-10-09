@@ -7,13 +7,28 @@ return {
     local elixirls = require("elixir.elixirls")
 
     elixir.setup({
-      nextls = { enable = true },
-      credo = {},
+
+      nextls = {
+        enable = true, -- defaults to false
+        cmd = "/home/mtabe/.cache/elixir-tools/nextls/bin/nextls", -- path to the executable. mutually exclusive with `port`
+        init_options = {
+          mix_env = "dev",
+          mix_target = "host",
+        },
+        on_attach = function(client, bufnr)
+          -- custom keybinds
+        end,
+      },
+      credo = {
+        enable = true, -- defaults to true
+      },
       elixirls = {
-        enable = true,
+        -- default settings, use the `settings` function to override settings
         settings = elixirls.settings({
-          dialyzerEnabled = false,
+          dialyzerEnabled = true,
+          fetchDeps = false,
           enableTestLenses = false,
+          suggestSpecs = false,
         }),
         on_attach = function(client, bufnr)
           vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
