@@ -28,6 +28,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.vscode" },
 
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+    { import = "lazyvim.plugins.extras.ui.alpha" },
 
     { import = "lazyvim.plugins.extras.formatting.prettier" },
 
