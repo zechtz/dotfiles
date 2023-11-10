@@ -45,20 +45,19 @@ return {
       ["<leader>u"] = { name = "+ui" },
       ["<leader>w"] = { name = "+windows" },
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
-
       ["<leader>g"] = {
         name = "Git",
         g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
         j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
         k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-        b = { "<cmd>GitBlameToggle<cr>", "Blame" },
+        l = { "<cmd>GitBlameToggle<cr>", "Blame" },
         p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
         r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
         R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-        h = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+        s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
         u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
         o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-        s = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
         d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
         G = {
@@ -85,7 +84,7 @@ return {
         n = { "<cmd> lua require('harpoon.ui').nav_next()<CR>", "Next File", { noremap = true, silent = true } },
         p = { "<cmd> lua require('harpoon.ui').nav_prev()<CR>", "Prev File", { noremap = true, silent = true } },
       },
-      ["<leader>/"] = {
+      ["<leader>f"] = {
         name = "Find",
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
