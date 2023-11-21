@@ -9,5 +9,6 @@ fonts/*.gz
 fonts
 nvim-packer
 nvim-nov
+nvim-old
 
 nvim/lua/user
