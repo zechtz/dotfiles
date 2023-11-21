@@ -1,4 +1,5 @@
 local home = os.getenv("HOME")
+
 -- java lsp
 return {
   {

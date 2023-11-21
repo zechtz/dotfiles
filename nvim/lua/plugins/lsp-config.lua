@@ -210,7 +210,7 @@ return {
       require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
     end
     -- setup autoformat
-    require("lazyvim.util").format.setup(opts)
+    require("lazyvim.util").format.setup()
     -- setup formatting and keymaps
     Util.lsp.on_attach(function(client, buffer)
       lsp_keymaps(buffer)

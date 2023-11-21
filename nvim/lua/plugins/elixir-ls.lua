@@ -9,7 +9,7 @@ return {
     elixir.setup({
 
       nextls = {
-        enable = true, -- defaults to false
+        enable = true,                                             -- defaults to false
         cmd = "/home/mtabe/.cache/elixir-tools/nextls/bin/nextls", -- path to the executable. mutually exclusive with `port`
         init_options = {
           mix_env = "dev",

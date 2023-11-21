@@ -6,7 +6,6 @@ vim.opt.showtabline = 0 -- always show tabs
 vim.opt.undolevels = 10000 -- How many undos
 vim.opt.undoreload = 10000 -- number of lines to save for undo
 vim.opt.conceallevel = 3
-vim.opt.textwidth = 80 -- wrap lines at 80 characters
 
 -- git blame
 vim.g.gitblame_enabled = 0
