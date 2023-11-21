@@ -1,26 +1,26 @@
-local lualine_scheme = "darkplus_dark"
--- local lualine_scheme = "onedarker_alt"
-
-local status_theme_ok, theme = pcall(require, "lualine.themes." .. lualine_scheme)
-if not status_theme_ok then
-  return
-end
-
--- check if value in table
-local function contains(t, value)
-  for _, v in pairs(t) do
-    if v == value then
-      return true
-    end
-  end
-  return false
-end
-
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
 
   opts = function()
+    local lualine_scheme = "darkplus_dark"
+    -- local lualine_scheme = "onedarker_alt"
+
+    local status_theme_ok, theme = pcall(require, "lualine.themes." .. lualine_scheme)
+    if not status_theme_ok then
+      return
+    end
+
+    -- check if value in table
+    local function contains(t, value)
+      for _, v in pairs(t) do
+        if v == value then
+          return true
+        end
+      end
+      return false
+    end
+
     local gray = "#32363e"
     local dark_gray = "#282C34"
     local red = "#D16969"

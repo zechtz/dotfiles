@@ -144,6 +144,7 @@ return {
     ---@type lspconfig.options
     servers = {
       jsonls = {},
+      jdtls = {},
       lua_ls = {
         -- mason = false, -- set to false if you don't want this server to be installed with mason
         -- Use this to add any additional keymaps
@@ -195,6 +196,9 @@ return {
       -- end,
       -- Specify * to use this function as a fallback for any server
       -- ["*"] = function(server, opts) end,
+      jdtls = function()
+        return true
+      end,
     },
   },
   ---@param opts PluginLspOpts
@@ -206,7 +210,7 @@ return {
       require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
     end
     -- setup autoformat
-    require("lazyvim.util").format.setup(opts)
+    require("lazyvim.util").format.setup()
     -- setup formatting and keymaps
     Util.lsp.on_attach(function(client, buffer)
       lsp_keymaps(buffer)

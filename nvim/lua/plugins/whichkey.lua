@@ -10,20 +10,20 @@ return {
     },
     popup_mappings = {
       scroll_down = "<c-d>", -- binding to scroll down inside the popup
-      scroll_up = "<c-u>", -- binding to scroll up inside the popup
+      scroll_up = "<c-u>",   -- binding to scroll up inside the popup
     },
     window = {
-      border = "rounded", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+      border = "rounded",       -- none, single, double, shadow
+      position = "bottom",      -- bottom, top
+      margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]
       padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
       winblend = 0,
     },
     layout = {
       height = { min = 4, max = 25 }, -- min and max height of the columns
       width = { min = 20, max = 50 }, -- min and max width of the columns
-      spacing = 3, -- spacing between columns
-      align = "center", -- align columns left, center or right
+      spacing = 3,                    -- spacing between columns
+      align = "center",               -- align columns left, center or right
     },
     prefix = "<leader>",
     defaults = {
@@ -45,19 +45,20 @@ return {
       ["<leader>u"] = { name = "+ui" },
       ["<leader>w"] = { name = "+windows" },
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
+
       ["<leader>g"] = {
         name = "Git",
         g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
         j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
         k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-        l = { "<cmd>GitBlameToggle<cr>", "Blame" },
+        b = { "<cmd>GitBlameToggle<cr>", "Blame" },
         p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
         r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
         R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-        s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+        h = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
         u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
         o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+        s = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
         d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
         G = {
@@ -72,10 +73,11 @@ return {
       },
 
       -- older me will probably hate this, i should group this like others
+
       ["h"] = {
         name = "Harpoon",
         h = {
-          "<<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
+          "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
           "Open Harpoon UI",
           { noremap = true, silent = true },
         },
@@ -83,7 +85,7 @@ return {
         n = { "<cmd> lua require('harpoon.ui').nav_next()<CR>", "Next File", { noremap = true, silent = true } },
         p = { "<cmd> lua require('harpoon.ui').nav_prev()<CR>", "Prev File", { noremap = true, silent = true } },
       },
-      ["<leader>f"] = {
+      ["<leader>/"] = {
         name = "Find",
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
@@ -121,7 +123,7 @@ return {
       ["<leader>l"] = {
         name = "LSP",
         a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-        c = { "<cmd>lua require('user.lsp').server_capabilities()<cr>", "Get Capabilities" },
+        c = { "<cmd>lua require('plugins.lsp').server_capabilities()<cr>", "Get Capabilities" },
         d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
         w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
         f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },

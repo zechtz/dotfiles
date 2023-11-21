@@ -9,7 +9,7 @@ return {
     elixir.setup({
 
       nextls = {
-        enable = true, -- defaults to false
+        enable = true,                                             -- defaults to false
         cmd = "/home/mtabe/.cache/elixir-tools/nextls/bin/nextls", -- path to the executable. mutually exclusive with `port`
         init_options = {
           mix_env = "dev",
@@ -40,5 +40,33 @@ return {
   end,
   dependencies = {
     "nvim-lua/plenary.nvim",
+  },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      local mason = (os.getenv("HOME") or "") .. "/.local/share/nvim/mason"
+      local dap = require("dap")
+
+      dap.adapters.elixir = {
+        type = "executable",
+        command = mason .. "/packages/elixir-ls/debugger.sh",
+      }
+
+      dap.configurations.elixir = {
+        {
+          type = "elixir",
+          name = "Run Elixir Program",
+          task = "phx.server",
+          taskArgs = { "--trace" },
+          request = "launch",
+          startApps = true, -- for Phoenix projects
+          projectDir = "${workspaceFolder}",
+          requireFiles = {
+            "test/**/test_helper.exs",
+            "test/**/*_test.exs",
+          },
+        },
+      }
+    end,
   },
 }
