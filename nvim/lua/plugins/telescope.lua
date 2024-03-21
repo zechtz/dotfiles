@@ -4,8 +4,8 @@ local icons = require("user.icons")
 return {
   "nvim-telescope/telescope.nvim",
   keys = {
-      -- add a keymap to browse plugin files
-      -- stylua: ignore
+    -- add a keymap to browse plugin files
+    -- stylua: ignore
     { "<leader>/", false }, -- disable leader /  =>  reserved for comments
   },
   -- change some options

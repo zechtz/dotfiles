@@ -19,8 +19,15 @@ local function nmap(shortcut, command)
   mmap("n", shortcut, command)
 end
 
-local function imap(shortcut, command)
-  mmap("i", shortcut, command)
+local function imap(shortcut, command_or_mappings, mappings)
+  if type(command_or_mappings) == "table" then
+    mappings = command_or_mappings
+    local filetype = vim.bo.filetype
+    local arrow = mappings[filetype] or "=>"
+    mmap("i", shortcut, arrow)
+  else
+    mmap("i", shortcut, command_or_mappings)
+  end
 end
 
 local function snoremap(shortcut, command)
@@ -89,7 +96,7 @@ nmap("<C-i>", "<C-i>")
 
 -- Normal --
 -- Better window navigation
-nmap("<m-h>", "<C-w>h", { desciption = "Navigate to window using CTRL + W + h" })
+nmap("<m-h>", "<C-w>h")
 nmap("<m-j>", "<C-w>j")
 nmap("<m-k>", "<C-w>k")
 nmap("<m-l>", "<C-w>l")
@@ -228,7 +235,7 @@ noremap("`", "'")
 -- Move back to normal mode from insert mode by typing ,]
 imap("<Leader>[", "<Esc>")
 imap(",,b", "<Esc>^i") -- move to the begining of the line in insert mode and enter insert mode
-imap(",,e", "<Esc>A") -- move to the end of the line in insert mode and enter insert mode
+imap(",,e", "<Esc>A")  -- move to the end of the line in insert mode and enter insert mode
 
 nmap("<Leader>gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
 
@@ -246,11 +253,19 @@ imap(",c", "<c-y>,")
 vmap(",w", "<c-y>,")
 
 -----------------------------------------------------------------'
--- Insert a hash rocket with <c-l> saves lots of time when writing ruby hashes, go channels etc
+-- Insert a hash rocket with <c-l> saves lots of time when writing ruby hashes, go channels, elixir & rust pattern matching etc
 ------------------------------------------------------------------'
+---
+local arrow_mappings = {
+  javascript = "<Space>=><Space>",
+  ruby = "<Space>=><Space>",
+  rust = "<Space>-><Space>",
+  go = "<Space>-><Space>",
+  elixir = "<Space>-><Space>",
+}
+
 imap("<c-j>", "<Space><-<Space>")
-imap("<c-k>", "<Space>-><Space>")
-imap("<c-l>", "<Space>=><Space>")
+imap("<c-l>", arrow_mappings)
 
 nmap("<Leader>bt", "<Esc>:Tabularize/= <CR>")
 nmap("<Leader>tb", "<Esc>:Tabularize/")

@@ -16,7 +16,16 @@ end
 
 local compare = require("cmp.config.compare")
 
+local icons = require("user.icons")
+
+local kind_icons = icons.kind
+
 require("luasnip/loaders/from_vscode").lazy_load()
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
 
 return {
   "hrsh7th/nvim-cmp",
@@ -26,6 +35,13 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
+    {
+      "zbirenbaum/copilot-cmp",
+      opts = {
+        suggestions = { enabled = true },
+        panel = { enabled = true },
+      },
+    },
     -- Add other sources you want to use here
   },
 
@@ -116,18 +132,56 @@ return {
         },
         { name = "cmp_tabnine", group_index = 2 },
         { name = "path", group_index = 2 },
+        { name = "copilot", group_index = 2 },
         { name = "emoji", group_index = 2 },
         { name = "lab.quick_data", keyword_length = 4, group_index = 2 },
       }),
+
       formatting = {
-        format = function(_, item)
-          local icons = require("lazyvim.config").icons.kinds
-          if icons[item.kind] then
-            item.kind = icons[item.kind] .. item.kind
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+          -- Kind icons
+          vim_item.kind = kind_icons[vim_item.kind]
+
+          if entry.source.name == "cmp_tabnine" then
+            vim_item.kind = icons.misc.Robot
+            vim_item.kind_hl_group = "CmpItemKindTabnine"
           end
-          return item
+          if entry.source.name == "copilot" then
+            vim_item.kind = icons.git.Octoface
+            vim_item.kind_hl_group = "CmpItemKindCopilot"
+          end
+
+          if entry.source.name == "emoji" then
+            vim_item.kind = icons.misc.Smiley
+            vim_item.kind_hl_group = "CmpItemKindEmoji"
+          end
+
+          if entry.source.name == "crates" then
+            vim_item.kind = icons.misc.Package
+            vim_item.kind_hl_group = "CmpItemKindCrate"
+          end
+
+          if entry.source.name == "lab.quick_data" then
+            vim_item.kind = icons.misc.CircuitBoard
+            vim_item.kind_hl_group = "CmpItemKindConstant"
+          end
+
+          -- NOTE: order matters
+          vim_item.menu = ({
+            nvim_lsp = "",
+            nvim_lua = "",
+            luasnip = "",
+            buffer = "",
+            path = "",
+            cmp_tabnine = "",
+            copilot = "",
+            emoji = "",
+          })[entry.source.name]
+          return vim_item
         end,
       },
+
       experimental = {
         ghost_text = {
           hl_group = "CmpGhostText",

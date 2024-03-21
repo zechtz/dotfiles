@@ -9,7 +9,7 @@ set -gx ANDROID_HOME /home/mtabe/Android/Sdk
 set -gx ANDROID_HOME_TOOLS /usr/lib/android-sdk/cmdline-tools/latest/tools/bin
 set -gx ANDROID_STUDIO /data/work/android-studio/bin
 set -gx PIP_BIN /home/mtabe/.asdf/installs/python/3.7.10/bin
-set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-11
+set -gx JAVA_HOME /home/mtabe/.asdf/installs/java/openjdk-17
 set -gx DART_HOME /usr/bin/dart/bin
 set -gx FLUTTER_PATH /data/work/flutter/flutter/bin
 set -gx DART_PACKAGES_PATH /home/mtabe/.pub-cache/bin
