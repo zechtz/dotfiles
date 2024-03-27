@@ -64,8 +64,6 @@ end
 
 -- Remap space as leader key
 keymap("n", "<Space>", "", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Set the emmet leader key to '<C-Z>'
 --[[ vim.api.nvim_set_keymap("n", "<C-y>", "<Plug>(emmet-expand-abbr)", { silent = true })
@@ -235,7 +233,7 @@ noremap("`", "'")
 -- Move back to normal mode from insert mode by typing ,]
 imap("<Leader>[", "<Esc>")
 imap(",,b", "<Esc>^i") -- move to the begining of the line in insert mode and enter insert mode
-imap(",,e", "<Esc>A")  -- move to the end of the line in insert mode and enter insert mode
+imap(",,e", "<Esc>A") -- move to the end of the line in insert mode and enter insert mode
 
 nmap("<Leader>gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
 
