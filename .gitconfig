@@ -178,3 +178,5 @@
 	defaultBranch = main
 [github]
 	username = zechtz
+[pull]
+	rebase = true

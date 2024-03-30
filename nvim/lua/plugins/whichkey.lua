@@ -43,6 +43,11 @@ return {
       ["<leader>q"] = { name = "+quit/session" },
       ["<leader>s"] = { name = "+search" },
       ["<leader>u"] = { name = "+ui" },
+      ["<leader>uu"] = {
+        "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
+        "Open Harpoon UI",
+        { noremap = true, silent = true },
+      },
       ["<leader>w"] = { name = "+windows" },
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
 
@@ -73,10 +78,9 @@ return {
       },
 
       -- older me will probably hate this, i should group this like others
-
-      ["h"] = {
+      ["<leader>H"] = {
         name = "Harpoon",
-        g = {
+        u = {
           "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
           "Open Harpoon UI",
           { noremap = true, silent = true },
