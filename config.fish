@@ -55,6 +55,9 @@ set -gx DENO_INSTALL /home/mtabe/.deno
 set -gx TERMINAL gnome-terminal
 set -gx PRG_USER zachariah.ngonyani
 set -gx PRG_PASSWORD Ng@m1@0022!
+set -gx KERL_BUILD_DOCS yes
+set -gx KERL_INSTALL_HTMLDOCS yes
+set -gx KERL_INSTALL_MANPAGES yes
 
 set -gx PATH /home/mtabe/.asdf/bin \
     $CARGOPATH/bin \
