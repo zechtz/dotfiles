@@ -126,6 +126,7 @@
 
 	# Detect copies as well as renames
 	renames = copies
+	tool = vimdiff
 
 [diff "bin"]
 	# Use `hexdump` to diff binary files
@@ -180,3 +181,5 @@
 	username = zechtz
 [pull]
 	rebase = true
+[difftool]
+	prompt = false

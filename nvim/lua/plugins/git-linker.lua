@@ -21,3 +21,4 @@ return {
     require("gitlinker").setup(opts)
   end,
 }
+

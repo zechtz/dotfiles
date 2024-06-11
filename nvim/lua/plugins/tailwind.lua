@@ -4,32 +4,31 @@ return {
     opts = {
       servers = {
         tailwindcss = {
-          filetypes_include = { "eruby", "heex" },
+          filetypes_include = { "eruby", "heex", "html-eex" },
         },
       },
-      setup = {
-        tailwindcss = function(_, opts)
-          local lspconfig = require("lspconfig")
-          local tw = require("lspconfig.server_configurations.tailwindcss")
-          opts.filetypes = opts.filetypes or {}
+      tailwindcss = function(_, opts)
+        opts.filetypes_include = opts.filetypes_include or { "eruby", "heex" }
+        local lspconfig = require("lspconfig")
+        local tw = require("lspconfig.server_configurations.tailwindcss")
+        opts.filetypes = opts.filetypes or {}
 
-          -- Add default filetypes
-          vim.list_extend(opts.filetypes, tw.default_config.filetypes)
+        -- Add default filetypes
+        vim.list_extend(opts.filetypes, tw.default_config.filetypes)
 
-          -- Remove excluded filetypes
-          opts.filetypes = vim.tbl_filter(function(ft)
-            return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
-          end, opts.filetypes)
+        -- Remove excluded filetypes
+        opts.filetypes = vim.tbl_filter(function(ft)
+          return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
+        end, opts.filetypes)
 
-          -- Add additional filetypes, including 'heex'
-          vim.list_extend(opts.filetypes, opts.filetypes_include or {})
+        -- Add additional filetypes, including 'heex'
+        vim.list_extend(opts.filetypes, opts.filetypes_include)
 
-          opts.root_dir = lspconfig.util.root_pattern("tailwind.config.js", "package.json", ".git", "mix.exs")
+        opts.root_dir = lspconfig.util.root_pattern("tailwind.config.js", "package.json", ".git", "mix.exs")
             or vim.fn.getcwd()
 
-          lspconfig.tailwindcss.setup(opts)
-        end,
-      },
+        lspconfig.tailwindcss.setup(opts)
+      end,
     },
   },
   {
