@@ -144,4 +144,10 @@ function M.find_root_dir(markers, bufname)
   end
 end
 
+function M.toggle_inlay_hints()
+  if vim.lsp.inlay_hint then
+    vim.lsp.inlay_hint(0, nil)
+  end
+end
+
 return M
