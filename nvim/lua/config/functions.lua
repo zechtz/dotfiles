@@ -99,6 +99,16 @@ function M.toggle_diagnostics()
   end
 end
 
+local inlay_hints_enabled = false
+function M.toggle_inlay_hints()
+  inlay_hints_enabled = not inlay_hints_enabled
+  if inlay_hints_enabled then
+    vim.lsp.inlay_hint.enable(true)
+  else
+    vim.lsp.inlay_hint.enable(false)
+  end
+end
+
 function M.isempty(s)
   return s == nil or s == ""
 end
@@ -129,7 +139,7 @@ function M.smart_quit()
 end
 
 function M.find_root_dir(markers, bufname)
-  bufname = bufname or api.nvim_buf_get_name(api.nvim_get_current_buf())
+  bufname = bufname or api.nvim_get_name(api.nvim_get_current_buf())
   local dirname = vim.fn.fnamemodify(bufname, ":p:h")
   local getparent = function(p)
     return vim.fn.fnamemodify(p, ":h")
@@ -141,12 +151,6 @@ function M.find_root_dir(markers, bufname)
       end
     end
     dirname = getparent(dirname)
-  end
-end
-
-function M.toggle_inlay_hints()
-  if vim.lsp.inlay_hint then
-    vim.lsp.inlay_hint(0, nil)
   end
 end
 
