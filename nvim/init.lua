@@ -2,3 +2,5 @@
 require("config.options")
 require("config.winbar")
 require("config.lazy")
+require("config.git-blame")
+require("config.functions")
