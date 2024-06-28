@@ -1,7 +1,6 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-
 -- This file is automatically loaded by lazyvim.config.init
 
 M = {}
@@ -19,8 +18,15 @@ local function nmap(shortcut, command)
   mmap("n", shortcut, command)
 end
 
-local function imap(shortcut, command)
-  mmap("i", shortcut, command)
+local function imap(shortcut, command_or_mappings, mappings)
+  if type(command_or_mappings) == "table" then
+    mappings = command_or_mappings
+    local filetype = vim.bo.filetype
+    local arrow = mappings[filetype] or "=>"
+    mmap("i", shortcut, arrow)
+  else
+    mmap("i", shortcut, command_or_mappings)
+  end
 end
 
 local function snoremap(shortcut, command)
@@ -57,8 +63,6 @@ end
 
 -- Remap space as leader key
 keymap("n", "<Space>", "", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Set the emmet leader key to '<C-Z>'
 --[[ vim.api.nvim_set_keymap("n", "<C-y>", "<Plug>(emmet-expand-abbr)", { silent = true })
@@ -76,7 +80,7 @@ t["<c-j>"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
 
 require("neoscroll.config").set_mappings(t)
 
-nmap("<C-Space>", "<cmd>WhichKey \\<leader><cr>")
+nmap("<Space>", "<cmd>WhichKey \\<leader><cr>")
 nmap("<C-i>", "<C-i>")
 
 -- Modes
@@ -89,7 +93,7 @@ nmap("<C-i>", "<C-i>")
 
 -- Normal --
 -- Better window navigation
-nmap("<m-h>", "<C-w>h", { desciption = "Navigate to window using CTRL + W + h" })
+nmap("<m-h>", "<C-w>h")
 nmap("<m-j>", "<C-w>j")
 nmap("<m-k>", "<C-w>k")
 nmap("<m-l>", "<C-w>l")
@@ -246,11 +250,19 @@ imap(",c", "<c-y>,")
 vmap(",w", "<c-y>,")
 
 -----------------------------------------------------------------'
--- Insert a hash rocket with <c-l> saves lots of time when writing ruby hashes, go channels etc
+-- Insert a hash rocket with <c-l> saves lots of time when writing ruby hashes, go channels, elixir & rust pattern matching etc
 ------------------------------------------------------------------'
+---
+local arrow_mappings = {
+  javascript = "<Space>=><Space>",
+  ruby = "<Space>=><Space>",
+  rust = "<Space>-><Space>",
+  go = "<Space>-><Space>",
+  elixir = "<Space>-><Space>",
+}
+
 imap("<c-j>", "<Space><-<Space>")
-imap("<c-k>", "<Space>-><Space>")
-imap("<c-l>", "<Space>=><Space>")
+imap("<c-l>", arrow_mappings)
 
 nmap("<Leader>bt", "<Esc>:Tabularize/= <CR>")
 nmap("<Leader>tb", "<Esc>:Tabularize/")

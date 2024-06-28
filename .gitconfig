@@ -126,6 +126,7 @@
 
 	# Detect copies as well as renames
 	renames = copies
+	tool = vimdiff
 
 [diff "bin"]
 	# Use `hexdump` to diff binary files
@@ -176,3 +177,9 @@
 	name = Zachariah Ngonyani
 [init]
 	defaultBranch = main
+[github]
+	username = zechtz
+[pull]
+	rebase = true
+[difftool]
+	prompt = false

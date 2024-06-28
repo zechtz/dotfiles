@@ -1,4 +1,4 @@
+-- wakatime for tracking my working hrs
 return {
   { "wakatime/vim-wakatime" },
 }
--- wakatime for tracking my working hrs

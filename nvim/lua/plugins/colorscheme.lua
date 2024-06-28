@@ -13,4 +13,10 @@ return {
     { "lunarvim/darkplus.nvim" },
     { "lunarvim/colorschemes" },
   },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "darkplus",
+    },
+  },
 }

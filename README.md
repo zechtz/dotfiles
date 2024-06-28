@@ -12,7 +12,7 @@ Clone the repository and install the plugins:
 
 ```sh
 git clone git@github.com:zechtz/dotfiles ~/.config/zechtz/dotfiles
-NVIM_APPNAME=zechtz/dotfiles/nvim nvim --headless +"PackerSync" +qa
+NVIM_APPNAME=zechtz/dotfiles/nvim nvim --headless +"Lazy! sync" +qa
 ```
 
 Open Neovim with this config:
@@ -27,20 +27,16 @@ NVIM_APPNAME=zechtz/dotfiles/nvim nvim
 
 - [SmiteshP/nvim-navic](https://dotfyle.com/plugins/SmiteshP/nvim-navic)
 
-### code-runner
-
-- [is0n/jaq-nvim](https://dotfyle.com/plugins/is0n/jaq-nvim)
-
 ### color
 
 - [NvChad/nvim-colorizer.lua](https://dotfyle.com/plugins/NvChad/nvim-colorizer.lua)
-- [nvim-colortils/colortils.nvim](https://dotfyle.com/plugins/nvim-colortils/colortils.nvim)
 
 ### colorscheme
 
 - [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
-- [rose-pine/neovim](https://dotfyle.com/plugins/rose-pine/neovim)
 - [rebelot/kanagawa.nvim](https://dotfyle.com/plugins/rebelot/kanagawa.nvim)
+- [rose-pine/neovim](https://dotfyle.com/plugins/rose-pine/neovim)
+- [Mofiqul/vscode.nvim](https://dotfyle.com/plugins/Mofiqul/vscode.nvim)
 
 ### comment
 
@@ -50,16 +46,11 @@ NVIM_APPNAME=zechtz/dotfiles/nvim nvim
 
 ### completion
 
-- [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
+- [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
 
-### cursorline
+### diagnostics
 
-- [RRethy/vim-illuminate](https://dotfyle.com/plugins/RRethy/vim-illuminate)
-
-### debugging
-
-- [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
-- [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap)
+- [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim)
 
 ### editing-support
 
@@ -72,7 +63,7 @@ NVIM_APPNAME=zechtz/dotfiles/nvim nvim
 
 ### file-explorer
 
-- [kyazdani42/nvim-tree.lua](https://dotfyle.com/plugins/kyazdani42/nvim-tree.lua)
+- [nvim-neo-tree/neo-tree.nvim](https://dotfyle.com/plugins/nvim-neo-tree/neo-tree.nvim)
 
 ### formatting
 
@@ -86,20 +77,9 @@ NVIM_APPNAME=zechtz/dotfiles/nvim nvim
 ### git
 
 - [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
+- [kdheepak/lazygit.nvim](https://dotfyle.com/plugins/kdheepak/lazygit.nvim)
 - [ruifm/gitlinker.nvim](https://dotfyle.com/plugins/ruifm/gitlinker.nvim)
 - [f-person/git-blame.nvim](https://dotfyle.com/plugins/f-person/git-blame.nvim)
-
-### github
-
-- [pwntester/octo.nvim](https://dotfyle.com/plugins/pwntester/octo.nvim)
-
-### icon
-
-- [kyazdani42/nvim-web-devicons](https://dotfyle.com/plugins/kyazdani42/nvim-web-devicons)
-
-### indent
-
-- [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim)
 
 ### keybinding
 
@@ -108,63 +88,42 @@ NVIM_APPNAME=zechtz/dotfiles/nvim nvim
 ### lsp
 
 - [simrat39/symbols-outline.nvim](https://dotfyle.com/plugins/simrat39/symbols-outline.nvim)
-- [jose-elias-alvarez/null-ls.nvim](https://dotfyle.com/plugins/jose-elias-alvarez/null-ls.nvim)
 - [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 - [mfussenegger/nvim-jdtls](https://dotfyle.com/plugins/mfussenegger/nvim-jdtls)
-- [ray-x/lsp_signature.nvim](https://dotfyle.com/plugins/ray-x/lsp_signature.nvim)
-- [b0o/SchemaStore.nvim](https://dotfyle.com/plugins/b0o/SchemaStore.nvim)
-- [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
 - [jose-elias-alvarez/typescript.nvim](https://dotfyle.com/plugins/jose-elias-alvarez/typescript.nvim)
 
 ### lsp-installer
 
 - [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
 
-### markdown-and-latex
+### lua-colorscheme
 
-- [iamcco/markdown-preview.nvim](https://dotfyle.com/plugins/iamcco/markdown-preview.nvim)
+- [ellisonleao/gruvbox.nvim](https://dotfyle.com/plugins/ellisonleao/gruvbox.nvim)
 
-### motion
+### marks
 
-- [phaazon/hop.nvim](https://dotfyle.com/plugins/phaazon/hop.nvim)
-- [abecodes/tabout.nvim](https://dotfyle.com/plugins/abecodes/tabout.nvim)
-
-### note-taking
-
-- [mickael-menu/zk-nvim](https://dotfyle.com/plugins/mickael-menu/zk-nvim)
+- [ThePrimeagen/harpoon](https://dotfyle.com/plugins/ThePrimeagen/harpoon)
 
 ### nvim-dev
 
-- [nvim-lua/popup.nvim](https://dotfyle.com/plugins/nvim-lua/popup.nvim)
+- [folke/neodev.nvim](https://dotfyle.com/plugins/folke/neodev.nvim)
 - [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
 
 ### plugin-manager
 
-- [wbthomason/packer.nvim](https://dotfyle.com/plugins/wbthomason/packer.nvim)
+- [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
+
+### preconfigured
+
+- [LazyVim/LazyVim](https://dotfyle.com/plugins/LazyVim/LazyVim)
 
 ### programming-languages-support
 
 - [akinsho/flutter-tools.nvim](https://dotfyle.com/plugins/akinsho/flutter-tools.nvim)
 
-### project
-
-- [ahmedkhalf/project.nvim](https://dotfyle.com/plugins/ahmedkhalf/project.nvim)
-
-### quickfix
-
-- [kevinhwang91/nvim-bqf](https://dotfyle.com/plugins/kevinhwang91/nvim-bqf)
-
-### register
-
-- [tversteeg/registers.nvim](https://dotfyle.com/plugins/tversteeg/registers.nvim)
-
 ### scrolling
 
 - [karb94/neoscroll.nvim](https://dotfyle.com/plugins/karb94/neoscroll.nvim)
-
-### session
-
-- [rmagatti/auto-session](https://dotfyle.com/plugins/rmagatti/auto-session)
 
 ### snippet
 
@@ -174,57 +133,34 @@ NVIM_APPNAME=zechtz/dotfiles/nvim nvim
 
 - [goolord/alpha-nvim](https://dotfyle.com/plugins/goolord/alpha-nvim)
 
+### statusline
+
+- [nvim-lualine/lualine.nvim](https://dotfyle.com/plugins/nvim-lualine/lualine.nvim)
+
 ### syntax
 
-- [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
 - [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
 - [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
 
+### tabline
+
+- [akinsho/bufferline.nvim](https://dotfyle.com/plugins/akinsho/bufferline.nvim)
+
 ### utility
 
-- [rcarriga/nvim-notify](https://dotfyle.com/plugins/rcarriga/nvim-notify)
+- [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
 - [stevearc/dressing.nvim](https://dotfyle.com/plugins/stevearc/dressing.nvim)
 - [ghillb/cybu.nvim](https://dotfyle.com/plugins/ghillb/cybu.nvim)
 
-### yaml
+### web-development
 
-- [cuducos/yaml.nvim](https://dotfyle.com/plugins/cuducos/yaml.nvim)
+- [roobert/tailwindcss-colorizer-cmp.nvim](https://dotfyle.com/plugins/roobert/tailwindcss-colorizer-cmp.nvim)
 
 ## Language Servers
 
-- astro
-- bashls
-- bufls
-- clangd
-- cssls
-- cssmodules_ls
-- dartls
-- efm
-- elixirls
-- elmls
-- emmet_ls
-- erlangls
-- gopls
-- groovyls
+- denols
 - html
-- intelephense
 - jdtls
-- jsonls
-- lemminx
-- prismals
-- pyright
-- ruby_ls
-- rust_analyzer
-- solang
-- solargraph
-- solc
-- tailwindcss
-- taplo
-- terraformls
-- tflint
 - tsserver
-- volar
-- yamlls
-- zk
 
 This readme was generated by [Dotfyle](https://dotfyle.com)
