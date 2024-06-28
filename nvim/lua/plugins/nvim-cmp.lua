@@ -14,16 +14,52 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load() -- Load snippets from friendly-snippets
       end,
     },
+    {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      build = ":Copilot auth",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup({
+          panel = {
+            enabled = true,
+            auto_refresh = true,
+            keymap = {
+              jump_next = "<c-j>",
+              jump_prev = "<c-k>",
+              accept = "<c-a>",
+              refresh = "r",
+              open = "<M-CR>",
+            },
+            layout = {
+              position = "bottom", -- | top | left | right
+              ratio = 0.4,
+            },
+          },
+          suggestion = {
+            enabled = true,
+            auto_trigger = true,
+            debounce = 75,
+            keymap = {
+              accept = "<c-a>",
+              accept_word = false,
+              accept_line = false,
+              next = "<c-j>",
+              prev = "<c-k>",
+              dismiss = "<C-e>",
+            },
+          },
+        })
+      end,
+    },
+    {
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua" },
+      config = function()
+        require("copilot_cmp").setup()
+      end,
+    },
   },
-  -- Not all LSP servers add brackets when completing a function.
-  -- To better deal with this, LazyVim adds a custom option to cmp,
-  -- that you can configure. For example:
-  --
-  -- ```lua
-  -- opts = {
-  --   auto_brackets = { "python" }
-  -- }
-  -- ```
   opts = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local cmp = require("cmp")
@@ -77,13 +113,17 @@ return {
         { name = "nvim_lsp" },
         { name = "luasnip" }, -- For luasnip users
         { name = "path" },
+        { name = "copilot" }, -- Add Copilot as a source
       }, {
         { name = "buffer" },
       }),
       formatting = {
-        format = function(_, item)
+        format = function(entry, item)
           local icons = require("lazyvim.config").icons.kinds
-          if icons[item.kind] then
+          if entry.source.name == "copilot" then
+            item.kind = " Copilot" -- Set the Copilot icon here
+            item.kind_hl_group = "CmpItemKindCopilot"
+          elseif icons[item.kind] then
             item.kind = icons[item.kind] .. item.kind
           end
           return item
@@ -113,7 +153,7 @@ return {
     end
 
     local parse = require("cmp.utils.snippet").parse
-    require("cmp.utils.snippet").parse = function(input)
+    parse = function(input)
       local ok, ret = pcall(parse, input)
       if ok then
         return ret
