@@ -1,183 +1,55 @@
 local actions = require("telescope.actions")
-local icons = require("user.icons")
 
 return {
   "nvim-telescope/telescope.nvim",
+  cmd = "Telescope",
+  enabled = function()
+    return LazyVim.pick.want() == "telescope"
+  end,
+  version = false, -- telescope did only one release, so use HEAD for now
   keys = {
-    -- add a keymap to browse plugin files
-    -- stylua: ignore
-    { "<leader>/", false }, -- disable leader /  =>  reserved for comments
-  },
-  -- change some options
-  opts = {
-    defaults = {
-      prompt_prefix = icons.ui.Telescope .. " ",
-      selection_caret = " ",
-      path_display = { "smart" },
-      file_ignore_patterns = {
-        ".git/",
-        "target/",
-        "docs/",
-        "vendor/*",
-        "%.lock",
-        "__pycache__/*",
-        "%.sqlite3",
-        "%.ipynb",
-        "node_modules/*",
-        "%.svg",
-        "%.otf",
-        "%.ttf",
-        "%.webp",
-        ".dart_tool/",
-        ".github/",
-        ".gradle/",
-        ".idea/",
-        ".settings/",
-        ".vscode/",
-        "__pycache__/",
-        "build/",
-        "env/",
-        "gradle/",
-        "node_modules/",
-        "%.pdb",
-        "%.dll",
-        "%.class",
-        "%.exe",
-        "%.cache",
-        "%.ico",
-        "%.pdf",
-        "%.dylib",
-        "%.jar",
-        "%.docx",
-        "%.met",
-        "smalljre_*/*",
-        ".vale/",
-        "%.burp",
-        "%.mp4",
-        "%.mkv",
-        "%.rar",
-        "%.zip",
-        "%.7z",
-        "%.tar",
-        "%.bz2",
-        "%.epub",
-        "%.flac",
-        "%.tar.gz",
-      },
-
-      mappings = {
-        i = {
-          ["<C-n>"] = actions.cycle_history_next,
-          ["<C-p>"] = actions.cycle_history_prev,
-
-          ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous,
-
-          ["<C-b>"] = actions.results_scrolling_up,
-          ["<C-f>"] = actions.results_scrolling_down,
-
-          ["<C-c>"] = actions.close,
-
-          ["<Down>"] = actions.move_selection_next,
-          ["<Up>"] = actions.move_selection_previous,
-
-          ["<CR>"] = actions.select_default,
-          ["<C-s>"] = actions.select_horizontal,
-          ["<C-v>"] = actions.select_vertical,
-          ["<C-t>"] = actions.select_tab,
-
-          ["<c-d>"] = require("telescope.actions").delete_buffer,
-
-          ["<Tab>"] = actions.close,
-          ["<S-Tab>"] = actions.close,
-          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-          ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-          ["<C-l>"] = actions.complete_tag,
-          ["<C-h>"] = actions.which_key, -- keys from pressing <C-h>
-          ["<esc>"] = actions.close,
-        },
-
-        n = {
-          ["<esc>"] = actions.close,
-          ["<CR>"] = actions.select_default,
-          ["<C-x>"] = actions.select_horizontal,
-          ["<C-v>"] = actions.select_vertical,
-          ["<C-t>"] = actions.select_tab,
-          ["<C-b>"] = actions.results_scrolling_up,
-          ["<C-f>"] = actions.results_scrolling_down,
-
-          ["<Tab>"] = actions.close,
-          ["<S-Tab>"] = actions.close,
-          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-          ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-          ["j"] = actions.move_selection_next,
-          ["k"] = actions.move_selection_previous,
-          ["H"] = actions.move_to_top,
-          ["M"] = actions.move_to_middle,
-          ["L"] = actions.move_to_bottom,
-          ["q"] = actions.close,
-          ["dd"] = require("telescope.actions").delete_buffer,
-          ["s"] = actions.select_horizontal,
-          ["v"] = actions.select_vertical,
-          ["t"] = actions.select_tab,
-
-          ["<Down>"] = actions.move_selection_next,
-          ["<Up>"] = actions.move_selection_previous,
-          ["gg"] = actions.move_to_top,
-          ["G"] = actions.move_to_bottom,
-
-          ["<C-u>"] = actions.preview_scrolling_up,
-          ["<C-d>"] = actions.preview_scrolling_down,
-
-          ["<PageUp>"] = actions.results_scrolling_up,
-          ["<PageDown>"] = actions.results_scrolling_down,
-
-          ["?"] = actions.which_key,
-        },
-      },
-    },
-
-    pickers = {
-
-      live_grep = {
-        theme = "dropdown",
-      },
-      grep_string = {
-        theme = "dropdown",
-      },
-      find_files = {
-        theme = "dropdown",
-        previewer = false,
-      },
-      buffers = {
-        theme = "dropdown",
-        previewer = false,
-        initial_mode = "normal",
-      },
-      planets = {
-        show_pluto = true,
-        show_moon = true,
-      },
-      colorscheme = {
-        enable_preview = true,
-      },
-      lsp_references = {
-        theme = "dropdown",
-        initial_mode = "normal",
-      },
-      lsp_definitions = {
-        theme = "dropdown",
-        initial_mode = "normal",
-      },
-      lsp_declarations = {
-        theme = "dropdown",
-        initial_mode = "normal",
-      },
-      lsp_implementations = {
-        theme = "dropdown",
-        initial_mode = "normal",
-      },
+    {
+      "<leader>,",
+      "<cmd>Telescope buffers sort_mru=true theme=dropdown previewer=false sort_lastused=true initial_mode=normal<cr>",
+      desc = "Switch Buffer",
     },
   },
+  opts = function()
+    return {
+      defaults = {
+        prompt_prefix = " ",
+        selection_caret = " ",
+        -- open files in the first window that is an actual file.
+        -- use the current window if no other window is available.
+        get_selection_window = function()
+          local wins = vim.api.nvim_list_wins()
+          table.insert(wins, 1, vim.api.nvim_get_current_win())
+          for _, win in ipairs(wins) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].buftype == "" then
+              return win
+            end
+          end
+          return 0
+        end,
+        path_display = function(opts, path)
+          local tail = require("telescope.utils").path_tail(path)
+          local parts = vim.split(path, "/")
+          local displayed = table.concat(vim.list_slice(parts, #parts - 2, #parts), "/")
+          return displayed
+        end,
+        mappings = {
+          i = {
+            ["<C-j>"] = actions.move_selection_next, -- Add this line
+            ["<C-k>"] = actions.move_selection_previous, -- Add this line
+          },
+          n = {
+            ["q"] = actions.close,
+            ["<C-j>"] = actions.move_selection_next, -- Add this line
+            ["<C-k>"] = actions.move_selection_previous, -- Add this line
+          },
+        },
+      },
+    }
+  end,
 }

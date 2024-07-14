@@ -3,6 +3,9 @@
 -- Add any additional keymaps here
 -- This file is automatically loaded by lazyvim.config.init
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 M = {}
 local opts = { noremap = true, silent = true }
 
@@ -63,6 +66,7 @@ end
 
 -- Remap space as leader key
 keymap("n", "<Space>", "", opts)
+nmap("<Space>", "<cmd>WhichKey \\<leader><cr>")
 
 -- Set the emmet leader key to '<C-Z>'
 --[[ vim.api.nvim_set_keymap("n", "<C-y>", "<Plug>(emmet-expand-abbr)", { silent = true })
@@ -80,7 +84,6 @@ t["<c-j>"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
 
 require("neoscroll.config").set_mappings(t)
 
-nmap("<Space>", "<cmd>WhichKey \\<leader><cr>")
 nmap("<C-i>", "<C-i>")
 
 -- Modes
@@ -148,7 +151,10 @@ nmap("gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR
 vmap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
 nmap("<m-v>", "<cmd>lua require('lsp_lines').toggle()<cr>")
 
+-- Set the keymap in your keymap configuration file
 nmap("K", ":lua require('config.keymaps').show_documentation()<CR>")
+--nmap("K", ":lua require('config.functions').show_documentation()<CR>")
+
 nmap("<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>")
 xmap("<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 nmap(

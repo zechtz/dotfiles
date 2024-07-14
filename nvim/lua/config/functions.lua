@@ -154,4 +154,9 @@ function M.find_root_dir(markers, bufname)
   end
 end
 
+function M.show_documentation()
+  -- local saga = require("lspsaga")
+  -- saga.hover_doc()
+end
+
 return M

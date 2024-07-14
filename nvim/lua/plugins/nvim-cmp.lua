@@ -7,6 +7,7 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
+    "onsails/lspkind-nvim", -- Add lspkind-nvim
     "L3MON4D3/LuaSnip",
     {
       "rafamadriz/friendly-snippets",
@@ -64,6 +65,7 @@ return {
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local lspkind = require("lspkind")
     local defaults = require("cmp.config.default")()
     return {
       auto_brackets = {}, -- configure any filetype to auto add brackets
@@ -118,24 +120,27 @@ return {
         { name = "buffer" },
       }),
       formatting = {
-        format = function(entry, item)
-          local icons = require("lazyvim.config").icons.kinds
-          if entry.source.name == "copilot" then
-            item.kind = " Copilot" -- Set the Copilot icon here
-            item.kind_hl_group = "CmpItemKindCopilot"
-          elseif icons[item.kind] then
-            item.kind = icons[item.kind] .. item.kind
-          end
-          return item
-        end,
+        format = lspkind.cmp_format({
+          mode = "symbol_text",
+          maxwidth = 50,
+          ellipsis_char = "...",
+          menu = {
+            buffer = "[Buffer]",
+            nvim_lsp = "[LSP]",
+            luasnip = "[LuaSnip]",
+            nvim_lua = "[Lua]",
+            path = "[Path]",
+            copilot = "[Copilot]",
+          },
+        }),
       },
 
       window = {
         completion = cmp.config.window.bordered(),
-        documentation = {
+        documentation = cmp.config.window.bordered({
           border = "rounded",
-          side = "bottom",
-        },
+          winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None",
+        }),
       },
 
       experimental = {
