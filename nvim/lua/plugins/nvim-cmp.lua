@@ -107,7 +107,9 @@ return {
         end,
       }),
       formatting = {
-        fields = { "kind", "abbr", "menu" },
+        -- reverse the order to abb, kind, menu
+        fields = { "abbr", "kind", "menu" },
+        --fields = { "kind", "abbr", "menu" },
         expandable_indicator = true, -- Add this line to include the required field
         format = function(entry, vim_item)
           vim_item.kind = icons.kind[vim_item.kind]
@@ -221,6 +223,7 @@ return {
         end,
       },
       sources = {
+        { name = "copilot" },
         {
           name = "nvim_lsp",
           entry_filter = function(entry, ctx)
@@ -240,7 +243,6 @@ return {
             return true
           end,
         },
-        { name = "copilot" },
         { name = "luasnip" },
         { name = "cmp_tabnine" },
         { name = "nvim_lua" },
