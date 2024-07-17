@@ -1,185 +1,403 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  opts_extend = { "spec" },
   opts = {
-    plugins = { spelling = true },
+    defaults = {
+      { "<leader>v", "<cmd>vsplit<cr>", desc = "Vertical Split", mode = "n" },
+      { "<leader>h", "<cmd>split<cr>", desc = "Horizontal Split", mode = "n" },
+      {
+        -- Nested mappings are allowed and can be added in any order
+        -- Most attributes can be inherited or overridden on any level
+        -- There's no limit to the depth of nesting
+        mode = { "n", "v" }, -- NORMAL and VISUAL mode
+        {
+          "<leader>H",
+          "",
+          desc = "Harpoon",
+          {
+            "<leader>Hu",
+            "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
+            desc = "Open Harpoon UI",
+          },
+          { "<leader>Ha", "<cmd> lua require('harpoon.mark').add_file()<CR>", desc = "Add To Harpoon" },
+          { "<leader>Hn", "<cmd> lua require('harpoon.ui').nav_next()<CR>", desc = "Next File" },
+          { "<leader>Hp", "<cmd> lua require('harpoon.ui').nav_prev()<CR>", desc = "Prev File" },
+        }, -- no need to specify mode since it's inherited
+        {
+          "<leader>o",
+          "",
+          desc = "Options",
+          {
+            "<leader>oc",
+            "<cmd>lua vim.g.cmp_active=false<cr>",
+            desc = "Completion off",
+          },
+          {
+            "<leader>oC",
+            "<cmd>lua vim.g.cmp_active=true<cr>",
+            desc = "Completion on",
+          },
+          {
+            "<leader>ow",
+            '<cmd>lua require("config.functions").toggle_option("wrap")<cr>',
+            desc = "Wrap",
+          },
+          {
+            "<leader>or",
+            '<cmd>lua require("config.functions").toggle_option("relativenumber")<cr>',
+            desc = "Relative",
+          },
+          {
+            "<leader>ol",
+            '<cmd>lua require("config.functions").toggle_option("cursorline")<cr>',
+            desc = "Cursorline",
+          },
+          {
+            "<leader>os",
+            '<cmd>lua require("config.functions").toggle_option("spell")<cr>',
+            desc = "Spell",
+          },
+          {
+            "<leader>ot",
+            '<cmd>lua require("config.functions").toggle_tabline()<cr>',
+            desc = "Tabline",
+          },
+        },
+        {
+          "<leader>l",
+          "",
+          desc = "LSPs",
+          {
+            "<leader>la",
+            "<cmd>lua vim.lsp.buf.code_action()<cr>",
+            desc = "Code Action",
+          },
+          {
+            "<leader>lc",
+            "<cmd>lua require('plugins.lsp').server_capabilities()<cr>",
+            desc = "Get Capabilities",
+          },
+          {
+            "<leader>ld",
+            "<cmd>TroubleToggle<cr>",
+            desc = "Diagnostics",
+          },
+          {
+            "<leader>lw",
+            "<cmd>Telescope lsp_workspace_diagnostics<cr>",
+            desc = "Workspace Diagnostics",
+          },
+          {
+            "<leader>lf",
+            "<cmd>lua vim.lsp.buf.format({ async = true })<cr>",
+            desc = "Format",
+          },
+          {
+            "<leader>lF",
+            "<cmd>LspToggleAutoFormat<cr>",
+            desc = "Toggle Autoformat",
+          },
+          {
+            "<leader>li",
+            "<cmd>LspInfo<cr>",
+            desc = "Info",
+          },
+          {
+            "<leader>lh",
+            '<cmd>lua require("config.functions").toggle_inlay_hints()<cr>',
+            desc = "Toggle Inlay Hints",
+          },
+          {
+            "<leader>lH",
+            "<cmd>IlluminationToggle<cr>",
+            desc = "Toggle Doc HL",
+          },
+          {
+            "<leader>lI",
+            "<cmd>LspInstallInfo<cr>",
+            desc = "Installer Info",
+          },
+          {
+            "<leader>lj",
+            "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
+            desc = "Next Diagnostic",
+          },
+          {
+            "<leader>lk",
+            "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
+            desc = "Prev Diagnostic",
+          },
+          {
+            "<leader>lv",
+            "<cmd>lua require('lsp_lines').toggle()<cr>",
+            desc = "Virtual Text",
+          },
+          {
+            "<leader>ll",
+            "<cmd>lua vim.lsp.codelens.run()<cr>",
+            desc = "CodeLens Action",
+          },
+          {
+            "<leader>lo",
+            "<cmd>SymbolsOutline<cr>",
+            desc = "Outline",
+          },
+          {
+            "<leader>lq",
+            "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>",
+            desc = "Quickfix",
+          },
+          {
+            "<leader>lr",
+            "<cmd>lua vim.lsp.buf.rename()<cr>",
+            desc = "Rename",
+          },
+          {
+            "<leader>lR",
+            "<cmd>TroubleToggle lsp_references<cr>",
+            desc = "References",
+          },
+          {
+            "<leader>ls",
+            "<cmd>Telescope lsp_document_symbols<cr>",
+            desc = "Document Symbols",
+          },
+          {
+            "<leader>lS",
+            "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+            desc = "Workspace Symbols",
+          },
+          {
+            "<leader>lt",
+            '<cmd>lua require("config.functions").toggle_diagnostics()<cr>',
+            desc = "Toggle Diagnostics",
+          },
+          {
+            "<leader>lu",
+            "<cmd>LuaSnipUnlinkCurrent<cr>",
+            desc = "Unlink Snippet",
+          },
+        },
+      },
+    },
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+    ---@class wk.Opts
+    ---@type false | "classic" | "modern" | "helix"
+    preset = "classic",
+    -- Delay before showing the popup. Can be a number or a function that returns a number.
+    ---@type number | fun(ctx: { keys: string, mode: string, plugin?: string }):number
+    delay = function(ctx)
+      return ctx.plugin and 0 or 200
+    end,
+    ---@param mapping wk.Mapping
+    filter = function(mapping)
+      -- example to exclude mappings without a description
+      -- return mapping.desc and mapping.desc ~= ""
+      return true
+    end,
+    --- You can add any mappings here, or use `require('which-key').add()` later
+    ---@type wk.Spec
+    spec = {
+      {
+        mode = { "n", "v" },
+        { "<leader><tab>", group = "tabs" },
+        { "<leader>b", group = "buffer" },
+        { "<leader>c", group = "code" },
+        { "<leader>f", group = "file/find" },
+        { "<leader>g", group = "git" },
+        { "<leader>gh", group = "hunks" },
+        { "<leader>q", group = "quit/session" },
+        { "<leader>s", group = "search" },
+        { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
+        { "<leader>w", group = "windows" },
+        { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
+        { "[", group = "prev" },
+        { "]", group = "next" },
+        { "g", group = "goto" },
+        { "gs", group = "surround" },
+        { "z", group = "fold" },
+      },
+    },
+    -- show a warning when issues were detected with your mappings
+    notify = true,
+    -- Enable/disable WhichKey for certain mapping modes
+    modes = {
+      n = true, -- Normal mode
+      i = false, -- Insert mode
+      x = true, -- Visual mode
+      s = true, -- Select mode
+      o = true, -- Operator pending mode
+      t = true, -- Terminal mode
+      c = true, -- Command mode
+      -- Start hidden and wait for a key to be pressed before showing the popup
+      -- Only used by enabled xo mapping modes.
+      -- Set to false to show the popup immediately (after the delay)
+      defer = {
+        ["<C-V>"] = true,
+        V = true,
+      },
+    },
+    plugins = {
+      marks = true, -- shows a list of your marks on ' and `
+      registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+      -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+      -- No actual key bindings are created
+      spelling = {
+        enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+        suggestions = 20, -- how many suggestions should be shown in the list?
+      },
+      presets = {
+        operators = true, -- adds help for operators like d, y, ...
+        motions = true, -- adds help for motions
+        text_objects = true, -- help for text objects triggered after entering an operator
+        windows = true, -- default bindings on <c-w>
+        nav = true, -- misc bindings to work with windows
+        z = true, -- bindings for folds, spelling and others prefixed with z
+        g = true, -- bindings for prefixed with g
+      },
+    },
+    ---@type wk.Win.opts
+    win = {
+      -- don't allow the popup to overlap with the cursor
+      no_overlap = true,
+      -- width = 1,
+      -- height = { min = 4, max = 25 },
+      -- col = 0,
+      -- row = math.huge,
+      border = "rounded",
+      padding = { 2, 2, 2, 2 }, -- extra window padding [top/bottom, right/left]
+      title = true,
+      title_pos = "center",
+      zindex = 1000,
+      -- Additional vim.wo and vim.bo options
+      bo = {},
+      wo = {
+        winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+      },
+    },
+    layout = {
+      width = { min = 20 }, -- min and max width of the columns
+      spacing = 3, -- spacing between columns
+      align = "left", -- align columns left, center or right
+    },
+    keys = {
+      scroll_down = "<c-d>", -- binding to scroll down inside the popup
+      scroll_up = "<c-u>", -- binding to scroll up inside the popup
+    },
+    ---@type (string|wk.Sorter)[]
+    --- Mappings are sorted using configured sorters and natural sort of the keys
+    --- Available sorters:
+    --- * local: buffer-local mappings first
+    --- * order: order of the items (Used by plugins like marks / registers)
+    --- * group: groups last
+    --- * alphanum: alpha-numerical first
+    --- * mod: special modifier keys last
+    --- * manual: the order the mappings were added
+    --- * case: lower-case first
+    sort = { "local", "order", "group", "alphanum", "mod" },
+    ---@type number|fun(node: wk.Node):boolean?
+    expand = 0, -- expand groups when <= n mappings
+    -- expand = function(node)
+    --   return not node.desc -- expand all nodes without a description
+    -- end,
+    ---@type table<string, ({[1]:string, [2]:string}|fun(str:string):string)[]>
+    replace = {
+      key = {
+        function(key)
+          return require("which-key.view").format(key)
+        end,
+        -- { "<Space>", "SPC" },
+      },
+      desc = {
+        { "<Plug>%((.*)%)", "%1" },
+        { "^%+", "" },
+        { "<[cC]md>", "" },
+        { "<[cC][rR]>", "" },
+        { "<[sS]ilent>", "" },
+        { "^lua%s+", "" },
+        { "^call%s+", "" },
+        { "^:%s*", "" },
+      },
+    },
     icons = {
       breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
       separator = "➜", -- symbol used between a key and it's label
       group = "+", -- symbol prepended to a group
+      ellipsis = "…",
+      --- See `lua/which-key/icons.lua` for more details
+      --- Set to `false` to disable keymap icons
+      ---@type wk.IconRule[]|false
+      rules = {},
+      -- use the highlights from mini.icons
+      -- When `false`, it will use `WhichKeyIcon` instead
+      colors = true,
+      -- used by key format
+      keys = {
+        Up = " ",
+        Down = " ",
+        Left = " ",
+        Right = " ",
+        C = "󰘴 ",
+        M = "󰘵 ",
+        S = "󰘶 ",
+        CR = "󰌑 ",
+        Esc = "󱊷 ",
+        ScrollWheelDown = "󱕐 ",
+        ScrollWheelUp = "󱕑 ",
+        NL = "󰌑 ",
+        BS = "⌫",
+        Space = "󱁐 ",
+        Tab = "󰌒 ",
+        F1 = "󱊫",
+        F2 = "󱊬",
+        F3 = "󱊭",
+        F4 = "󱊮",
+        F5 = "󱊯",
+        F6 = "󱊰",
+        F7 = "󱊱",
+        F8 = "󱊲",
+        F9 = "󱊳",
+        F10 = "󱊴",
+        F11 = "󱊵",
+        F12 = "󱊶",
+      },
     },
-    popup_mappings = {
-      scroll_down = "<c-d>", -- binding to scroll down inside the popup
-      scroll_up = "<c-u>", -- binding to scroll up inside the popup
+    show_help = true, -- show a help message in the command line for using WhichKey
+    show_keys = true, -- show the currently pressed key and its label as a message in the command line
+    -- Which-key automatically sets up triggers for your mappings.
+    -- But you can disable this and setup the triggers yourself.
+    -- Be aware, that triggers are not needed for visual and operator pending mode.
+    triggers = true, -- automatically setup triggers
+    disable = {
+      -- disable WhichKey for certain buf types and file types.
+      ft = {},
+      bt = {},
+      -- disable a trigger for a certain context by returning true
+      ---@type fun(ctx: { keys: string, mode: string, plugin?: string }):boolean?
+      trigger = function(ctx)
+        return false
+      end,
     },
-    window = {
-      border = "rounded", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0,
-    },
-    layout = {
-      height = { min = 4, max = 25 }, -- min and max height of the columns
-      width = { min = 20, max = 50 }, -- min and max width of the columns
-      spacing = 3, -- spacing between columns
-      align = "center", -- align columns left, center or right
-    },
-    prefix = "<leader>",
-    defaults = {
-      mode = { "n", "v" },
-      ["<leader>a"] = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
-      ["<leader>v"] = { "<cmd>vsplit<cr>", "vsplit" },
-      ["<leader>h"] = { "<cmd>split<cr>", "split" },
-      ["<leader>X"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-      ["g"] = { name = "+goto" },
-      ["gz"] = { name = "+surround" },
-      ["]"] = { name = "+next" },
-      ["["] = { name = "+prev" },
-      ["<leader><tab>"] = { name = "+tabs" },
-      ["<leader>b"] = { name = "+buffer" },
-      ["<leader>c"] = { name = "+code" },
-      ["<leader>gh"] = { name = "+hunks" },
-      ["<leader>q"] = { name = "+quit/session" },
-      ["<leader>s"] = { name = "+search" },
-      ["<leader>u"] = { name = "+ui" },
-      ["<leader>uu"] = {
-        "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
-        "Open Harpoon UI",
-        { noremap = true, silent = true },
-      },
-      ["<leader>w"] = { name = "+windows" },
-      ["<leader>x"] = { name = "+diagnostics/quickfix" },
-
-      ["<leader>g"] = {
-        name = "Git",
-        g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-        j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-        k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-        b = { "<cmd>GitBlameToggle<cr>", "Blame" },
-        p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-        r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-        R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-        h = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-        u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
-        o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-        s = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-        d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
-        G = {
-          name = "Gist",
-          a = { "<cmd>Gist -b -a<cr>", "Create Anon" },
-          d = { "<cmd>Gist -d<cr>", "Delete" },
-          f = { "<cmd>Gist -f<cr>", "Fork" },
-          g = { "<cmd>Gist -b<cr>", "Create" },
-          l = { "<cmd>Gist -l<cr>", "List" },
-          p = { "<cmd>Gist -b -p<cr>", "Create Private" },
-        },
-      },
-
-      -- older me will probably hate this, i should group this like others
-      ["<leader>H"] = {
-        name = "Harpoon",
-        u = {
-          "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
-          "Open Harpoon UI",
-          { noremap = true, silent = true },
-        },
-        a = { "<cmd> lua require('harpoon.mark').add_file()<CR>", "Add To Harpoon", { noremap = true, silent = true } },
-        n = { "<cmd> lua require('harpoon.ui').nav_next()<CR>", "Next File", { noremap = true, silent = true } },
-        p = { "<cmd> lua require('harpoon.ui').nav_prev()<CR>", "Prev File", { noremap = true, silent = true } },
-      },
-      ["<leader>/"] = {
-        name = "Find",
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-        f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-        t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
-        s = { "<cmd>Telescope grep_string<cr>", "Find String" },
-        h = { "<cmd>Telescope help_tags<cr>", "Help" },
-        H = { "<cmd>Telescope highlights<cr>", "Highlights" },
-        i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
-        l = { "<cmd>Telescope resume<cr>", "Last Search" },
-        M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
-        R = { "<cmd>Telescope registers<cr>", "Registers" },
-        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        C = { "<cmd>Telescope commands<cr>", "Commands" },
-      },
-      ["<leader>B"] = {
-        name = "Browse",
-        i = { "<cmd>BrowseInputSearch<cr>", "Input Search" },
-        b = { "<cmd>Browse<cr>", "Browse" },
-        d = { "<cmd>BrowseDevdocsSearch<cr>", "Devdocs" },
-        f = { "<cmd>BrowseDevdocsFiletypeSearch<cr>", "Devdocs Filetype" },
-        m = { "<cmd>BrowseMdnSearch<cr>", "Mdn" },
-      },
-      ["<leader>o"] = {
-        name = "Options",
-        c = { "<cmd>lua vim.g.cmp_active=false<cr>", "Completion off" },
-        C = { "<cmd>lua vim.g.cmp_active=true<cr>", "Completion on" },
-        w = { '<cmd>lua require("config.functions").toggle_option("wrap")<cr>', "Wrap" },
-        r = { '<cmd>lua require("config.functions").toggle_option("relativenumber")<cr>', "Relative" },
-        l = { '<cmd>lua require("config.functions").toggle_option("cursorline")<cr>', "Cursorline" },
-        s = { '<cmd>lua require("config.functions").toggle_option("spell")<cr>', "Spell" },
-        t = { '<cmd>lua require("config.functions").toggle_tabline()<cr>', "Tabline" },
-      },
-      ["<leader>l"] = {
-        name = "LSP",
-        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-        c = { "<cmd>lua require('plugins.lsp').server_capabilities()<cr>", "Get Capabilities" },
-        d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
-        w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
-        f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
-        F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
-        i = { "<cmd>LspInfo<cr>", "Info" },
-        h = { '<cmd>lua require("config.functions").toggle_inlay_hints()<cr>', "Toggle Inlay Hints" },
-        H = { "<cmd>IlluminationToggle<cr>", "Toggle Doc HL" },
-        I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-        j = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", "Next Diagnostic" },
-        k = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Prev Diagnostic" },
-        v = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Virtual Text" },
-        l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-        o = { "<cmd>SymbolsOutline<cr>", "Outline" },
-        q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-        r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        R = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
-        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-        S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
-        t = { '<cmd>lua require("config.functions").toggle_diagnostics()<cr>', "Toggle Diagnostics" },
-        u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
-      },
-      ["<leader>d"] = {
-        name = "Debug",
-        b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
-        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-        i = { "<cmd>lua require'dap'.step_into()<cr>", "Into" },
-        o = { "<cmd>lua require'dap'.step_over()<cr>", "Over" },
-        O = { "<cmd>lua require'dap'.step_out()<cr>", "Out" },
-        r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Repl" },
-        l = { "<cmd>lua require'dap'.run_last()<cr>", "Last" },
-        u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
-        x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
-      },
-      ["<leader>t"] = {
-        name = "Terminal",
-        ["1"] = { ":1ToggleTerm<cr>", "1" },
-        ["2"] = { ":2ToggleTerm<cr>", "2" },
-        ["3"] = { ":3ToggleTerm<cr>", "3" },
-        ["4"] = { ":4ToggleTerm<cr>", "4" },
-        n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-        u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-        t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-        p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-        f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-        h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-        v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-      },
+    debug = false, -- enable wk.log in the current directory
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Keymaps (which-key)",
     },
   },
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
-    wk.register(opts.defaults)
+    if not vim.tbl_isempty(opts.defaults) then
+      LazyVim.warn("which-key: opts.defaults is deprecated. Please use opts.spec instead.")
+      wk.add(opts.defaults)
+    end
   end,
 }

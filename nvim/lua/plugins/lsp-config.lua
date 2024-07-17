@@ -130,6 +130,9 @@ return {
   end,
   ---@param opts PluginLspOpts
   config = function(_, opts)
+    -- Debug: print inlay hints options
+    -- print(vim.inspect(opts.inlay_hints))
+
     -- setup autoformat
     LazyVim.format.register(LazyVim.lsp.formatter())
 
@@ -179,7 +182,8 @@ return {
             and vim.bo[buffer].buftype == ""
             and not vim.tbl_contains(opts.inlay_hints.exclude, vim.bo[buffer].filetype)
           then
-            LazyVim.toggle.inlay_hints(buffer, true)
+            -- Assuming LazyVim.toggle.inlay_hints sets the state correctly
+            LazyVim.toggle.inlay_hints.set(true)
           end
         end)
       end
