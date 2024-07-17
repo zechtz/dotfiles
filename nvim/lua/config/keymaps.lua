@@ -1,76 +1,64 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
--- This file is automatically loaded by lazyvim.config.init
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+-- DO NOT USE `LazyVim.safe_keymap_set` IN YOUR OWN CONFIG!!
+-- use `vim.keymap.set` instead
+local map = LazyVim.safe_keymap_set
+local mapping = vim.keymap.set
 
 M = {}
-local opts = { noremap = true, silent = true }
 
--- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+-- Default options for key mappings
+local default_opts = { noremap = true, silent = true }
 
--- helper functions
-local function mmap(mode, shortcut, command)
-  keymap(mode, shortcut, command, opts)
+-- Function to set key mappings for given mode(s), shortcut, command, and options
+local function mmap(mode, shortcut, command, opts)
+  opts = opts or default_opts
+  mapping(mode, shortcut, command, opts)
 end
 
-local function nmap(shortcut, command)
-  mmap("n", shortcut, command)
+-- Function to set key mappings in normal mode
+local function nmap(shortcut, command, opts)
+  mmap("n", shortcut, command, opts)
 end
 
-local function imap(shortcut, command_or_mappings, mappings)
-  if type(command_or_mappings) == "table" then
-    mappings = command_or_mappings
-    local filetype = vim.bo.filetype
-    local arrow = mappings[filetype] or "=>"
-    mmap("i", shortcut, arrow)
-  else
-    mmap("i", shortcut, command_or_mappings)
-  end
+-- Function to set key mappings in insert mode
+local function imap(shortcut, command, opts)
+  mmap("i", shortcut, command, opts)
 end
 
-local function snoremap(shortcut, command)
-  opts = { noremap = true, silent = true, expr = true }
-  keymap("s", shortcut, command, opts)
-end
-
-local function inoremap(shortcut, command)
-  opts = { noremap = true, silent = true, expr = true }
-  keymap("i", shortcut, command, opts)
-end
-
-local function cnoremap(shortcut, command)
-  opts = { noremap = true, expr = true }
-  keymap("c", shortcut, command, opts)
-end
-
-local function vnoremap(shortcut, command)
-  opts = { noremap = true, expr = true }
-  keymap("v", shortcut, command, opts)
-end
-
-local function vmap(shortcut, command)
-  mmap("v", shortcut, command)
-end
-
-local function xmap(shortcut, command)
-  mmap("x", shortcut, command)
+-- Function to set key mappings in visual mode
+local function vmap(shortcut, command, opts)
+  mmap("v", shortcut, command, opts)
 end
 
 local function noremap(shortcut, command)
-  keymap("n", shortcut, command, { noremap = true, silent = true })
+  mmap("n", shortcut, command, { noremap = true, silent = true })
 end
 
--- Remap space as leader key
-keymap("n", "<Space>", "", opts)
-nmap("<Space>", "<cmd>WhichKey \\<leader><cr>")
+local function cnoremap(shortcut, command)
+  local opts = { noremap = true, expr = true }
+  mmap("c", shortcut, command, opts)
+end
 
--- Set the emmet leader key to '<C-Z>'
---[[ vim.api.nvim_set_keymap("n", "<C-y>", "<Plug>(emmet-expand-abbr)", { silent = true })
-vim.api.nvim_set_keymap("v", "<C-y>", "<Plug>(emmet-expand-abbr)", { silent = true }) ]]
+local function vnoremap(shortcut, command)
+  local opts = { noremap = true, expr = true }
+  mmap("v", shortcut, command, opts)
+end
+
+-- Function to set key mappings in select mode
+local function xmap(shortcut, command, opts)
+  mmap("x", shortcut, command, opts)
+end
+
+-- Function to set key mappings in normal, visual, and select modes
+local function nvmap(key, command, opts)
+  local modes = { "n", "x", "v" }
+  map(modes, key, command, opts)
+end
+
+-- Better navigation for wrapped lines
+nvmap("j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+nvmap("<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+nvmap("k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+nvmap("<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Delete LazyVim default keymaps
 vim.keymap.del("n", "<C-k>")
@@ -130,12 +118,6 @@ nmap("<F1>", ":e ~/Notes/<cr>")
 nmap("<F3>", ":e .<cr>")
 nmap("<F4>", "<cmd>Telescope resume<cr>")
 nmap("<F5>", "<cmd>Telescope commands<CR>")
-keymap(
-  "n",
-  "<F6>",
-  [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>]],
-  opts
-)
 nmap("<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>")
 nmap("<F8>", "<cmd>TSPlaygroundToggle<cr>")
 nmap("<F11>", "<cmd>lua vim.lsp.buf.references()<CR>")
@@ -268,7 +250,7 @@ local arrow_mappings = {
 }
 
 imap("<c-j>", "<Space><-<Space>")
-imap("<c-l>", arrow_mappings)
+--imap("<c-l>", arrow_mappings)
 
 nmap("<Leader>bt", "<Esc>:Tabularize/= <CR>")
 nmap("<Leader>tb", "<Esc>:Tabularize/")
@@ -312,14 +294,6 @@ noremap("<silent> K", "<cmd>lua vim.lsp.buf.hover()<CR>")
 noremap("<silent> <C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 noremap("<silent> <C-n>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
 noremap("<silent> <C-p>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
-
-vim.api.nvim_command([[
-autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
-autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
-autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-]])
 
 -- " NOTE: You can use other key to expand snippet.
 cnoremap("<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"')
