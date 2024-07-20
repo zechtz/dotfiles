@@ -3,184 +3,6 @@ return {
   event = "VeryLazy",
   opts_extend = { "spec" },
   opts = {
-    defaults = {
-      { "<leader>v", "<cmd>vsplit<cr>", desc = "Vertical Split", mode = "n" },
-      { "<leader>h", "<cmd>split<cr>", desc = "Horizontal Split", mode = "n" },
-      {
-        -- Nested mappings are allowed and can be added in any order
-        -- Most attributes can be inherited or overridden on any level
-        -- There's no limit to the depth of nesting
-        mode = { "n", "v" }, -- NORMAL and VISUAL mode
-        {
-          "<leader>H",
-          "",
-          desc = "Harpoon",
-          {
-            "<leader>Hu",
-            "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
-            desc = "Open Harpoon UI",
-          },
-          { "<leader>Ha", "<cmd> lua require('harpoon.mark').add_file()<CR>", desc = "Add To Harpoon" },
-          { "<leader>Hn", "<cmd> lua require('harpoon.ui').nav_next()<CR>", desc = "Next File" },
-          { "<leader>Hp", "<cmd> lua require('harpoon.ui').nav_prev()<CR>", desc = "Prev File" },
-        }, -- no need to specify mode since it's inherited
-        {
-          "<leader>o",
-          "",
-          desc = "Options",
-          {
-            "<leader>oc",
-            "<cmd>lua vim.g.cmp_active=false<cr>",
-            desc = "Completion off",
-          },
-          {
-            "<leader>oC",
-            "<cmd>lua vim.g.cmp_active=true<cr>",
-            desc = "Completion on",
-          },
-          {
-            "<leader>ow",
-            '<cmd>lua require("config.functions").toggle_option("wrap")<cr>',
-            desc = "Wrap",
-          },
-          {
-            "<leader>or",
-            '<cmd>lua require("config.functions").toggle_option("relativenumber")<cr>',
-            desc = "Relative",
-          },
-          {
-            "<leader>ol",
-            '<cmd>lua require("config.functions").toggle_option("cursorline")<cr>',
-            desc = "Cursorline",
-          },
-          {
-            "<leader>os",
-            '<cmd>lua require("config.functions").toggle_option("spell")<cr>',
-            desc = "Spell",
-          },
-          {
-            "<leader>ot",
-            '<cmd>lua require("config.functions").toggle_tabline()<cr>',
-            desc = "Tabline",
-          },
-        },
-        {
-          "<leader>l",
-          "",
-          desc = "LSPs",
-          {
-            "<leader>la",
-            "<cmd>lua vim.lsp.buf.code_action()<cr>",
-            desc = "Code Action",
-          },
-          {
-            "<leader>lc",
-            "<cmd>lua require('plugins.lsp').server_capabilities()<cr>",
-            desc = "Get Capabilities",
-          },
-          {
-            "<leader>ld",
-            "<cmd>TroubleToggle<cr>",
-            desc = "Diagnostics",
-          },
-          {
-            "<leader>lw",
-            "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-            desc = "Workspace Diagnostics",
-          },
-          {
-            "<leader>lf",
-            "<cmd>lua vim.lsp.buf.format({ async = true })<cr>",
-            desc = "Format",
-          },
-          {
-            "<leader>lF",
-            "<cmd>LspToggleAutoFormat<cr>",
-            desc = "Toggle Autoformat",
-          },
-          {
-            "<leader>li",
-            "<cmd>LspInfo<cr>",
-            desc = "Info",
-          },
-          {
-            "<leader>lh",
-            '<cmd>lua require("config.functions").toggle_inlay_hints()<cr>',
-            desc = "Toggle Inlay Hints",
-          },
-          {
-            "<leader>lH",
-            "<cmd>IlluminationToggle<cr>",
-            desc = "Toggle Doc HL",
-          },
-          {
-            "<leader>lI",
-            "<cmd>LspInstallInfo<cr>",
-            desc = "Installer Info",
-          },
-          {
-            "<leader>lj",
-            "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
-            desc = "Next Diagnostic",
-          },
-          {
-            "<leader>lk",
-            "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
-            desc = "Prev Diagnostic",
-          },
-          {
-            "<leader>lv",
-            "<cmd>lua require('lsp_lines').toggle()<cr>",
-            desc = "Virtual Text",
-          },
-          {
-            "<leader>ll",
-            "<cmd>lua vim.lsp.codelens.run()<cr>",
-            desc = "CodeLens Action",
-          },
-          {
-            "<leader>lo",
-            "<cmd>SymbolsOutline<cr>",
-            desc = "Outline",
-          },
-          {
-            "<leader>lq",
-            "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>",
-            desc = "Quickfix",
-          },
-          {
-            "<leader>lr",
-            "<cmd>lua vim.lsp.buf.rename()<cr>",
-            desc = "Rename",
-          },
-          {
-            "<leader>lR",
-            "<cmd>TroubleToggle lsp_references<cr>",
-            desc = "References",
-          },
-          {
-            "<leader>ls",
-            "<cmd>Telescope lsp_document_symbols<cr>",
-            desc = "Document Symbols",
-          },
-          {
-            "<leader>lS",
-            "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-            desc = "Workspace Symbols",
-          },
-          {
-            "<leader>lt",
-            '<cmd>lua require("config.functions").toggle_diagnostics()<cr>',
-            desc = "Toggle Diagnostics",
-          },
-          {
-            "<leader>lu",
-            "<cmd>LuaSnipUnlinkCurrent<cr>",
-            desc = "Unlink Snippet",
-          },
-        },
-      },
-    },
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
@@ -219,6 +41,183 @@ return {
         { "g", group = "goto" },
         { "gs", group = "surround" },
         { "z", group = "fold" },
+
+        { "<leader>v", "<cmd>vsplit<cr>", desc = "Vertical Split", mode = "n" },
+        { "<leader>h", "<cmd>split<cr>", desc = "Horizontal Split", mode = "n" },
+        {
+          -- Nested mappings are allowed and can be added in any order
+          -- Most attributes can be inherited or overridden on any level
+          -- There's no limit to the depth of nesting
+          mode = { "n", "v" }, -- NORMAL and VISUAL mode
+          {
+            "<leader>H",
+            "",
+            desc = "Harpoon",
+            {
+              "<leader>Hu",
+              "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>",
+              desc = "Open Harpoon UI",
+            },
+            { "<leader>Ha", "<cmd> lua require('harpoon.mark').add_file()<CR>", desc = "Add To Harpoon" },
+            { "<leader>Hn", "<cmd> lua require('harpoon.ui').nav_next()<CR>", desc = "Next File" },
+            { "<leader>Hp", "<cmd> lua require('harpoon.ui').nav_prev()<CR>", desc = "Prev File" },
+          }, -- no need to specify mode since it's inherited
+          {
+            "<leader>o",
+            "",
+            desc = "Options",
+            {
+              "<leader>oc",
+              "<cmd>lua vim.g.cmp_active=false<cr>",
+              desc = "Completion off",
+            },
+            {
+              "<leader>oC",
+              "<cmd>lua vim.g.cmp_active=true<cr>",
+              desc = "Completion on",
+            },
+            {
+              "<leader>ow",
+              '<cmd>lua require("config.functions").toggle_option("wrap")<cr>',
+              desc = "Wrap",
+            },
+            {
+              "<leader>or",
+              '<cmd>lua require("config.functions").toggle_option("relativenumber")<cr>',
+              desc = "Relative",
+            },
+            {
+              "<leader>ol",
+              '<cmd>lua require("config.functions").toggle_option("cursorline")<cr>',
+              desc = "Cursorline",
+            },
+            {
+              "<leader>os",
+              '<cmd>lua require("config.functions").toggle_option("spell")<cr>',
+              desc = "Spell",
+            },
+            {
+              "<leader>ot",
+              '<cmd>lua require("config.functions").toggle_tabline()<cr>',
+              desc = "Tabline",
+            },
+          },
+          {
+            "<leader>l",
+            "",
+            desc = "LSPs",
+            {
+              "<leader>la",
+              "<cmd>lua vim.lsp.buf.code_action()<cr>",
+              desc = "Code Action",
+            },
+            {
+              "<leader>lc",
+              "<cmd>lua require('plugins.lsp').server_capabilities()<cr>",
+              desc = "Get Capabilities",
+            },
+            {
+              "<leader>ld",
+              "<cmd>TroubleToggle<cr>",
+              desc = "Diagnostics",
+            },
+            {
+              "<leader>lw",
+              "<cmd>Telescope lsp_workspace_diagnostics<cr>",
+              desc = "Workspace Diagnostics",
+            },
+            {
+              "<leader>lf",
+              "<cmd>lua vim.lsp.buf.format({ async = true })<cr>",
+              desc = "Format",
+            },
+            {
+              "<leader>lF",
+              "<cmd>LspToggleAutoFormat<cr>",
+              desc = "Toggle Autoformat",
+            },
+            {
+              "<leader>li",
+              "<cmd>LspInfo<cr>",
+              desc = "Info",
+            },
+            {
+              "<leader>lh",
+              '<cmd>lua require("config.functions").toggle_inlay_hints()<cr>',
+              desc = "Toggle Inlay Hints",
+            },
+            {
+              "<leader>lH",
+              "<cmd>IlluminationToggle<cr>",
+              desc = "Toggle Doc HL",
+            },
+            {
+              "<leader>lI",
+              "<cmd>LspInstallInfo<cr>",
+              desc = "Installer Info",
+            },
+            {
+              "<leader>lj",
+              "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
+              desc = "Next Diagnostic",
+            },
+            {
+              "<leader>lk",
+              "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
+              desc = "Prev Diagnostic",
+            },
+            {
+              "<leader>lv",
+              "<cmd>lua require('lsp_lines').toggle()<cr>",
+              desc = "Virtual Text",
+            },
+            {
+              "<leader>ll",
+              "<cmd>lua vim.lsp.codelens.run()<cr>",
+              desc = "CodeLens Action",
+            },
+            {
+              "<leader>lo",
+              "<cmd>SymbolsOutline<cr>",
+              desc = "Outline",
+            },
+            {
+              "<leader>lq",
+              "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>",
+              desc = "Quickfix",
+            },
+            {
+              "<leader>lr",
+              "<cmd>lua vim.lsp.buf.rename()<cr>",
+              desc = "Rename",
+            },
+            {
+              "<leader>lR",
+              "<cmd>TroubleToggle lsp_references<cr>",
+              desc = "References",
+            },
+            {
+              "<leader>ls",
+              "<cmd>Telescope lsp_document_symbols<cr>",
+              desc = "Document Symbols",
+            },
+            {
+              "<leader>lS",
+              "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+              desc = "Workspace Symbols",
+            },
+            {
+              "<leader>lt",
+              '<cmd>lua require("config.functions").toggle_diagnostics()<cr>',
+              desc = "Toggle Diagnostics",
+            },
+            {
+              "<leader>lu",
+              "<cmd>LuaSnipUnlinkCurrent<cr>",
+              desc = "Unlink Snippet",
+            },
+          },
+        },
       },
     },
     -- show a warning when issues were detected with your mappings
