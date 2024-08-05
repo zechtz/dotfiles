@@ -26,6 +26,14 @@ return {
       return vim.fn.empty(output) == 0
     end
 
+    --This update ensures that the treesitter ensure_installed table
+    --exists and then extends it by adding the markdown parser.
+    --It then registers the mdx language to use the markdown parser.
+    if type(opts.ensure_installed) == "table" then
+      vim.list_extend(opts.ensure_installed, { "markdown" })
+      vim.treesitter.language.register("markdown", "mdx")
+    end
+
     local function add(lang)
       if type(opts.ensure_installed) == "table" then
         table.insert(opts.ensure_installed, lang)

@@ -11,6 +11,13 @@ vim.g.gitblame_date_format = "%r"
 vim.g.gitblame_message_template = "<author>, <date> • <summary>"
 vim.g.gitblame_highlight_group = "GitBlameVirtualText"
 
+-- enable the mdx filetype
+vim.filetype.add({
+  extension = {
+    mdx = "mdx",
+  },
+})
+
 -- TODO:  come back here
 
 -- LazyVim root dir detection

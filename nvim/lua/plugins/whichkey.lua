@@ -1,3 +1,5 @@
+local util = require("util")
+
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
@@ -62,6 +64,98 @@ return {
             { "<leader>Hn", "<cmd> lua require('harpoon.ui').nav_next()<CR>", desc = "Next File" },
             { "<leader>Hp", "<cmd> lua require('harpoon.ui').nav_prev()<CR>", desc = "Prev File" },
           }, -- no need to specify mode since it's inherited
+          -- Folds
+          {
+            "<leader>z",
+            "",
+            desc = "Folds",
+            {
+              "<leader>zff",
+              function()
+                util.close_text_object_folds("@function.outer")
+              end,
+              desc = "Close folds for functions [which-key]",
+            },
+            {
+              "<leader>zfc",
+              function()
+                util.close_text_object_folds("@class.outer")
+              end,
+              desc = "Close folds for classes [which-key]",
+            },
+            {
+              "<leader>z1",
+              function()
+                util.close_folds_with_level(1)
+              end,
+              desc = "Close folds with level 1 [which-key]",
+            },
+            {
+              "<leader>z2",
+              function()
+                util.close_folds_with_level(2)
+              end,
+              desc = "Close folds with level 2 [which-key]",
+            },
+            {
+              "<leader>z3",
+              function()
+                util.close_folds_with_level(3)
+              end,
+              desc = "Close folds with level 3 [which-key]",
+            },
+            {
+              "<leader>z4",
+              function()
+                util.close_folds_with_level(4)
+              end,
+              desc = "Close folds with level 4 [which-key]",
+            },
+            -- New mappings to open folds by level
+            {
+              "<leader>zo1",
+              function()
+                util.open_folds_with_level(1)
+              end,
+              desc = "Open folds with level 1 [which-key]",
+            },
+            {
+              "<leader>zo2",
+              function()
+                util.open_folds_with_level(2)
+              end,
+              desc = "Open folds with level 2 [which-key]",
+            },
+            {
+              "<leader>zo3",
+              function()
+                util.open_folds_with_level(3)
+              end,
+              desc = "Open folds with level 3 [which-key]",
+            },
+            {
+              "<leader>zo4",
+              function()
+                util.open_folds_with_level(4)
+              end,
+              desc = "Open folds with level 4 [which-key]",
+            },
+            -- Mappings for visual selection folds
+            {
+              "<leader>zcs",
+              function()
+                util.close_folds_in_selection()
+              end,
+              desc = "Close folds in selection",
+            },
+            {
+              "<leader>zos",
+              function()
+                util.open_folds_in_selection()
+              end,
+              desc = "Open folds in selection",
+            },
+          },
           {
             "<leader>o",
             "",
