@@ -17,3 +17,4 @@ nvim.bak
 nvim.bak.old
 nvim-july16
 nvim/lua/plugins/peek.lua
+.pgpass
