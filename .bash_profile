@@ -80,7 +80,6 @@ export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 eval "$(SHELL=/home/mtabe/.dir_colors/dircolors)"
 
-export PATH="$HOME/.cargo/bin:$PATH"
 
 export DISK2="/data"
 
@@ -113,3 +112,4 @@ sudo() {
 
 export PATH="$HOME/.exenv/bin:$PATH"
 # eval "$(exenv init -)"
+. "$HOME/.cargo/env"
