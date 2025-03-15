@@ -96,6 +96,7 @@
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 	editor = nvim
+	autocrlf = input
 
 [color]
 
