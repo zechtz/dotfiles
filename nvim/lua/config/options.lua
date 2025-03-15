@@ -10,6 +10,7 @@ vim.g.gitblame_enabled = 0 -- start with git blame disabled
 vim.g.gitblame_date_format = "%r"
 vim.g.gitblame_message_template = "<author>, <date> • <summary>"
 vim.g.gitblame_highlight_group = "GitBlameVirtualText"
+vim.g.snacks_animate = false
 
 -- enable the mdx filetype
 vim.filetype.add({

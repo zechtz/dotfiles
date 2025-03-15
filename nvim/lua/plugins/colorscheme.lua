@@ -11,7 +11,6 @@ return {
     { "ellisonleao/gruvbox.nvim" },
     { "lunarvim/onedarker.nvim" },
     { "lunarvim/darkplus.nvim" },
-    { "lunarvim/colorschemes" },
   },
   {
     "LazyVim/LazyVim",

@@ -1,3 +1,7 @@
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Add any additional keymaps here
+
 -- DO NOT USE `LazyVim.safe_keymap_set` IN YOUR OWN CONFIG!!
 -- use `vim.keymap.set` instead
 local map = LazyVim.safe_keymap_set
@@ -61,10 +65,10 @@ nvmap("k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = tru
 nvmap("<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Delete LazyVim default keymaps
-vim.keymap.del("n", "<C-k>")
-vim.keymap.del("n", "<C-j>")
-vim.keymap.del("n", "<leader>l")
-vim.keymap.del("n", "<leader>fT")
+-- vim.keymap.del("n", "<C-k>")
+-- vim.keymap.del("n", "<C-j>")
+-- vim.keymap.del("n", "<leader>l")
+-- vim.keymap.del("n", "<leader>fT")
 
 local neoscroll = require("neoscroll")
 
@@ -338,10 +342,6 @@ cnoremap("<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"')
 --  See https://github.com/hrsh7th/vim-vsnip/pull/50
 
 vnoremap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
-noremap(
-  "<C-p>",
-  "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>"
-)
 noremap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>")
 noremap("<C-\\>", "<cmd>vsplit<cr>")
 

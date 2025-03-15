@@ -26,21 +26,21 @@ return {
       diagnostics = {
         virtual_text = false,
         underline = true,
-        update_on_insert = false,
+        update_on_insert = true,
         severity_sort = true,
       },
       vim.keymap.set("n", "gl", function()
         vim.diagnostic.open_float(nil, {
-          border = "rounded", -- Rounded borders for the window
-          focusable = false, -- Prevent floating window from stealing focus
-          scope = "line", -- Show diagnostics for the current line
-          float_opts = { anchor = "NW" }, -- Anchor to the top-left corner of the line
+          border = "rounded",
+          focusable = false,
+          scope = "line",
+          float_opts = { anchor = "NW" },
         })
       end, { desc = "Show diagnostics with rounded borders at the top" }),
 
       ---@type lspconfig.options
       servers = {
-        cssls = {}, -- CSS language server
+        cssls = {},
         tailwindcss = {
           root_dir = function(...)
             return require("lspconfig.util").root_pattern(".git")(...)
@@ -76,7 +76,7 @@ return {
             },
           },
         },
-        html = {}, -- HTML language server
+        html = {},
         yamlls = {
           settings = {
             yaml = {
@@ -104,8 +104,43 @@ return {
             },
           },
         },
+        -- Add clangd with restricted filetypes (if you have it in your config)
+        clangd = {
+          filetypes = { "c", "cpp", "objc", "objcpp" }, -- Explicitly exclude .proto
+        },
+        emmet_language_server = {
+          filetypes = {
+            "astro",
+            "blade",
+            "css",
+            "eruby",
+            "html",
+            "heex",
+            "ex",
+            "htmldjango",
+            "javascriptreact",
+            "less",
+            "pug",
+            "sass",
+            "scss",
+            "svelte",
+            "typescriptreact",
+            "vue",
+          },
+        },
+        jdtls = {},
       },
-      setup = {},
+      setup = {
+        protols = function()
+          require("lspconfig").protols.setup({
+            filetypes = { "proto" }, -- Ensure protols handles .proto files
+            root_dir = require("lspconfig.util").root_pattern("proto", ".git", "mod"),
+          })
+        end,
+        jdtls = function()
+          return true -- avoid duplicate servers
+        end,
+      },
     },
   },
 
@@ -118,7 +153,6 @@ return {
         {
           "gd",
           function()
-            -- Do not reuse window for definitions
             require("telescope.builtin").lsp_definitions({ reuse_win = false })
           end,
           desc = "Goto Definition",
