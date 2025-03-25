@@ -15,7 +15,7 @@ set -gx FLUTTER_PATH /data/work/flutter/flutter/bin
 set -gx DART_PACKAGES_PATH /home/mtabe/.pub-cache/bin
 set -gx PYTHON_LIBS /home/mtabe/.local/bin
 set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=/opt/openssl-1.1.1n"
-set -gx GRADLE_HOME /opt/gradle-8.0
+set -gx GRADLE_HOME /opt/gradle
 set -gx GOROOT /home/mtabe/.asdf/installs/golang/1.23.0/go
 set -gx LUA_FORMATTER_BIN /home/mtabe/.asdf/installs/lua/5.4.4/luarocks/bin
 set -gx GOPATH /data/go/src

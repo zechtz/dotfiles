@@ -20,3 +20,7 @@ nvim/lua/plugins/peek.lua
 .pgpass
 nvim-march05
 nvim-leo
+nvim/lua/plugins/intelephense.lua.back
+nvim/lua/plugins/nvim-jdtls.lua.back
+nvim/lua/plugins/nvim-jdtls.lua.bak
+nvim/lua/plugins/nvim-jdtls.lua.bak

@@ -2,7 +2,9 @@
   "extras": [
     "lazyvim.plugins.extras.lang.java",
     "lazyvim.plugins.extras.lang.kotlin",
-    "lazyvim.plugins.extras.lang.scala"
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.scala",
+    "lazyvim.plugins.extras.lang.vue"
   ],
   "install_version": 8,
   "news": {
