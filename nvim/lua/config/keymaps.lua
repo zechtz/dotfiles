@@ -166,7 +166,6 @@ nmap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>")
 nmap("<C-z>", "<cmd>ZenMode<cr>")
 nmap("<c-n>", ":e ~/Notes/<cr>")
 
-nmap("-", ":lua require'lir.float'.toggle()<cr>")
 nmap("gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]])
 
 vmap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
@@ -209,7 +208,7 @@ nmap("<Space>K", "<C-w>K")
 nmap("<Space>w", "<C-w>")
 
 -- Open the current file in the default program
-nmap("<Leader>x", ":!xdg-open %<CR><CR>")
+-- nmap("<Leader>x", ":!xdg-open %<CR><CR>")
 
 -- Allow gf to open non-existent file
 nmap("gf", ":edit <cfile><CR>")

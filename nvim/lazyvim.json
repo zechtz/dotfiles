@@ -1,14 +1,10 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lang.java",
-    "lazyvim.plugins.extras.lang.kotlin",
-    "lazyvim.plugins.extras.lang.markdown",
-    "lazyvim.plugins.extras.lang.scala",
-    "lazyvim.plugins.extras.lang.vue"
+    "lazyvim.plugins.extras.lang.java"
   ],
   "install_version": 8,
   "news": {
-    "NEWS.md": "6520"
+    "NEWS.md": "10960"
   },
-  "version": 6
+  "version": 8
 }

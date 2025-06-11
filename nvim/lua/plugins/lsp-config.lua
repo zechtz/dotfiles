@@ -128,7 +128,7 @@ return {
             "vue",
           },
         },
-        jdtls = {},
+        -- Remove the jdtls = {} entry from here
       },
       setup = {
         protols = function()
@@ -136,9 +136,6 @@ return {
             filetypes = { "proto" }, -- Ensure protols handles .proto files
             root_dir = require("lspconfig.util").root_pattern("proto", ".git", "mod"),
           })
-        end,
-        jdtls = function()
-          return true -- avoid duplicate servers
         end,
       },
     },

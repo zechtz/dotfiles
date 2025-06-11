@@ -16,7 +16,7 @@ return {
     priority = 1000, -- Ensure LazyVim runs before other startup plugins
     opts = {
       italic_comments = true,
-      colorscheme = "tokyonight", -- Default colorscheme if darkplus is not used
+      colorscheme = "darkplus", -- Default colorscheme if darkplus is not used
       style = "darker",
       transparent = false,
       term_colors = true,

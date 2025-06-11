@@ -77,7 +77,7 @@ if not vim.g.vscode then
 end
 opt.undofile = true
 opt.undolevels = 10000
-opt.showtabline = 0 -- always show tabs
+opt.showtabline = 2 -- always show tabs
 opt.undoreload = 10000 -- number of lines to save for undo
 opt.conceallevel = 3
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
