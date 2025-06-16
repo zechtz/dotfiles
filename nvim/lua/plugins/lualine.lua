@@ -75,7 +75,6 @@ return {
       n = blue,
       i = orange,
       v = "#b668cd",
-      [""] = "#b668cd",
       V = "#b668cd",
       c = "#46a6b2",
       no = "#D16D9E",
@@ -210,13 +209,14 @@ return {
     local diff = {
       "diff",
       colored = false,
+      icons_enabled = true,
+      icon = "%#SLGitIcon#" .. " " .. "%*" .. "%#SLBranchName#",
       symbols = {
         added = icons.git.Add .. " ",
         modified = icons.git.Mod .. " ",
         removed = icons.git.Remove .. " ",
       },
       cond = hide_in_width_60,
-      separator = "%#SLSeparator#" .. "│ " .. "%*",
     }
 
     local filetype = {
@@ -273,7 +273,6 @@ return {
     local branch = {
       "branch",
       icons_enabled = true,
-      -- icon = "%#SLGitIcon#" .. " " .. "%*" .. "%#SLBranchName#",
       icon = "%#SLGitIcon#" .. " " .. "%*" .. "%#SLBranchName#",
       colored = false,
       padding = 0,
@@ -308,7 +307,6 @@ return {
 
         if not require("user.functions").isempty(hint) then
           -- return "%#SLSeparator#│ : " .. hint .. "%*"
-          -- return "%#SLSeparator#│ " .. hint .. "%*"
           return "%#SLSeparator# " .. hint .. "%*"
         end
 
@@ -345,7 +343,6 @@ return {
           return ""
         end
 
-        -- return hl_str(" ", "SLSep") .. hl_str(" " .. shiftwidth .. space, "SLIndent") .. hl_str("", "SLSep")
         return hl_str(" ", "SLSep") .. hl_str(" " .. shiftwidth .. space, "SLIndent") .. hl_str("", "SLSep")
       end,
       padding = 0,
@@ -381,7 +378,7 @@ return {
           clients = vim.lsp.get_clients({ bufnr = 0 })
         else
           -- Fallback for older versions
-          clients = vim.lsp.buf_get_clients()
+          clients = vim.lsp.lsp.get_clients()
         end
 
         local client_names = {}
