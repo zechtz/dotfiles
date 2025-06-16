@@ -6,24 +6,22 @@ return {
       update_interval = 1000,
       set_dark_mode = function()
         vim.api.nvim_set_option_value("background", "dark", {})
-        -- Use tokyonight-night instead of darkplus for better compatibility
-        vim.cmd("colorscheme darkplus")
+        vim.cmd("colorscheme darkplus") -- Use darkplus for dark mode
       end,
       set_light_mode = function()
         vim.api.nvim_set_option_value("background", "light", {})
-        vim.cmd("colorscheme darkplus")
+        vim.cmd("colorscheme darkplus") -- Use catppuccin for light mode
       end,
       fallback = "dark",
     },
   },
-
   {
     "lunarvim/darkplus.nvim",
     lazy = false,
     priority = 1000,
     opts = {
       italic_comments = true,
-      colorscheme = "darkplus", -- Default colorscheme if darkplus is not used
+      colorscheme = "darkplus",
       style = "darker",
       transparent = false,
       term_colors = true,
@@ -39,27 +37,26 @@ return {
         variables = "none",
       },
       lualine = {
-        transparent = true, -- Lualine center bar transparency
+        transparent = true,
       },
-      colors = {}, -- Override default colors
-      highlights = {}, -- Override highlights groups
+      colors = {},
+      highlights = {},
       diagnostics = {
-        darker = true, -- Darker colors for diagnostics
-        undercurl = true, -- Use undercurl instead of underline for diagnostics
-        background = true, -- Use background color for virtual text
+        darker = true,
+        undercurl = true,
+        background = true,
       },
     },
   },
-
-  -- Install catppuccin theme (fixed typo)
+  -- Install catppuccin theme
   {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "latte", -- latte, frappe, macchiato, mocha
-      background = { -- :h background
+      flavour = "latte",
+      background = {
         light = "latte",
         dark = "mocha",
       },
@@ -102,11 +99,11 @@ return {
         which_key = true,
       },
     },
-  }, -- Configure LazyVim to not set a default colorscheme
+  },
+  -- Configure LazyVim to not set a default colorscheme
   {
     "LazyVim/LazyVim",
     opts = {
-      -- Let auto-dark-mode handle the colorscheme
       colorscheme = function() end,
     },
   },
