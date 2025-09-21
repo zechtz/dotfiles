@@ -10,6 +10,7 @@ vim.g.gitblame_enabled = 0 -- start with git blame disabled
 vim.g.gitblame_date_format = "%r"
 vim.g.gitblame_message_template = "<author>, <date> • <summary>"
 vim.g.gitblame_highlight_group = "GitBlameVirtualText"
+vim.g.snacks_animate = false
 
 -- enable the mdx filetype
 vim.filetype.add({
@@ -76,7 +77,7 @@ if not vim.g.vscode then
 end
 opt.undofile = true
 opt.undolevels = 10000
-opt.showtabline = 0 -- always show tabs
+opt.showtabline = 2 -- always show tabs
 opt.undoreload = 10000 -- number of lines to save for undo
 opt.conceallevel = 3
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
@@ -102,9 +103,9 @@ end
 vim.opt.foldlevel = 99
 vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
 
-if vim.fn.has("nvim-0.9.0") == 1 then
-  vim.opt.statuscolumn = [[%!v:lua.require'lazyvim.util'.ui.statuscolumn()]]
-end
+-- if vim.fn.has("nvim-0.9.0") == 1 then
+--   vim.opt.statuscolumn = [[%!v:lua.require'lazyvim.util'.ui.statuscolumn()]]
+-- end
 
 -- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
 if vim.fn.has("nvim-0.10") == 1 then

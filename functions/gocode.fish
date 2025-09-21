@@ -1,4 +1,4 @@
 # Defined in - @ line 1
-function gocode --wraps='cd /data/go/src' --description 'alias gocode=cd /data/go/src'
-  cd /data/go/src $argv;
+function gocode --wraps='cd /Volumes/Work/go/src' --description 'alias gocode=cd /Volumes/Work/go/src'
+    cd /Volumes/Work/go/src $argv
 end

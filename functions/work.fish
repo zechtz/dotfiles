@@ -1,4 +1,5 @@
 # Defined in - @ line 1
-function work --wraps='cd /data/work' --description 'alias work=cd /data/work'
-  cd /data/work $argv;
+function work --wraps='cd /Volumes/Work/work' --description 'alias work=cd /Volumes//Work/work'
+    cd /Volumes/Work/work $argv
+
 end

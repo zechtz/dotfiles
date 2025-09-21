@@ -1,11 +1,11 @@
 return {
   -- Darkplus colorscheme
   {
-    "lunarvim/darkplus.nvim",
+    "ChristianChiarulli/defaultplus",
     lazy = false, -- Load during startup
     priority = 1000, -- Load before other plugins
     config = function()
-      vim.cmd("colorscheme darkplus") -- Set the colorscheme to darkplus
+      vim.cmd("colorscheme defaultplus") -- Set the colorscheme to darkplus
     end,
   },
 

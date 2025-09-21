@@ -1,3 +1,7 @@
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Add any additional keymaps here
+
 -- DO NOT USE `LazyVim.safe_keymap_set` IN YOUR OWN CONFIG!!
 -- use `vim.keymap.set` instead
 local map = LazyVim.safe_keymap_set
@@ -61,17 +65,52 @@ nvmap("k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = tru
 nvmap("<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Delete LazyVim default keymaps
-vim.keymap.del("n", "<C-k>")
-vim.keymap.del("n", "<C-j>")
-vim.keymap.del("n", "<leader>l")
-vim.keymap.del("n", "<leader>fT")
+-- vim.keymap.del("n", "<C-k>")
+-- vim.keymap.del("n", "<C-j>")
+-- vim.keymap.del("n", "<leader>l")
+-- vim.keymap.del("n", "<leader>fT")
 
-local t = {}
-t["<c-k>"] = { "scroll", { "-vim.wo.scroll", "true", "250" } }
-t["<c-j>"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
+local neoscroll = require("neoscroll")
 
-require("neoscroll.config").set_mappings(t)
-
+local keymap = {
+  ["<C-u>"] = function()
+    neoscroll.ctrl_u({ duration = 250 })
+  end,
+  ["<C-k>"] = function()
+    neoscroll.ctrl_u({ duration = 250 })
+  end,
+  ["<C-d>"] = function()
+    neoscroll.ctrl_d({ duration = 250 })
+  end,
+  ["<C-j>"] = function()
+    neoscroll.ctrl_d({ duration = 250 })
+  end,
+  ["<C-b>"] = function()
+    neoscroll.ctrl_b({ duration = 450 })
+  end,
+  ["<C-f>"] = function()
+    neoscroll.ctrl_f({ duration = 450 })
+  end,
+  ["<C-y>"] = function()
+    neoscroll.scroll(-0.1, { move_cursor = false, duration = 100 })
+  end,
+  ["<C-e>"] = function()
+    neoscroll.scroll(0.1, { move_cursor = false, duration = 100 })
+  end,
+  ["zt"] = function()
+    neoscroll.zt({ half_win_duration = 250 })
+  end,
+  ["zz"] = function()
+    neoscroll.zz({ half_win_duration = 250 })
+  end,
+  ["zb"] = function()
+    neoscroll.zb({ half_win_duration = 250 })
+  end,
+}
+local modes = { "n", "v", "x" }
+for key, func in pairs(keymap) do
+  vim.keymap.set(modes, key, func)
+end
 nmap("<C-i>", "<C-i>")
 
 -- Modes
@@ -127,7 +166,6 @@ nmap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>")
 nmap("<C-z>", "<cmd>ZenMode<cr>")
 nmap("<c-n>", ":e ~/Notes/<cr>")
 
-nmap("-", ":lua require'lir.float'.toggle()<cr>")
 nmap("gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]])
 
 vmap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
@@ -170,7 +208,7 @@ nmap("<Space>K", "<C-w>K")
 nmap("<Space>w", "<C-w>")
 
 -- Open the current file in the default program
-nmap("<Leader>x", ":!xdg-open %<CR><CR>")
+-- nmap("<Leader>x", ":!xdg-open %<CR><CR>")
 
 -- Allow gf to open non-existent file
 nmap("gf", ":edit <cfile><CR>")
@@ -303,11 +341,22 @@ cnoremap("<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"')
 --  See https://github.com/hrsh7th/vim-vsnip/pull/50
 
 vnoremap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
-noremap(
-  "<C-p>",
-  "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>"
-)
 noremap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>")
 noremap("<C-\\>", "<cmd>vsplit<cr>")
+
+noremap("gvd", function()
+  vim.cmd("vsplit") -- Vertical split
+  vim.lsp.buf.definition()
+end)
+
+noremap("gsd", function()
+  vim.cmd("split") -- Horizontal split
+  vim.lsp.buf.definition()
+end)
+
+noremap("gd", function()
+  vim.cmd("vsplit")
+  vim.lsp.buf.definition()
+end)
 
 return M
