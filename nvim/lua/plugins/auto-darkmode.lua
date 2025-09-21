@@ -22,7 +22,7 @@ return {
     opts = {
       italic_comments = true,
       colorscheme = "darkplus",
-      style = "darker",
+      style = "dark",
       transparent = false,
       term_colors = true,
       ending_tilders = false,

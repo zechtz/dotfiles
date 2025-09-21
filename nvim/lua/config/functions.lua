@@ -77,15 +77,12 @@ end
 
 function M.toggle_tabline()
   local value = vim.api.nvim_get_option_value("showtabline", {})
-
   if value == 2 then
     value = 0
   else
     value = 2
   end
-
   vim.opt.showtabline = value
-
   vim.notify("showtabline" .. " set to " .. tostring(value))
 end
 
@@ -157,6 +154,18 @@ end
 function M.show_documentation()
   -- local saga = require("lspsaga")
   -- saga.hover_doc()
+end
+
+-- Add function to show LSP server capabilities
+function M.show_lsp_capabilities()
+  local clients = vim.lsp.get_clients()
+  if #clients == 0 then
+    vim.notify("No LSP clients attached to this buffer", vim.log.levels.WARN)
+    return
+  end
+  for _, client in ipairs(clients) do
+    vim.notify("LSP Client: " .. client.name .. "\n" .. vim.inspect(client.server_capabilities), vim.log.levels.INFO)
+  end
 end
 
 return M

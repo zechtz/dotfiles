@@ -344,4 +344,19 @@ vnoremap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
 noremap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>")
 noremap("<C-\\>", "<cmd>vsplit<cr>")
 
+noremap("gvd", function()
+  vim.cmd("vsplit") -- Vertical split
+  vim.lsp.buf.definition()
+end)
+
+noremap("gsd", function()
+  vim.cmd("split") -- Horizontal split
+  vim.lsp.buf.definition()
+end)
+
+noremap("gd", function()
+  vim.cmd("vsplit")
+  vim.lsp.buf.definition()
+end)
+
 return M

@@ -1,7 +1,7 @@
 return {
   -- Tools
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "stylua",
@@ -132,9 +132,14 @@ return {
       },
       setup = {
         protols = function()
-          require("lspconfig").protols.setup({
-            filetypes = { "proto" }, -- Ensure protols handles .proto files
+          local lspconfig = require("lspconfig")
+          lspconfig.protols.setup({
+            filetypes = { "proto" },
             root_dir = require("lspconfig.util").root_pattern("proto", ".git", "mod"),
+            cmd = {
+              "protols",
+              "--include-paths=/opt/homebrew/include",
+            },
           })
         end,
       },

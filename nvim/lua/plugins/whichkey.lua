@@ -107,8 +107,8 @@ return {
     },
     show_help = true,
     show_keys = true,
-    triggers = { -- Replace deprecated `modes` and `disable.trigger`
-      { "<auto>", mode = "nixsoct" }, -- Default trigger for all supported modes
+    triggers = {
+      { "<auto>", mode = "nixsoct" }, -- Support all modes: normal, insert, visual, etc.
     },
     disable = {
       ft = {},
@@ -116,21 +116,22 @@ return {
     },
     debug = false,
   },
-  keys = {
-    {
-      "<leader>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Buffer Keymaps (which-key)",
-    },
-  },
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
 
-    -- Define mappings using wk.add()
+    -- Register keybindings
     wk.add({
+      -- Buffer local keymap viewer
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Keymaps",
+        mode = "n",
+      },
+
       -- Top-level groups for normal and visual modes
       { "<leader><tab>", group = "tabs", mode = { "n", "v" } },
       { "<leader>b", group = "buffer", mode = { "n", "v" } },
@@ -268,11 +269,11 @@ return {
         mode = "n",
         { "<leader>oc", "<cmd>lua vim.g.cmp_active=false<cr>", desc = "Completion off" },
         { "<leader>oC", "<cmd>lua vim.g.cmp_active=true<cr>", desc = "Completion on" },
-        { "<leader>ow", '<cmd>lua require("config.functions").toggle_option("wrap")<cr>', desc = "Wrap" },
-        { "<leader>or", '<cmd>lua require("config.functions").toggle_option("relativenumber")<cr>', desc = "Relative" },
-        { "<leader>ol", '<cmd>lua require("config.functions").toggle_option("cursorline")<cr>', desc = "Cursorline" },
-        { "<leader>os", '<cmd>lua require("config.functions").toggle_option("spell")<cr>', desc = "Spell" },
-        { "<leader>ot", '<cmd>lua require("config.functions").toggle_tabline()<cr>', desc = "Tabline" },
+        { "<leader>ow", "<cmd>lua require('user.functions').toggle_option('wrap')<cr>", desc = "Wrap" },
+        { "<leader>or", "<cmd>lua require('user.functions').toggle_option('relativenumber')<cr>", desc = "Relative" },
+        { "<leader>ol", "<cmd>lua require('user.functions').toggle_option('cursorline')<cr>", desc = "Cursorline" },
+        { "<leader>os", "<cmd>lua require('user.functions').toggle_option('spell')<cr>", desc = "Spell" },
+        { "<leader>ot", "<cmd>lua require('user.functions').toggle_tabline()<cr>", desc = "Tabline" },
       },
 
       -- LSP
@@ -281,13 +282,13 @@ return {
         group = "LSPs",
         mode = "n",
         { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
-        { "<leader>lc", "<cmd>lua require('plugins.lsp').server_capabilities()<cr>", desc = "Get Capabilities" },
+        { "<leader>lc", "<cmd>lua require('user.functions').show_lsp_capabilities()<cr>", desc = "Get Capabilities" },
         { "<leader>ld", "<cmd>TroubleToggle<cr>", desc = "Diagnostics" },
         { "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
         { "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", desc = "Format" },
         { "<leader>lF", "<cmd>LspToggleAutoFormat<cr>", desc = "Toggle Autoformat" },
         { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info" },
-        { "<leader>lh", '<cmd>lua require("config.functions").toggle_inlay_hints()<cr>', desc = "Toggle Inlay Hints" },
+        { "<leader>lh", "<cmd>lua require('user.functions').toggle_inlay_hints()<cr>", desc = "Toggle Inlay Hints" },
         { "<leader>lH", "<cmd>IlluminationToggle<cr>", desc = "Toggle Doc HL" },
         { "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info" },
         { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", desc = "Next Diagnostic" },
@@ -295,12 +296,12 @@ return {
         { "<leader>lv", "<cmd>lua require('lsp_lines').toggle()<cr>", desc = "Virtual Text" },
         { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action" },
         { "<leader>lo", "<cmd>SymbolsOutline<cr>", desc = "Outline" },
-        { "<leader>lq", "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", desc = "Quickfix" },
+        { "<leader>lq", "<cmd>lua vim.diagnostic.set_loclist()<cr>", desc = "Quickfix" },
         { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
         { "<leader>lR", "<cmd>TroubleToggle lsp_references<cr>", desc = "References" },
         { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
         { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
-        { "<leader>lt", '<cmd>lua require("config.functions").toggle_diagnostics()<cr>', desc = "Toggle Diagnostics" },
+        { "<leader>lt", "<cmd>lua require('user.functions').toggle_diagnostics()<cr>", desc = "Toggle Diagnostics" },
         { "<leader>lu", "<cmd>LuaSnipUnlinkCurrent<cr>", desc = "Unlink Snippet" },
       },
     })
