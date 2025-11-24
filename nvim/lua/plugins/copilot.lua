@@ -10,9 +10,9 @@ return {
           enabled = true,
           auto_refresh = true,
           keymap = {
-            jump_next = "<c-j>",
-            jump_prev = "<c-k>",
-            accept = "<c-a>",
+            jump_next = "<c-n>",
+            jump_prev = "<c-p>",
+            accept = "<c-l>",
             refresh = "r",
             open = "<M-CR>",
           },

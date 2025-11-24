@@ -4,7 +4,7 @@
 
 -- DO NOT USE `LazyVim.safe_keymap_set` IN YOUR OWN CONFIG!!
 -- use `vim.keymap.set` instead
-local map = LazyVim.safe_keymap_set
+local map = vim.keymap.set
 local mapping = vim.keymap.set
 
 M = {}
@@ -237,10 +237,7 @@ nmap("<Leader>WW", "<C-w>K")
 nmap("<Leader>WW", "<C-w>J")
 
 -- navigating through lines should be easy, don't have to gj & gk anymore
-noremap("k", "gk")
-noremap("gk", "k")
-noremap("j", "gj")
-noremap("gj", "j")
+-- NOTE: Removed duplicate j/k mappings - already handled by nvmap above (lines 62-65)
 
 -- enter vim hardmode disables hjkl navigation break the bad habbits
 noremap("hh", "<NOP>")
@@ -287,7 +284,8 @@ local arrow_mappings = {
   elixir = "<Space>-><Space>",
 }
 
-imap("<c-j>", "<Space><-<Space>")
+-- NOTE: Changed from <c-j> to <c-;> to avoid conflict with neoscroll
+imap("<c-;>", "<Space><-<Space>")
 --imap("<c-l>", arrow_mappings)
 
 nmap("<Leader>bt", "<Esc>:Tabularize/= <CR>")
@@ -305,10 +303,11 @@ xmap("K", ":move '<-2<cr>gv-gv")
 xmap("J", ":move '>+1<cr>gv-gv")
 
 -- No Arrow keys come on man!
-nmap("<Left>", ':echo "no!"<CR>')
-nmap("<Right>", ':echo "no!"<CR>')
-nmap("<Up>", ':echo "no!"<CR>')
-nmap("<Down>", ':echo "no!"<CR>')
+-- NOTE: Commented out - conflicts with nvmap arrow key mappings above (lines 63-65)
+-- nmap("<Left>", ':echo "no!"<CR>')
+-- nmap("<Right>", ':echo "no!"<CR>')
+-- nmap("<Up>", ':echo "no!"<CR>')
+-- nmap("<Down>", ':echo "no!"<CR>')
 nmap("<Leader>rnf", "<cmd>lua require('user.helpers.helpers').RenameFile()<cr>")
 
 -- nnoremap <Leader>rg :Rg<C-W><CR>
@@ -324,14 +323,12 @@ nmap("<Leader>jx", ':%s/[ \\t]\\([A-Za-z_].*\\):/"\1":/<CR>')
 nmap("<Leader>js", ':%s/\\([A-Z_]*\\):/"\1":/<CR>')
 
 -- " LSP config (the mappings used in the default file don't quite work right)
-noremap("<silent> gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-noremap("<silent> gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-noremap("<silent> gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-noremap("<silent> gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-noremap("<silent> K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-noremap("<silent> <C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-noremap("<silent> <C-n>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
-noremap("<silent> <C-p>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+-- NOTE: These are handled by LazyVim defaults, commenting out to avoid conflicts
+-- nmap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true })
+-- nmap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true })
+-- nmap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true })
+-- nmap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { silent = true })
+-- nmap("K", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true })
 
 -- " NOTE: You can use other key to expand snippet.
 cnoremap("<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"')
@@ -344,19 +341,30 @@ vnoremap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
 noremap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>")
 noremap("<C-\\>", "<cmd>vsplit<cr>")
 
+-- Go to definition in vertical split
 noremap("gvd", function()
-  vim.cmd("vsplit") -- Vertical split
-  vim.lsp.buf.definition()
+  -- Use FzfLua or Telescope for definition which handles splits better
+  local ok, fzf = pcall(require, "fzf-lua")
+  if ok then
+    fzf.lsp_definitions({ jump1 = "vsplit" })
+  else
+    vim.cmd("vsplit")
+    vim.lsp.buf.definition()
+  end
 end)
 
+-- Go to definition in horizontal split
 noremap("gsd", function()
-  vim.cmd("split") -- Horizontal split
-  vim.lsp.buf.definition()
+  local ok, fzf = pcall(require, "fzf-lua")
+  if ok then
+    fzf.lsp_definitions({ jump1 = "split" })
+  else
+    vim.cmd("split")
+    vim.lsp.buf.definition()
+  end
 end)
 
-noremap("gd", function()
-  vim.cmd("vsplit")
-  vim.lsp.buf.definition()
-end)
+-- NOTE: Removed gd override - let LazyVim handle it for proper LSP integration
+-- Use gvd for vsplit + definition, gsd for hsplit + definition
 
 return M
