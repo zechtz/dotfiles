@@ -12,6 +12,7 @@ return {
         "tailwindcss-language-server",
         "typescript-language-server",
         "css-lsp",
+        "angular-language-server",
       })
     end,
   },
@@ -29,15 +30,6 @@ return {
         update_on_insert = true,
         severity_sort = true,
       },
-      vim.keymap.set("n", "gl", function()
-        vim.diagnostic.open_float(nil, {
-          border = "rounded",
-          focusable = false,
-          scope = "line",
-          float_opts = { anchor = "NW" },
-        })
-      end, { desc = "Show diagnostics with rounded borders at the top" }),
-
       ---@type lspconfig.options
       servers = {
         cssls = {},
@@ -46,37 +38,16 @@ return {
             return require("lspconfig.util").root_pattern(".git")(...)
           end,
         },
-        tsserver = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
-          single_file_support = false,
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "literal",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
+        html = {
+          filetypes = { "html" },
+          init_options = {
+            configurationSection = { "html", "css", "javascript" },
+            embeddedLanguages = {
+              css = true,
+              javascript = true,
             },
           },
         },
-        html = {},
         yamlls = {
           settings = {
             yaml = {
@@ -132,13 +103,27 @@ return {
       },
       setup = {
         protols = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.protols.setup({
-            filetypes = { "proto" },
+          require("lspconfig").protols.setup({
+            filetypes = { "proto" }, -- Ensure protols handles .proto files
             root_dir = require("lspconfig.util").root_pattern("proto", ".git", "mod"),
-            cmd = {
-              "protols",
-              "--include-paths=/opt/homebrew/include",
+          })
+        end,
+        angularls = function()
+          require("lspconfig").angularls.setup({
+            filetypes = { "html", "htmlangular" },
+            root_dir = require("lspconfig.util").root_pattern("angular.json", "project.json"),
+            on_new_config = function(new_config, new_root_dir)
+              new_config.cmd = vim.list_extend(new_config.cmd, {
+                "--tsProbeLocations",
+                new_root_dir .. "/node_modules",
+                "--ngProbeLocations",
+                new_root_dir .. "/node_modules/@angular/language-server/node_modules",
+              })
+            end,
+            settings = {
+              angular = {
+                enable = true,
+              },
             },
           })
         end,
@@ -146,21 +131,4 @@ return {
     },
   },
 
-  -- Additional LSP configurations
-  {
-    "neovim/nvim-lspconfig",
-    opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      vim.list_extend(keys, {
-        {
-          "gd",
-          function()
-            require("telescope.builtin").lsp_definitions({ reuse_win = false })
-          end,
-          desc = "Goto Definition",
-          has = "definition",
-        },
-      })
-    end,
-  },
 }

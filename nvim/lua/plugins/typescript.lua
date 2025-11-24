@@ -8,7 +8,10 @@ return {
     },
     opts = {
       servers = {
-        tsserver = {
+        vtsls = {
+          init_options = {
+            maxTsServerMemory = 8192,
+          },
           on_attach = function(client, bufnr)
             -- Setup navic
             if client.server_capabilities.documentSymbolProvider then
