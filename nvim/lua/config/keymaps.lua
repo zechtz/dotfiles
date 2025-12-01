@@ -259,6 +259,15 @@ imap(",,e", "<Esc>A") -- move to the end of the line in insert mode and enter in
 
 nmap("<Leader>gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
 
+-- Show diagnostics in a floating window with rounded borders (gl)
+nmap("gl", function()
+  vim.diagnostic.open_float(nil, {
+    border = "rounded",
+    focusable = false,
+    scope = "line",
+  })
+end, { desc = "Show line diagnostics" })
+
 -- Indents html on save and takes you to the top of the page
 vim.cmd([[
 autocmd BufRead,BufWritePre *.html normal gg=G
