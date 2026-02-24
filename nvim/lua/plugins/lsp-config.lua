@@ -10,7 +10,7 @@ return {
         "shellcheck",
         "shfmt",
         "tailwindcss-language-server",
-        "typescript-language-server",
+        "vtsls",
         "css-lsp",
         "angular-language-server",
       })
@@ -81,7 +81,6 @@ return {
         },
         emmet_language_server = {
           filetypes = {
-            "astro",
             "blade",
             "css",
             "eruby",
@@ -130,5 +129,4 @@ return {
       },
     },
   },
-
 }

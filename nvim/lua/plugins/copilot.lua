@@ -3,7 +3,12 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     build = ":Copilot auth",
-    event = "InsertEnter",
+    -- Manual start only (removed event = "InsertEnter")
+    keys = {
+      { "<leader>cp", "<cmd>Copilot attach<cr>", desc = "Start Copilot" },
+      { "<leader>cd", "<cmd>Copilot detach<cr>", desc = "Stop Copilot" },
+    },
+    enabled = true,
     config = function()
       require("copilot").setup({
         panel = {

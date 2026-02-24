@@ -157,7 +157,7 @@ local last_run = 0
 local debounce_ms = 5000 -- 5 seconds debounce
 
 local function run_ide_helper_models()
-  local now = vim.loop.now()
+  local now = vim.uv.now()
   if now - last_run < debounce_ms then
     return
   end
