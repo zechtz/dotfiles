@@ -17,7 +17,7 @@ return {
       return " " .. table.concat(c, "|")
     end
 
-    local custom_catppuccin = require("lualine.themes.catppuccin")
+    local custom_catppuccin = require("catppuccin.utils.lualine")()
 
     -- Custom colours
     custom_catppuccin.normal.b.fg = "#cad3f5"

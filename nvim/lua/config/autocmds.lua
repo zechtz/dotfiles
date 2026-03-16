@@ -7,6 +7,19 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+-- Prevent bufferline (or any plugin) from overriding the tabline toggle
+vim.api.nvim_create_autocmd("OptionSet", {
+  pattern = "showtabline",
+  callback = function()
+    if vim.g.tabline_hidden and vim.v.option_new ~= "0" then
+      vim.schedule(function()
+        vim.opt.showtabline = 0
+      end)
+    end
+  end,
+  desc = "Preserve tabline toggle state",
+})
+
 -- Helper function to detect Laravel project
 local function is_laravel_project()
   local composer_json = vim.fn.findfile("composer.json", vim.fn.getcwd() .. ";")

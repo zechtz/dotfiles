@@ -48,7 +48,7 @@ return {
         },
       },
       ghost_text = {
-        enabled = vim.g.ai_cmp,
+        enabled = true,
       },
     },
 
@@ -108,7 +108,7 @@ return {
       ["<S-k>"] = { "scroll_documentation_up", "fallback" },
       ["<S-j>"] = { "scroll_documentation_down", "fallback" },
 
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-space>"] = { "accept", "show", "fallback" },
       ["<C-e>"] = { "hide", "fallback" },
     },
   },

@@ -76,17 +76,9 @@ function M.toggle_option(option)
 end
 
 function M.toggle_tabline()
-  local value = vim.api.nvim_get_option_value("showtabline", {})
-
-  if value == 2 then
-    value = 0
-  else
-    value = 2
-  end
-
-  vim.opt.showtabline = value
-
-  vim.notify("showtabline" .. " set to " .. tostring(value))
+  vim.g.tabline_hidden = not vim.g.tabline_hidden
+  vim.opt.showtabline = vim.g.tabline_hidden and 0 or 2
+  vim.notify("tabline " .. (vim.g.tabline_hidden and "hidden" or "shown"))
 end
 
 local diagnostics_active = true
