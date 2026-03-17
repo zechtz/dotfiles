@@ -80,7 +80,10 @@ return {
           theme = custom_theme,
           component_separators = "",
           section_separators = { left = "", right = "" },
-          disabled_filetypes = { "alpha", "Outline" },
+          disabled_filetypes = {
+            statusline = { "alpha", "Outline" },
+            winbar = { "alpha", "Outline", "dashboard", "lazy", "neo-tree", "toggleterm" },
+          },
         },
         sections = {
           lualine_a = {
@@ -125,7 +128,23 @@ return {
           lualine_y = {},
           lualine_z = { "location" },
         },
-        extensions = { "toggleterm", "trouble" },
+        winbar = {
+          lualine_c = {
+            {
+              "navic",
+              color_correction = "dynamic",
+              navic_opts = {
+                highlight = true,
+                depth_limit = 5,
+                separator = "  ",
+              },
+            },
+          },
+        },
+        inactive_winbar = {
+          lualine_c = { "filename" },
+        },
+        extensions = { "toggleterm", "trouble", "neo-tree" },
       })
     end
 
