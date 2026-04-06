@@ -32,7 +32,17 @@ return {
       },
       ---@type lspconfig.options
       servers = {
-        cssls = {},
+        cssls = {
+          settings = {
+            -- Disable cssls validation entirely for Tailwind v4 projects.
+            -- Tailwind v4 introduces syntax cssls can't parse (@import with source(),
+            -- @source, @plugin, @theme, @custom-variant), causing false positives that
+            -- can't be silenced with lint rules. The tailwindcss LSP handles diagnostics.
+            css  = { validate = false },
+            scss = { validate = false },
+            less = { validate = false },
+          },
+        },
         tailwindcss = {
           root_dir = function(...)
             return require("lspconfig.util").root_pattern(".git")(...)

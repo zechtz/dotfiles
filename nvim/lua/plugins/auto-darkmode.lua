@@ -9,8 +9,9 @@ return {
         vim.cmd("colorscheme darkplus") -- Use darkplus for dark mode
       end,
       set_light_mode = function()
-        vim.api.nvim_set_option_value("background", "light", {})
-        vim.cmd("colorscheme catppuccin") -- Use catppuccin latte for light mode
+        -- vim.api.nvim_set_option_value("background", "light", {})
+        vim.cmd("colorscheme tokyonight-day")
+        -- vim.cmd("colorscheme catppuccin-latte") -- Use catppuccin-latte for light mode
       end,
       fallback = "dark",
     },

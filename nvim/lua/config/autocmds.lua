@@ -7,17 +7,30 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- Prevent bufferline (or any plugin) from overriding the tabline toggle
+-- Prevent bufferline (or any plugin) from overriding the tabline toggle.
+-- NOTE: vim.v.option_new is a number for number options — never compare to "0" (string).
+-- The string comparison was always true, creating an infinite scheduling loop that also
+-- disrupted neoscroll's animation queue.
 vim.api.nvim_create_autocmd("OptionSet", {
   pattern = "showtabline",
   callback = function()
-    if vim.g.tabline_hidden and vim.v.option_new ~= "0" then
+    if vim.g.tabline_hidden and vim.v.option_new ~= 0 then
       vim.schedule(function()
         vim.opt.showtabline = 0
       end)
     end
   end,
   desc = "Preserve tabline toggle state",
+})
+
+-- Belt-and-suspenders: explicitly re-apply after saves, since bufferline hooks BufWritePost.
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    if vim.g.tabline_hidden then
+      vim.opt.showtabline = 0
+    end
+  end,
+  desc = "Re-apply tabline hidden state after save",
 })
 
 -- Helper function to detect Laravel project

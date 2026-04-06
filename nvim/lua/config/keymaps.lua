@@ -129,8 +129,8 @@ nmap("<m-k>", "<C-w>k")
 nmap("<m-l>", "<C-w>l")
 nmap("<m-tab>", "<c-6>")
 
--- Tabs --
-nmap("<m-t>", ":tabnew %<cr>")
+-- Tabs (kept for explicit use only; files should open as buffers by default)
+-- nmap("<m-t>", ":tabnew %<cr>")  -- disabled: use buffers instead of tabs
 nmap("<m-y>", ":tabclose<cr>")
 nmap("<m-\\>", ":tabonly<cr>")
 
